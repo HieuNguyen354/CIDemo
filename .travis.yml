@@ -1,0 +1,18 @@
+language: objective-c
+osx_image: xcode16.2
+cache:
+  - bundler
+  - cocoapods
+xcode_workspace: MultipleModule.xcworkspace
+xcode_scheme: MultipleModule
+xcode_destination: platform=iOS Simulator,OS=15,name=iPhone 16
+before_install:
+  - bundle install
+  - gem install linterbot
+  - bundle exec pod install --repo-update
+before_script:
+  - chmod a+x ./scripts/add-key.sh
+  - sh ./scripts/add-key.sh
+script:
+  - ./scripts/linter
+  - ./scripts/run
