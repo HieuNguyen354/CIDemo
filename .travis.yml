@@ -1,0 +1,8 @@
+language: swift
+osx_image: xcode16.2
+xcode_workspace: MultipleModule.xcworkspace
+xcode_scheme: MultipleModule_Debug
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
+before_install:
+  - bundle install
+  - bundle exec pod install --repo-update
