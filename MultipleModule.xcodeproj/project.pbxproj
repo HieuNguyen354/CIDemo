@@ -6,15 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		63EECA5B9C27B238509F5771 /* Pods_MultipleModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2258C9DE8FB5A8DFA5ACB94A /* Pods_MultipleModule.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		2258C9DE8FB5A8DFA5ACB94A /* Pods_MultipleModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultipleModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6308EAB16D683CE86C7E5D00 /* Pods-MultipleModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.debug.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.debug.xcconfig"; sourceTree = "<group>"; };
 		A0D3EFC02D5B93750043F8D9 /* MultipleModule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipleModule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8F67CD754C41C473F5EA75F /* Pods-MultipleModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.release.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A0D3EFD22D5B93770043F8D9 /* Exceptions for "MultipleModule" folder in "MultipleModule" target */ = {
+		A0D3F3422D5BA4220043F8D9 /* Exceptions for "MultipleModule" folder in "MultipleModule" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				MainFiles/Info.plist,
 			);
 			target = A0D3EFBF2D5B93750043F8D9 /* MultipleModule */;
 		};
@@ -24,7 +31,7 @@
 		A0D3EFC22D5B93750043F8D9 /* MultipleModule */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A0D3EFD22D5B93770043F8D9 /* Exceptions for "MultipleModule" folder in "MultipleModule" target */,
+				A0D3F3422D5BA4220043F8D9 /* Exceptions for "MultipleModule" folder in "MultipleModule" target */,
 			);
 			path = MultipleModule;
 			sourceTree = "<group>";
@@ -36,17 +43,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63EECA5B9C27B238509F5771 /* Pods_MultipleModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96A6C6475F3777505683A0A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2258C9DE8FB5A8DFA5ACB94A /* Pods_MultipleModule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A0D3EFB72D5B93750043F8D9 = {
 			isa = PBXGroup;
 			children = (
 				A0D3EFC22D5B93750043F8D9 /* MultipleModule */,
 				A0D3EFC12D5B93750043F8D9 /* Products */,
+				F054B9C21A8A9B32A98448FE /* Pods */,
+				96A6C6475F3777505683A0A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +76,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F054B9C21A8A9B32A98448FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6308EAB16D683CE86C7E5D00 /* Pods-MultipleModule.debug.xcconfig */,
+				F8F67CD754C41C473F5EA75F /* Pods-MultipleModule.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0D3EFD32D5B93770043F8D9 /* Build configuration list for PBXNativeTarget "MultipleModule" */;
 			buildPhases = (
+				CF2FCB4A314E26A0CA618F50 /* [CP] Check Pods Manifest.lock */,
 				A0D3EFBC2D5B93750043F8D9 /* Sources */,
 				A0D3EFBD2D5B93750043F8D9 /* Frameworks */,
 				A0D3EFBE2D5B93750043F8D9 /* Resources */,
+				AC5FAB8029B11E5C96E79E1D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				A0D3EFC22D5B93750043F8D9 /* MultipleModule */,
 			);
 			name = MultipleModule;
-			packageProductDependencies = (
-			);
 			productName = MultipleModule;
 			productReference = A0D3EFC02D5B93750043F8D9 /* MultipleModule.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AC5FAB8029B11E5C96E79E1D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MultipleModule/Pods-MultipleModule-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MultipleModule/Pods-MultipleModule-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MultipleModule/Pods-MultipleModule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF2FCB4A314E26A0CA618F50 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultipleModule-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A0D3EFBC2D5B93750043F8D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,19 +209,21 @@
 /* Begin XCBuildConfiguration section */
 		A0D3EFD42D5B93770043F8D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6308EAB16D683CE86C7E5D00 /* Pods-MultipleModule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3WM3Z6QX39;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MultipleModule/Info.plist;
+				INFOPLIST_FILE = /Users/hieunguyen/MyProject/MultipleModule/MultipleModule/MainFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -168,19 +239,21 @@
 		};
 		A0D3EFD52D5B93770043F8D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8F67CD754C41C473F5EA75F /* Pods-MultipleModule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3WM3Z6QX39;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MultipleModule/Info.plist;
+				INFOPLIST_FILE = /Users/hieunguyen/MyProject/MultipleModule/MultipleModule/MainFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

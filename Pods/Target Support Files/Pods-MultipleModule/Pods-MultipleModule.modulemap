@@ -1,0 +1,6 @@
+framework module Pods_MultipleModule {
+  umbrella header "Pods-MultipleModule-umbrella.h"
+
+  export *
+  module * { export * }
+}
