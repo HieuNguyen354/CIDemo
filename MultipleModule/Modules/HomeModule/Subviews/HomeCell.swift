@@ -50,7 +50,7 @@ class HomeCell: UITableViewCell {
 		}
 		
 		dividerLine.snp.makeConstraints {
-			$0.leading.trailing.equalToSuperview().inset(16)
+			$0.leading.trailing.equalToSuperview().inset(17)
 			$0.bottom.equalToSuperview()
 			$0.height.equalTo(0.5)
 		}
