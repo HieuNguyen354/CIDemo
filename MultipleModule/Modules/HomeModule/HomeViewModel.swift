@@ -11,10 +11,10 @@ import RxDataSources
 
 final class HomeViewModel: BaseViewModel {
 	typealias Sections = SectionModel<String, HeroesModel>
-	let sections = BehaviorRelay<[Sections]>.init(value: [])
+	let sections = BehaviorRelay<[Sections]>(value: [])
 	let fetchRX = PublishSubject<Void>()
 	let responseData = PublishSubject<[HeroesModel]>()
-	
+
 	override func setupBindings() {
 		super.setupBindings()
 		fetchRX
@@ -22,20 +22,20 @@ final class HomeViewModel: BaseViewModel {
 				guard let self else { return }
 				requestData()
 			}.disposed(by: disposeBag)
-		
+
 		responseData
 			.subscribe { [weak self] model in
 				guard let self else { return }
 				reloadTableView(model: model)
 			}.disposed(by: disposeBag)
 	}
-	
+
 	func reloadTableView(model: [HeroesModel]) {
 		var temp = [Sections]()
 		getHeroesSection(&temp, model: model)
 		sections.accept(temp)
 	}
-	
+
 	private func getHeroesSection(_ sections: inout [Sections],
 								  model: [HeroesModel]) {
 		var tableViewItem = [HeroesModel]()
@@ -44,7 +44,7 @@ final class HomeViewModel: BaseViewModel {
 		}
 		sections.append(.init(model: "", items: tableViewItem))
 	}
-	
+
 	private func requestData() {
 		ClientManager
 			.shared
@@ -62,5 +62,5 @@ final class HomeViewModel: BaseViewModel {
 				}
 			}
 	}
-	
+
 }

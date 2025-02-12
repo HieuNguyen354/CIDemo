@@ -15,15 +15,15 @@ import RxSwift
 class _RxTableViewReactiveArrayDataSource
     : NSObject
     , UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-   
+
     func _tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         0
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         _tableView(tableView, numberOfRowsInSection: section)
     }
@@ -36,7 +36,6 @@ class _RxTableViewReactiveArrayDataSource
         _tableView(tableView, cellForRowAt: indexPath)
     }
 }
-
 
 class RxTableViewReactiveArrayDataSourceSequenceWrapper<Sequence: Swift.Sequence>
     : RxTableViewReactiveArrayDataSource<Sequence.Element>
@@ -60,9 +59,9 @@ class RxTableViewReactiveArrayDataSource<Element>
     : _RxTableViewReactiveArrayDataSource
     , SectionedViewDataSourceType {
     typealias CellFactory = (UITableView, Int, Element) -> UITableViewCell
-    
+
     var itemModels: [Element]?
-    
+
     func modelAtIndex(_ index: Int) -> Element? {
         itemModels?[index]
     }
@@ -76,24 +75,24 @@ class RxTableViewReactiveArrayDataSource<Element>
     }
 
     let cellFactory: CellFactory
-    
+
     init(cellFactory: @escaping CellFactory) {
         self.cellFactory = cellFactory
     }
-    
+
     override func _tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemModels?.count ?? 0
     }
-    
+
     override func _tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cellFactory(tableView, indexPath.item, itemModels![indexPath.row])
     }
-    
+
     // reactive
-    
+
     func tableView(_ tableView: UITableView, observedElements: [Element]) {
         self.itemModels = observedElements
-        
+
         tableView.reloadData()
     }
 }

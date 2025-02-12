@@ -13,16 +13,16 @@ struct APIServiceEndpoint: HTTPRequestEndpoint {
 	var path: String
 	var method: HTTPClientServiceRequestMethod
 	var queryItems: [URLQueryItem]?
-	var header: [String : String]?
-	var body: [String : Any]?
-	
-	init(scheme: String = "https" ,
+	var header: [String: String]?
+	var body: [String: Any]?
+
+	init(scheme: String = "https",
 		 host: String,
 		 path: String,
 		 method: HTTPClientServiceRequestMethod? = HTTPClientServiceRequestMethod.GET,
 		 queryItems: [URLQueryItem]? = nil,
-		 header: [String : String]? = nil,
-		 body: [String : String]? = nil) {
+		 header: [String: String]? = nil,
+		 body: [String: String]? = nil) {
 		self.scheme = scheme
 		self.host = host
 		self.path = path

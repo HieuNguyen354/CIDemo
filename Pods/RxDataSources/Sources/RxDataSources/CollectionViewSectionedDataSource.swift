@@ -22,7 +22,7 @@ open class CollectionViewSectionedDataSource<Section: SectionModelType>
     public typealias Section = Section
     public typealias ConfigureCell = (CollectionViewSectionedDataSource<Section>, UICollectionView, IndexPath, Item) -> UICollectionViewCell
     public typealias ConfigureSupplementaryView = (CollectionViewSectionedDataSource<Section>, UICollectionView, String, IndexPath) -> UICollectionReusableView
-    public typealias MoveItem = (CollectionViewSectionedDataSource<Section>, _ sourceIndexPath:IndexPath, _ destinationIndexPath:IndexPath) -> Void
+    public typealias MoveItem = (CollectionViewSectionedDataSource<Section>, _ sourceIndexPath: IndexPath, _ destinationIndexPath: IndexPath) -> Void
     public typealias CanMoveItemAtIndexPath = (CollectionViewSectionedDataSource<Section>, IndexPath) -> Bool
 
 
@@ -160,8 +160,7 @@ open class CollectionViewSectionedDataSource<Section: SectionModelType>
     override open func responds(to aSelector: Selector!) -> Bool {
         if aSelector == #selector(UICollectionViewDataSource.collectionView(_:viewForSupplementaryElementOfKind:at:)) {
             return configureSupplementaryView != nil
-        }
-        else {
+        } else {
             return super.responds(to: aSelector)
         }
     }

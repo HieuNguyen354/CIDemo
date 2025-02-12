@@ -28,7 +28,7 @@ open class RxSearchControllerDelegateProxy
         self.searchController = searchController
         super.init(parentObject: searchController, delegateProxy: RxSearchControllerDelegateProxy.self)
     }
-    
+
     // Register known implementations
     public static func registerKnownImplementations() {
         self.register { RxSearchControllerDelegateProxy(searchController: $0) }
@@ -36,5 +36,5 @@ open class RxSearchControllerDelegateProxy
 }
 
 extension RxSearchControllerDelegateProxy: UISearchControllerDelegate {}
-   
+
 #endif

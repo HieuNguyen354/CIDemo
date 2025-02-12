@@ -45,7 +45,6 @@ to replace dealloc method. In case that isn't the case, it should be ok.
 */
 extension Reactive where Base: NSObject {
 
-
     /**
      Observes values on `keyPath` starting from `self` with `options` and retains `self` if `retainSelf` is set.
 
@@ -123,7 +122,7 @@ extension Reactive where Base: NSObject {
 
 // Dealloc
 extension Reactive where Base: AnyObject {
-    
+
     /**
     Observable sequence of object deallocated events.
     
@@ -168,8 +167,7 @@ extension Reactive where Base: AnyObject {
             do {
                 let proxy: MessageSentProxy = try self.registerMessageInterceptor(selector)
                 return proxy.messageSent.asObservable()
-            }
-            catch let e {
+            } catch let e {
                 return Observable.error(e)
             }
         }
@@ -194,12 +192,10 @@ extension Reactive where Base: AnyObject {
                 return self.deallocated.map { _ in [] }
             }
 
-
             do {
                 let proxy: MessageSentProxy = try self.registerMessageInterceptor(selector)
                 return proxy.methodInvoked.asObservable()
-            }
-            catch let e {
+            } catch let e {
                 return Observable.error(e)
             }
         }
@@ -220,8 +216,7 @@ extension Reactive where Base: AnyObject {
             do {
                 let proxy: DeallocatingProxy = try self.registerMessageInterceptor(deallocSelector)
                 return proxy.messageSent.asObservable()
-            }
-            catch let e {
+            } catch let e {
                 return Observable.error(e)
             }
         }
@@ -234,8 +229,7 @@ extension Reactive where Base: AnyObject {
         let subject: T
         if let existingSubject = objc_getAssociatedObject(self.base, selectorReference) as? T {
             subject = existingSubject
-        }
-        else {
+        } else {
             subject = T()
             objc_setAssociatedObject(
                 self.base,
@@ -334,9 +328,8 @@ extension Reactive where Base: AnyObject {
 
 #endif
 
-
 private final class DeallocObservable {
-    let subject = ReplaySubject<Void>.create(bufferSize:1)
+    let subject = ReplaySubject<Void>.create(bufferSize: 1)
 
     init() {
     }
@@ -410,7 +403,7 @@ private final class KVOObservable<Element>
 
     func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element? {
         let observer = KVOObserver(parent: self) { value in
-            if value as? NSNull != nil {
+            if value is NSNull {
                 observer.on(.next(nil))
                 return
             }
@@ -431,7 +424,7 @@ private extension KeyValueObservingOptions {
         if self.contains(.initial) {
             result |= NSKeyValueObservingOptions.initial.rawValue
         }
-        
+
         return NSKeyValueObservingOptions(rawValue: result)
     }
 }
@@ -448,8 +441,7 @@ private extension KeyValueObservingOptions {
 
         if !options.isDisjoint(with: .initial) {
             return observable
-        }
-        else {
+        } else {
             return observable
                 .skip(1)
         }
@@ -521,12 +513,11 @@ private extension KeyValueObservingOptions {
                 let nextElementsObservable = keyPathSections.count == 1
                     ? Observable.just(nextTarget)
                     : observeWeaklyKeyPathFor(nextObject!, keyPathSections: remainingPaths, options: options)
-                
+
                 if isWeak {
                     return nextElementsObservable
                         .finishWithNilWhenDealloc(nextObject!)
-                }
-                else {
+                } else {
                     return nextElementsObservable
                 }
         }
@@ -557,11 +548,11 @@ extension Reactive where Base: AnyObject {
         if let value = objc_getAssociatedObject(self.base, key) {
             return value as! T
         }
-        
+
         let observable = createCachedObservable()
-        
+
         objc_setAssociatedObject(self.base, key, observable, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        
+
         return observable
     }
 }

@@ -5,10 +5,10 @@
 //  Created by HieuNguyen on 24/12/24.
 //
 
-//import UIKit
-//import FirebaseMessaging
+// import UIKit
+// import FirebaseMessaging
 //
-//final class NotificationPermission {
+// final class NotificationPermission {
 //	static var isUserAllowAuthorized: Bool {
 //		get {
 //			return UserDefaults.standard[#function] ?? false
@@ -38,4 +38,4 @@
 //		}
 //	}
 //	
-//}
+// }

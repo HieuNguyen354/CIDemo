@@ -24,12 +24,12 @@ private final class CollectionViewDataSourceNotSet
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         0
     }
-    
+
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         rxAbstractMethod(message: dataSourceNotSet)
     }
-    
+
 }
 
 /// For more information take a look at `DelegateProxyType`.

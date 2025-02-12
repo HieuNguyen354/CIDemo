@@ -9,12 +9,12 @@ import Foundation
 
 struct HomeRequestModel: APIServiceRequest {
 	var method: APIServiceRequestMethod
-	
+
 	var path: String
-	
-	var parameters: [String : Any]?
-	
-	init(parameters: [String : Any]? = nil) {
+
+	var parameters: [String: Any]?
+
+	init(parameters: [String: Any]? = nil) {
 		self.method = .GET
 		self.path = "/api/heroes"
 		self.parameters = parameters

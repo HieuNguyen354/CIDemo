@@ -19,7 +19,7 @@ extension UserDefaults {
 			set(newValue?.rawValue, forKey: key)
 		}
 	}
-	
+
 	subscript<T>(key: String) -> T? {
 		get {
 			return value(forKey: key) as? T

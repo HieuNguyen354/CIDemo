@@ -8,7 +8,7 @@
 import Foundation
 
 struct Environment {
-	private static let production : Bool = {
+	private static let production: Bool = {
     #if DEBUG
 		    print("DEBUG")
 		    return false
@@ -20,7 +20,7 @@ struct Environment {
 		    return true
     #endif
 	}()
-	
+
 	static func isProduction () -> Bool {
 		return self.production
 	}

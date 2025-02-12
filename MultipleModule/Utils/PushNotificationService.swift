@@ -5,11 +5,11 @@
 //  Created by HieuNguyen on 14/1/25.
 //
 //
-//import UserNotifications
-//import FirebaseMessaging
-//import FirebaseCore
+// import UserNotifications
+// import FirebaseMessaging
+// import FirebaseCore
 //
-//class PushNotificationService: NSObject {
+// class PushNotificationService: NSObject {
 //	
 //	private(set) static var shared = PushNotificationService()
 //	private let center = UNUserNotificationCenter.current()
@@ -33,9 +33,9 @@
 //			NotificationPermission.checkAuthorized()
 //		}
 //	}
-//}
+// }
 //
-//extension PushNotificationService: UNUserNotificationCenterDelegate {
+// extension PushNotificationService: UNUserNotificationCenterDelegate {
 //	func userNotificationCenter(
 //		_ center: UNUserNotificationCenter,
 //		willPresent notification: UNNotification,
@@ -72,4 +72,4 @@
 //		
 //		completionHandler()
 //	}
-//}
+// }

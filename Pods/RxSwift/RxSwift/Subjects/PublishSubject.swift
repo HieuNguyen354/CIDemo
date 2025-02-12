@@ -19,14 +19,14 @@ public final class PublishSubject<Element>
 
     typealias Observers = AnyObserver<Element>.s
     typealias DisposeKey = Observers.KeyType
-    
+
     /// Indicates whether the subject has any observers
     public var hasObservers: Bool {
         self.lock.performLocked { self.observers.count > 0 }
     }
-    
+
     private let lock = RecursiveLock()
-    
+
     // state
     private var disposed = false
     private var observers = Observers()
@@ -41,7 +41,7 @@ public final class PublishSubject<Element>
     public var isDisposed: Bool {
         self.disposed
     }
-    
+
     /// Creates a subject.
     public override init() {
         super.init()
@@ -49,7 +49,7 @@ public final class PublishSubject<Element>
             _ = Resources.incrementTotal()
         #endif
     }
-    
+
     /// Notifies all subscribed observers about next event.
     ///
     /// - parameter event: Event to send to the observers.
@@ -68,7 +68,7 @@ public final class PublishSubject<Element>
             if self.isDisposed || self.stopped {
                 return Observers()
             }
-            
+
             return self.observers
         case .completed, .error:
             if self.stoppedEvent == nil {
@@ -82,7 +82,7 @@ public final class PublishSubject<Element>
             return Observers()
         }
     }
-    
+
     /**
     Subscribes an observer to the subject.
     
@@ -98,12 +98,12 @@ public final class PublishSubject<Element>
             observer.on(stoppedEvent)
             return Disposables.create()
         }
-        
+
         if self.isDisposed {
             observer.on(.error(RxError.disposed(object: self)))
             return Disposables.create()
         }
-        
+
         let key = self.observers.insert(observer.on)
         return SubscriptionDisposable(owner: self, key: key)
     }
@@ -115,12 +115,12 @@ public final class PublishSubject<Element>
     func synchronized_unsubscribe(_ disposeKey: DisposeKey) {
         _ = self.observers.removeKey(disposeKey)
     }
-    
+
     /// Returns observer interface for subject.
     public func asObserver() -> PublishSubject<Element> {
         self
     }
-    
+
     /// Unsubscribe all observers and release resources.
     public func dispose() {
         self.lock.performLocked { self.synchronized_dispose() }

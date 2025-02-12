@@ -6,7 +6,7 @@ target 'MultipleModule' do
   use_frameworks!
 
   # Pods for MultipleModule
-  pod "SnapKit"
+	pod "SnapKit"
 	pod 'RxSwift', '~> 6.6.0'
 	pod 'RxCocoa', '~> 6.6.0'
 	pod 'RxDataSources', '~> 5.0'

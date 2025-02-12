@@ -19,7 +19,7 @@ import RxSwift
 
     To find out more about units and how to use them, please visit `Documentation/Traits.md`.
 */
-public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element> : SharedSequenceConvertibleType, ObservableConvertibleType {
+public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element>: SharedSequenceConvertibleType, ObservableConvertibleType {
     let source: Observable<Element>
 
     init(_ source: Observable<Element>) {
@@ -55,7 +55,7 @@ public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element> 
     public func asSharedSequence() -> SharedSequence<SharingStrategy, Element> {
         self
     }
-    
+
     /// - returns: `Infallible` interface.
     public func asInfallible() -> Infallible<Element> {
         asInfallible(onErrorFallbackTo: .empty())
@@ -84,7 +84,7 @@ public protocol SharingStrategyProtocol {
 /**
 A type that can be converted to `SharedSequence`.
 */
-public protocol SharedSequenceConvertibleType : ObservableConvertibleType {
+public protocol SharedSequenceConvertibleType: ObservableConvertibleType {
     associatedtype SharingStrategy: SharingStrategyProtocol
 
     /**
@@ -98,7 +98,6 @@ extension SharedSequenceConvertibleType {
         self.asSharedSequence().asObservable()
     }
 }
-
 
 extension SharedSequence {
 
@@ -156,7 +155,7 @@ extension SharedSequence {
 }
 
 extension SharedSequence {
-    
+
     /**
     This method converts an array to an observable sequence.
      
@@ -168,7 +167,7 @@ extension SharedSequence {
         let source = Observable.from(array, scheduler: SharingStrategy.scheduler)
         return SharedSequence(raw: source)
     }
-    
+
     /**
      This method converts a sequence to an observable sequence.
      
@@ -180,7 +179,7 @@ extension SharedSequence {
         let source = Observable.from(sequence, scheduler: SharingStrategy.scheduler)
         return SharedSequence(raw: source)
     }
-    
+
     /**
      This method converts a optional to an observable sequence.
      
@@ -228,4 +227,3 @@ extension SharedSequence where Element: RxAbstractInteger {
         SharedSequence(Observable.timer(dueTime, period: period, scheduler: SharingStrategy.scheduler))
     }
 }
-

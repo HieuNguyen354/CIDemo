@@ -9,9 +9,9 @@ import Foundation
 
 final class HomeManager {
 	var apiService: APIService
-	
+
 	init(apiService: APIService) {
 		self.apiService = apiService
 	}
-	
+
 }

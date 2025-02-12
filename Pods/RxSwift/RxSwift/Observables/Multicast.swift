@@ -153,7 +153,7 @@ final private class Connection<Subject: SubjectType>: ObserverType, Disposable {
     private var lock: RecursiveLock
     // state
     private var parent: ConnectableObservableAdapter<Subject>?
-    private var subscription : Disposable?
+    private var subscription: Disposable?
     private var subjectObserver: Subject.Observer
 
     private let disposed = AtomicInt(0)
@@ -246,7 +246,7 @@ final private class ConnectableObservableAdapter<Subject: SubjectType>
 final private class RefCountSink<ConnectableSource: ConnectableObservableType, Observer: ObserverType>
     : Sink<Observer>
     , ObserverType where ConnectableSource.Element == Observer.Element {
-    typealias Element = Observer.Element 
+    typealias Element = Observer.Element
     typealias Parent = RefCount<ConnectableSource>
 
     private let parent: Parent
@@ -271,8 +271,7 @@ final private class RefCountSink<ConnectableSource: ConnectableObservableType, O
         if self.parent.count == 0 {
             self.parent.count = 1
             self.parent.connectableSubscription = self.parent.source.connect()
-        }
-        else {
+        } else {
             self.parent.count += 1
         }
 
@@ -290,11 +289,9 @@ final private class RefCountSink<ConnectableSource: ConnectableObservableType, O
 
                 connectableSubscription.dispose()
                 self.parent.connectableSubscription = nil
-            }
-            else if self.parent.count > 1 {
+            } else if self.parent.count > 1 {
                 self.parent.count -= 1
-            }
-            else {
+            } else {
                 rxFatalError("Something went wrong with RefCount disposing mechanism")
             }
         }
@@ -343,7 +340,7 @@ final private class RefCount<ConnectableSource: ConnectableObservableType>: Prod
 }
 
 final private class MulticastSink<Subject: SubjectType, Observer: ObserverType>: Sink<Observer>, ObserverType {
-    typealias Element = Observer.Element 
+    typealias Element = Observer.Element
     typealias ResultType = Element
     typealias MutlicastType = Multicast<Subject, Observer.Element>
 
@@ -365,8 +362,7 @@ final private class MulticastSink<Subject: SubjectType, Observer: ObserverType>:
             let connection = connectable.connect()
 
             return Disposables.create(subscription, connection)
-        }
-        catch let e {
+        } catch let e {
             self.forwardOn(.error(e))
             self.dispose()
             return Disposables.create()

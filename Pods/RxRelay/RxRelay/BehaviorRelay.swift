@@ -39,7 +39,7 @@ public final class BehaviorRelay<Element>: ObservableType {
     public func asObservable() -> Observable<Element> {
         self.subject.asObservable()
     }
-    
+
     /// Convert to an `Infallible`
     ///
     /// - returns: `Infallible<Element>`

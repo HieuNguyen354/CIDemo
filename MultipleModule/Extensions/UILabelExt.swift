@@ -17,7 +17,7 @@ extension UILabel {
 		self.textAlignment = textAlignment
 		numberOfLines = isMultipleLine ? 0 : 1
 	}
-	
+
 	func applyMediumTitle(isMultipleLine: Bool = false,
 						  with color: UIColor = .black.withAlphaComponent(0.9),
 						  textAlignment: NSTextAlignment = .left) {
@@ -27,7 +27,7 @@ extension UILabel {
 		self.textAlignment = textAlignment
 		numberOfLines = isMultipleLine ? 0 : 1
 	}
-	
+
 	func applySmallTitle(isMultipleLine: Bool = false,
 						 with color: UIColor = .black.withAlphaComponent(0.9),
 						 textAlignment: NSTextAlignment = .left) {

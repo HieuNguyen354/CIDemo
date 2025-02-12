@@ -10,7 +10,7 @@ struct HeroesModel: Codable {
 	let id: Int
 	let name, localizedName, primaryAttr, attackType: String
 	let roles: [String]
-	
+
 	enum CodingKeys: String, CodingKey {
 		case id, name
 		case localizedName = "localized_name"
