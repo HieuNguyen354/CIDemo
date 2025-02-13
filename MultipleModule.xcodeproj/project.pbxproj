@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63EECA5B9C27B238509F5771 /* Pods_MultipleModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2258C9DE8FB5A8DFA5ACB94A /* Pods_MultipleModule.framework */; };
+		7C79707A0ACE1F33B03635D8 /* Pods_MultipleModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C9989D88CB1264A36353F8 /* Pods_MultipleModule.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2258C9DE8FB5A8DFA5ACB94A /* Pods_MultipleModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultipleModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6308EAB16D683CE86C7E5D00 /* Pods-MultipleModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.debug.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.debug.xcconfig"; sourceTree = "<group>"; };
+		0B89BD9750566DFF53EBE9DE /* Pods-MultipleModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.release.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.release.xcconfig"; sourceTree = "<group>"; };
+		57C9989D88CB1264A36353F8 /* Pods_MultipleModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultipleModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9777273F56400C6AAC266B8E /* Pods-MultipleModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.debug.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.debug.xcconfig"; sourceTree = "<group>"; };
 		A0D3EFC02D5B93750043F8D9 /* MultipleModule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipleModule.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8F67CD754C41C473F5EA75F /* Pods-MultipleModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.release.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -43,17 +43,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63EECA5B9C27B238509F5771 /* Pods_MultipleModule.framework in Frameworks */,
+				7C79707A0ACE1F33B03635D8 /* Pods_MultipleModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		96A6C6475F3777505683A0A1 /* Frameworks */ = {
+		320D9C1455B41E7E8A44D3D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2258C9DE8FB5A8DFA5ACB94A /* Pods_MultipleModule.framework */,
+				57C9989D88CB1264A36353F8 /* Pods_MultipleModule.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -64,7 +64,7 @@
 				A0D3EFC22D5B93750043F8D9 /* MultipleModule */,
 				A0D3EFC12D5B93750043F8D9 /* Products */,
 				F054B9C21A8A9B32A98448FE /* Pods */,
-				96A6C6475F3777505683A0A1 /* Frameworks */,
+				320D9C1455B41E7E8A44D3D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,8 +79,8 @@
 		F054B9C21A8A9B32A98448FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6308EAB16D683CE86C7E5D00 /* Pods-MultipleModule.debug.xcconfig */,
-				F8F67CD754C41C473F5EA75F /* Pods-MultipleModule.release.xcconfig */,
+				9777273F56400C6AAC266B8E /* Pods-MultipleModule.debug.xcconfig */,
+				0B89BD9750566DFF53EBE9DE /* Pods-MultipleModule.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -92,12 +92,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0D3EFD32D5B93770043F8D9 /* Build configuration list for PBXNativeTarget "MultipleModule" */;
 			buildPhases = (
-				CF2FCB4A314E26A0CA618F50 /* [CP] Check Pods Manifest.lock */,
+				BD6D6FE8E5E3963C88E9D7D5 /* [CP] Check Pods Manifest.lock */,
 				A0D3EFBC2D5B93750043F8D9 /* Sources */,
 				A0D3EFBD2D5B93750043F8D9 /* Frameworks */,
 				A0D3EFBE2D5B93750043F8D9 /* Resources */,
-				AC5FAB8029B11E5C96E79E1D /* [CP] Embed Pods Frameworks */,
-				A0D3F3452D5C563A0043F8D9 /* ShellScript */,
+				21293B5D33D7542CAAB3553D /* [CP] Embed Pods Frameworks */,
+				A031632D2D5CD38F009A0D10 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -156,24 +156,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A0D3F3452D5C563A0043F8D9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --fix\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		AC5FAB8029B11E5C96E79E1D /* [CP] Embed Pods Frameworks */ = {
+		21293B5D33D7542CAAB3553D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -190,7 +173,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MultipleModule/Pods-MultipleModule-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF2FCB4A314E26A0CA618F50 /* [CP] Check Pods Manifest.lock */ = {
+		A031632D2D5CD38F009A0D10 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint --fix\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		BD6D6FE8E5E3963C88E9D7D5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -227,7 +227,7 @@
 /* Begin XCBuildConfiguration section */
 		A0D3EFD42D5B93770043F8D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6308EAB16D683CE86C7E5D00 /* Pods-MultipleModule.debug.xcconfig */;
+			baseConfigurationReference = 9777273F56400C6AAC266B8E /* Pods-MultipleModule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -236,7 +236,7 @@
 				DEVELOPMENT_TEAM = 3WM3Z6QX39;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/hieunguyen/MyProject/MultipleModule/MultipleModule/MainFiles/Info.plist;
+				INFOPLIST_FILE = "${SRCROOT}/MultipleModule/MainFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -257,7 +257,7 @@
 		};
 		A0D3EFD52D5B93770043F8D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8F67CD754C41C473F5EA75F /* Pods-MultipleModule.release.xcconfig */;
+			baseConfigurationReference = 0B89BD9750566DFF53EBE9DE /* Pods-MultipleModule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -266,7 +266,7 @@
 				DEVELOPMENT_TEAM = 3WM3Z6QX39;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/hieunguyen/MyProject/MultipleModule/MultipleModule/MainFiles/Info.plist;
+				INFOPLIST_FILE = "${SRCROOT}/MultipleModule/MainFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

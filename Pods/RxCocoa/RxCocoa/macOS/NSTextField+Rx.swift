@@ -16,7 +16,8 @@ import RxSwift
 /// For more information take a look at `DelegateProxyType`.
 open class RxTextFieldDelegateProxy
     : DelegateProxy<NSTextField, NSTextFieldDelegate>
-    , DelegateProxyType, NSTextFieldDelegate {
+    , DelegateProxyType 
+    , NSTextFieldDelegate {
 
     /// Typed parent object.
     public weak private(set) var textField: NSTextField?
@@ -42,7 +43,7 @@ open class RxTextFieldDelegateProxy
         self.textSubject.on(.next(nextValue))
         _forwardToDelegate?.controlTextDidChange?(notification)
     }
-
+    
     // MARK: Delegate proxy methods
 
     /// For more information take a look at `DelegateProxyType`.
@@ -54,7 +55,7 @@ open class RxTextFieldDelegateProxy
     open class func setCurrentDelegate(_ delegate: NSTextFieldDelegate?, to object: ParentObject) {
         object.delegate = delegate
     }
-
+    
 }
 
 extension Reactive where Base: NSTextField {
@@ -65,11 +66,11 @@ extension Reactive where Base: NSTextField {
     public var delegate: DelegateProxy<NSTextField, NSTextFieldDelegate> {
         RxTextFieldDelegateProxy.proxy(for: self.base)
     }
-
+    
     /// Reactive wrapper for `text` property.
     public var text: ControlProperty<String?> {
         let delegate = RxTextFieldDelegateProxy.proxy(for: self.base)
-
+        
         let source = Observable.deferred { [weak textField = self.base] in
             delegate.textSubject.startWith(textField?.stringValue)
         }.take(until: self.deallocated)
@@ -80,7 +81,7 @@ extension Reactive where Base: NSTextField {
 
         return ControlProperty(values: source, valueSink: observer.asObserver())
     }
-
+    
 }
 
 #endif

@@ -276,7 +276,7 @@ final private class ShareReplay1WhileConnected<Element>
 
         let disposable = connection.synchronized_subscribe(observer)
         self.lock.unlock()
-
+        
         if count == 0 {
             connection.connect()
         }
@@ -290,7 +290,8 @@ final private class ShareReplay1WhileConnected<Element>
 
         if let existingConnection = self.connection {
             connection = existingConnection
-        } else {
+        }
+        else {
             connection = ShareReplay1WhileConnectedConnection<Element>(
                 parent: self,
                 lock: self.lock)
@@ -429,13 +430,14 @@ final private class ShareWhileConnected<Element>
 
         if let existingConnection = self.connection {
             connection = existingConnection
-        } else {
+        }
+        else {
             connection = ShareWhileConnectedConnection<Element>(
                 parent: self,
                 lock: self.lock)
             self.connection = connection
         }
-
+        
         return connection
     }
 }

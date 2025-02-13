@@ -43,6 +43,7 @@ public final class AsyncSubject<Element>
         private let synchronizationTracker = SynchronizationTracker()
     #endif
 
+
     /// Creates a subject.
     public override init() {
         #if TRACE_RESOURCES
@@ -96,7 +97,8 @@ public final class AsyncSubject<Element>
             if let lastElement = self.lastElement {
                 self.stoppedEvent = .next(lastElement)
                 return (observers, .next(lastElement))
-            } else {
+            }
+            else {
                 self.stoppedEvent = event
                 return (observers, .completed)
             }
@@ -133,11 +135,11 @@ public final class AsyncSubject<Element>
     func synchronizedUnsubscribe(_ disposeKey: DisposeKey) {
         self.lock.performLocked { self.synchronized_unsubscribe(disposeKey) }
     }
-
+    
     func synchronized_unsubscribe(_ disposeKey: DisposeKey) {
         _ = self.observers.removeKey(disposeKey)
     }
-
+    
     /// Returns observer interface for subject.
     public func asObserver() -> AsyncSubject<Element> {
         self
@@ -149,3 +151,4 @@ public final class AsyncSubject<Element>
     }
     #endif
 }
+

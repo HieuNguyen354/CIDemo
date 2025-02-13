@@ -7,6 +7,8 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
+
+
 // 2
 
 extension ObservableType {
@@ -46,7 +48,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink2_<E1, E2, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink2_<E1, E2, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest2<E1, E2, Result>
 
@@ -64,8 +66,8 @@ final class CombineLatestSink2_<E1, E2, Observer: ObserverType>: CombineLatestSi
         let subscription1 = SingleAssignmentDisposable()
         let subscription2 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -81,7 +83,7 @@ final class CombineLatestSink2_<E1, E2, Observer: ObserverType>: CombineLatestSi
     }
 }
 
-final class CombineLatest2<E1, E2, Result>: Producer<Result> {
+final class CombineLatest2<E1, E2, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2) throws -> Result
 
     let source1: Observable<E1>
@@ -102,6 +104,8 @@ final class CombineLatest2<E1, E2, Result>: Producer<Result> {
         return (sink: sink, subscription: subscription)
     }
 }
+
+
 
 // 3
 
@@ -142,7 +146,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink3_<E1, E2, E3, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink3_<E1, E2, E3, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest3<E1, E2, E3, Result>
 
@@ -162,9 +166,9 @@ final class CombineLatestSink3_<E1, E2, E3, Observer: ObserverType>: CombineLate
         let subscription2 = SingleAssignmentDisposable()
         let subscription3 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
-        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) in self.latestElement3 = e }, this: subscription3)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
+        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) -> Void in self.latestElement3 = e }, this: subscription3)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -182,7 +186,7 @@ final class CombineLatestSink3_<E1, E2, E3, Observer: ObserverType>: CombineLate
     }
 }
 
-final class CombineLatest3<E1, E2, E3, Result>: Producer<Result> {
+final class CombineLatest3<E1, E2, E3, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2, E3) throws -> Result
 
     let source1: Observable<E1>
@@ -205,6 +209,8 @@ final class CombineLatest3<E1, E2, E3, Result>: Producer<Result> {
         return (sink: sink, subscription: subscription)
     }
 }
+
+
 
 // 4
 
@@ -245,7 +251,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink4_<E1, E2, E3, E4, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink4_<E1, E2, E3, E4, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest4<E1, E2, E3, E4, Result>
 
@@ -267,10 +273,10 @@ final class CombineLatestSink4_<E1, E2, E3, E4, Observer: ObserverType>: Combine
         let subscription3 = SingleAssignmentDisposable()
         let subscription4 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
-        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) in self.latestElement3 = e }, this: subscription3)
-        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) in self.latestElement4 = e }, this: subscription4)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
+        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) -> Void in self.latestElement3 = e }, this: subscription3)
+        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) -> Void in self.latestElement4 = e }, this: subscription4)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -290,7 +296,7 @@ final class CombineLatestSink4_<E1, E2, E3, E4, Observer: ObserverType>: Combine
     }
 }
 
-final class CombineLatest4<E1, E2, E3, E4, Result>: Producer<Result> {
+final class CombineLatest4<E1, E2, E3, E4, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2, E3, E4) throws -> Result
 
     let source1: Observable<E1>
@@ -315,6 +321,8 @@ final class CombineLatest4<E1, E2, E3, E4, Result>: Producer<Result> {
         return (sink: sink, subscription: subscription)
     }
 }
+
+
 
 // 5
 
@@ -355,7 +363,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink5_<E1, E2, E3, E4, E5, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink5_<E1, E2, E3, E4, E5, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest5<E1, E2, E3, E4, E5, Result>
 
@@ -379,11 +387,11 @@ final class CombineLatestSink5_<E1, E2, E3, E4, E5, Observer: ObserverType>: Com
         let subscription4 = SingleAssignmentDisposable()
         let subscription5 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
-        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) in self.latestElement3 = e }, this: subscription3)
-        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) in self.latestElement4 = e }, this: subscription4)
-        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) in self.latestElement5 = e }, this: subscription5)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
+        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) -> Void in self.latestElement3 = e }, this: subscription3)
+        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) -> Void in self.latestElement4 = e }, this: subscription4)
+        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) -> Void in self.latestElement5 = e }, this: subscription5)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -405,7 +413,7 @@ final class CombineLatestSink5_<E1, E2, E3, E4, E5, Observer: ObserverType>: Com
     }
 }
 
-final class CombineLatest5<E1, E2, E3, E4, E5, Result>: Producer<Result> {
+final class CombineLatest5<E1, E2, E3, E4, E5, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2, E3, E4, E5) throws -> Result
 
     let source1: Observable<E1>
@@ -432,6 +440,8 @@ final class CombineLatest5<E1, E2, E3, E4, E5, Result>: Producer<Result> {
         return (sink: sink, subscription: subscription)
     }
 }
+
+
 
 // 6
 
@@ -472,7 +482,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink6_<E1, E2, E3, E4, E5, E6, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink6_<E1, E2, E3, E4, E5, E6, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest6<E1, E2, E3, E4, E5, E6, Result>
 
@@ -498,12 +508,12 @@ final class CombineLatestSink6_<E1, E2, E3, E4, E5, E6, Observer: ObserverType>:
         let subscription5 = SingleAssignmentDisposable()
         let subscription6 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
-        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) in self.latestElement3 = e }, this: subscription3)
-        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) in self.latestElement4 = e }, this: subscription4)
-        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) in self.latestElement5 = e }, this: subscription5)
-        let observer6 = CombineLatestObserver(lock: self.lock, parent: self, index: 5, setLatestValue: { (e: E6) in self.latestElement6 = e }, this: subscription6)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
+        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) -> Void in self.latestElement3 = e }, this: subscription3)
+        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) -> Void in self.latestElement4 = e }, this: subscription4)
+        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) -> Void in self.latestElement5 = e }, this: subscription5)
+        let observer6 = CombineLatestObserver(lock: self.lock, parent: self, index: 5, setLatestValue: { (e: E6) -> Void in self.latestElement6 = e }, this: subscription6)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -527,7 +537,7 @@ final class CombineLatestSink6_<E1, E2, E3, E4, E5, E6, Observer: ObserverType>:
     }
 }
 
-final class CombineLatest6<E1, E2, E3, E4, E5, E6, Result>: Producer<Result> {
+final class CombineLatest6<E1, E2, E3, E4, E5, E6, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2, E3, E4, E5, E6) throws -> Result
 
     let source1: Observable<E1>
@@ -556,6 +566,8 @@ final class CombineLatest6<E1, E2, E3, E4, E5, E6, Result>: Producer<Result> {
         return (sink: sink, subscription: subscription)
     }
 }
+
+
 
 // 7
 
@@ -596,7 +608,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink7_<E1, E2, E3, E4, E5, E6, E7, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink7_<E1, E2, E3, E4, E5, E6, E7, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest7<E1, E2, E3, E4, E5, E6, E7, Result>
 
@@ -624,13 +636,13 @@ final class CombineLatestSink7_<E1, E2, E3, E4, E5, E6, E7, Observer: ObserverTy
         let subscription6 = SingleAssignmentDisposable()
         let subscription7 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
-        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) in self.latestElement3 = e }, this: subscription3)
-        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) in self.latestElement4 = e }, this: subscription4)
-        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) in self.latestElement5 = e }, this: subscription5)
-        let observer6 = CombineLatestObserver(lock: self.lock, parent: self, index: 5, setLatestValue: { (e: E6) in self.latestElement6 = e }, this: subscription6)
-        let observer7 = CombineLatestObserver(lock: self.lock, parent: self, index: 6, setLatestValue: { (e: E7) in self.latestElement7 = e }, this: subscription7)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
+        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) -> Void in self.latestElement3 = e }, this: subscription3)
+        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) -> Void in self.latestElement4 = e }, this: subscription4)
+        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) -> Void in self.latestElement5 = e }, this: subscription5)
+        let observer6 = CombineLatestObserver(lock: self.lock, parent: self, index: 5, setLatestValue: { (e: E6) -> Void in self.latestElement6 = e }, this: subscription6)
+        let observer7 = CombineLatestObserver(lock: self.lock, parent: self, index: 6, setLatestValue: { (e: E7) -> Void in self.latestElement7 = e }, this: subscription7)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -656,7 +668,7 @@ final class CombineLatestSink7_<E1, E2, E3, E4, E5, E6, E7, Observer: ObserverTy
     }
 }
 
-final class CombineLatest7<E1, E2, E3, E4, E5, E6, E7, Result>: Producer<Result> {
+final class CombineLatest7<E1, E2, E3, E4, E5, E6, E7, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2, E3, E4, E5, E6, E7) throws -> Result
 
     let source1: Observable<E1>
@@ -687,6 +699,8 @@ final class CombineLatest7<E1, E2, E3, E4, E5, E6, E7, Result>: Producer<Result>
         return (sink: sink, subscription: subscription)
     }
 }
+
+
 
 // 8
 
@@ -727,7 +741,7 @@ extension ObservableType where Element == Any {
     }
 }
 
-final class CombineLatestSink8_<E1, E2, E3, E4, E5, E6, E7, E8, Observer: ObserverType>: CombineLatestSink<Observer> {
+final class CombineLatestSink8_<E1, E2, E3, E4, E5, E6, E7, E8, Observer: ObserverType> : CombineLatestSink<Observer> {
     typealias Result = Observer.Element
     typealias Parent = CombineLatest8<E1, E2, E3, E4, E5, E6, E7, E8, Result>
 
@@ -757,14 +771,14 @@ final class CombineLatestSink8_<E1, E2, E3, E4, E5, E6, E7, E8, Observer: Observ
         let subscription7 = SingleAssignmentDisposable()
         let subscription8 = SingleAssignmentDisposable()
 
-        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) in self.latestElement1 = e }, this: subscription1)
-        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) in self.latestElement2 = e }, this: subscription2)
-        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) in self.latestElement3 = e }, this: subscription3)
-        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) in self.latestElement4 = e }, this: subscription4)
-        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) in self.latestElement5 = e }, this: subscription5)
-        let observer6 = CombineLatestObserver(lock: self.lock, parent: self, index: 5, setLatestValue: { (e: E6) in self.latestElement6 = e }, this: subscription6)
-        let observer7 = CombineLatestObserver(lock: self.lock, parent: self, index: 6, setLatestValue: { (e: E7) in self.latestElement7 = e }, this: subscription7)
-        let observer8 = CombineLatestObserver(lock: self.lock, parent: self, index: 7, setLatestValue: { (e: E8) in self.latestElement8 = e }, this: subscription8)
+        let observer1 = CombineLatestObserver(lock: self.lock, parent: self, index: 0, setLatestValue: { (e: E1) -> Void in self.latestElement1 = e }, this: subscription1)
+        let observer2 = CombineLatestObserver(lock: self.lock, parent: self, index: 1, setLatestValue: { (e: E2) -> Void in self.latestElement2 = e }, this: subscription2)
+        let observer3 = CombineLatestObserver(lock: self.lock, parent: self, index: 2, setLatestValue: { (e: E3) -> Void in self.latestElement3 = e }, this: subscription3)
+        let observer4 = CombineLatestObserver(lock: self.lock, parent: self, index: 3, setLatestValue: { (e: E4) -> Void in self.latestElement4 = e }, this: subscription4)
+        let observer5 = CombineLatestObserver(lock: self.lock, parent: self, index: 4, setLatestValue: { (e: E5) -> Void in self.latestElement5 = e }, this: subscription5)
+        let observer6 = CombineLatestObserver(lock: self.lock, parent: self, index: 5, setLatestValue: { (e: E6) -> Void in self.latestElement6 = e }, this: subscription6)
+        let observer7 = CombineLatestObserver(lock: self.lock, parent: self, index: 6, setLatestValue: { (e: E7) -> Void in self.latestElement7 = e }, this: subscription7)
+        let observer8 = CombineLatestObserver(lock: self.lock, parent: self, index: 7, setLatestValue: { (e: E8) -> Void in self.latestElement8 = e }, this: subscription8)
 
          subscription1.setDisposable(self.parent.source1.subscribe(observer1))
          subscription2.setDisposable(self.parent.source2.subscribe(observer2))
@@ -792,7 +806,7 @@ final class CombineLatestSink8_<E1, E2, E3, E4, E5, E6, E7, E8, Observer: Observ
     }
 }
 
-final class CombineLatest8<E1, E2, E3, E4, E5, E6, E7, E8, Result>: Producer<Result> {
+final class CombineLatest8<E1, E2, E3, E4, E5, E6, E7, E8, Result> : Producer<Result> {
     typealias ResultSelector = (E1, E2, E3, E4, E5, E6, E7, E8) throws -> Result
 
     let source1: Observable<E1>
@@ -825,3 +839,5 @@ final class CombineLatest8<E1, E2, E3, E4, E5, E6, E7, E8, Result>: Producer<Res
         return (sink: sink, subscription: subscription)
     }
 }
+
+

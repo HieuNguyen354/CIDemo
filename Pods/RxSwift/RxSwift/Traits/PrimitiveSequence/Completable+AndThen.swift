@@ -84,7 +84,7 @@ final private class ConcatCompletableSink<Observer: ObserverType>
 
     private let parent: Parent
     private let subscription = SerialDisposable()
-
+    
     init(parent: Parent, observer: Observer, cancel: Cancelable) {
         self.parent = parent
         super.init(observer: observer, cancel: cancel)
@@ -113,10 +113,10 @@ final private class ConcatCompletableSink<Observer: ObserverType>
 
 final private class ConcatCompletableSinkOther<Observer: ObserverType>
     : ObserverType {
-    typealias Element = Observer.Element
+    typealias Element = Observer.Element 
 
     typealias Parent = ConcatCompletableSink<Observer>
-
+    
     private let parent: Parent
 
     init(parent: Parent) {

@@ -12,7 +12,7 @@ import RxSwift
 import UIKit
 
 extension Reactive where Base: UIButton {
-
+    
     /// Reactive wrapper for `TouchUpInside` control event.
     public var tap: ControlEvent<Void> {
         controlEvent(.touchUpInside)
@@ -63,18 +63,18 @@ extension Reactive where Base: UIButton {
             button.setBackgroundImage(image, for: controlState)
         }
     }
-
+    
 }
 #endif
 
 #if os(iOS) || os(tvOS)
     import RxSwift
     import UIKit
-
+    
     extension Reactive where Base: UIButton {
         /// Reactive wrapper for `setAttributedTitle(_:controlState:)`
         public func attributedTitle(for controlState: UIControl.State = []) -> Binder<NSAttributedString?> {
-            return Binder(self.base) { button, attributedTitle in
+            return Binder(self.base) { button, attributedTitle -> Void in
                 button.setAttributedTitle(attributedTitle, for: controlState)
             }
         }

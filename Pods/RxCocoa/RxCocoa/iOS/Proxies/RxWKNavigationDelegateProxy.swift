@@ -29,11 +29,11 @@ open class RxWKNavigationDelegateProxy
     public static func registerKnownImplementations() {
         self.register { RxWKNavigationDelegateProxy(webView: $0) }
     }
-
+    
     public static func currentDelegate(for object: WKWebView) -> WKNavigationDelegate? {
         object.navigationDelegate
     }
-
+    
     public static func setCurrentDelegate(_ delegate: WKNavigationDelegate?, to object: WKWebView) {
         object.navigationDelegate = delegate
     }

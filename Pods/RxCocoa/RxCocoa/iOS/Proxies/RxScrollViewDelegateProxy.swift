@@ -10,7 +10,7 @@
 
 import RxSwift
 import UIKit
-
+    
 extension UIScrollView: HasDelegate {
     public typealias Delegate = UIScrollViewDelegate
 }
@@ -63,7 +63,7 @@ open class RxScrollViewDelegateProxy
 
         return subject
     }
-
+    
     deinit {
         if let subject = _contentOffsetBehaviorSubject {
             subject.on(.completed)

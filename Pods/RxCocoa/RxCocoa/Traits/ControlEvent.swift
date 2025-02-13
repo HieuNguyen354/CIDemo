@@ -9,7 +9,7 @@
 import RxSwift
 
 /// A protocol that extends `ControlEvent`.
-public protocol ControlEventType: ObservableType {
+public protocol ControlEventType : ObservableType {
 
     /// - returns: `ControlEvent` interface
     func asControlEvent() -> ControlEvent<Element>
@@ -35,7 +35,7 @@ public protocol ControlEventType: ObservableType {
     **If the `events` observable sequence passed into the initializer doesn’t satisfy all enumerated
      properties, don’t use this trait.**
 */
-public struct ControlEvent<PropertyType>: ControlEventType {
+public struct ControlEvent<PropertyType> : ControlEventType {
     public typealias Element = PropertyType
 
     let events: Observable<PropertyType>
@@ -65,7 +65,7 @@ public struct ControlEvent<PropertyType>: ControlEventType {
     public func asControlEvent() -> ControlEvent<Element> {
         self
     }
-
+    
     /// - returns: `Infallible` interface.
     public func asInfallible() -> Infallible<Element> {
         asInfallible(onErrorFallbackTo: .empty())

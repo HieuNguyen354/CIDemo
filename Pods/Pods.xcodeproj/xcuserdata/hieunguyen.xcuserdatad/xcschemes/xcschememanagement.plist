@@ -34,12 +34,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SnapKit-SnapKit_Privacy.xcscheme</key>
+		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SnapKit.xcscheme</key>
+		<key>SwiftLint.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

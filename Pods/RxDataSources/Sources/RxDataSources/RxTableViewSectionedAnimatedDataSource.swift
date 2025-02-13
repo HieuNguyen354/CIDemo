@@ -84,7 +84,8 @@ open class RxTableViewSectionedAnimatedDataSource<Section: AnimatableSectionMode
                 dataSource.dataSet = true
                 dataSource.setSections(newSections)
                 tableView.reloadData()
-            } else {
+            }
+            else {
                 // if view is not in view hierarchy, performing batch updates will crash the app
                 if tableView.window == nil {
                     dataSource.setSections(newSections)
@@ -94,7 +95,7 @@ open class RxTableViewSectionedAnimatedDataSource<Section: AnimatableSectionMode
                 let oldSections = dataSource.sectionModels
                 do {
                     let differences = try Diff.differencesForSectionedView(initialSections: oldSections, finalSections: newSections)
-
+                    
                     switch dataSource.decideViewTransition(dataSource, tableView, differences) {
                     case .animated:
                         // each difference must be run in a separate 'performBatchUpdates', otherwise it crashes.
@@ -113,13 +114,14 @@ open class RxTableViewSectionedAnimatedDataSource<Section: AnimatableSectionMode
                                 tableView.endUpdates()
                             }
                         }
-
+                        
                     case .reload:
                         dataSource.setSections(newSections)
                         tableView.reloadData()
                         return
                     }
-                } catch let e {
+                }
+                catch let e {
                     rxDebugFatalError(e)
                     dataSource.setSections(newSections)
                     tableView.reloadData()

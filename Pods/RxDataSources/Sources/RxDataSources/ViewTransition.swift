@@ -13,3 +13,4 @@ public enum ViewTransition {
     /// refresh view without animations
     case reload
 }
+

@@ -6,20 +6,19 @@ target 'MultipleModule' do
   use_frameworks!
 
   # Pods for MultipleModule
-	pod "SnapKit", '~> 5.0.0'
-	pod 'RxSwift', '~> 6.6.0'
-	pod 'RxCocoa', '~> 6.6.0'
-	pod 'RxDataSources', '~> 5.0'
+	pod "SnapKit"
+	pod "RxSwift"
+	pod 'RxCocoa'
+	pod 'RxDataSources'
+	pod 'SwiftLint'
 end
 
 post_install do |installer|
-    installer.generated_projects.each do |project|
-          project.targets.each do |target|
-              target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
-                  config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-                  config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
-               end
-          end
-   end
+	installer.generated_projects.each do |project|
+		project.targets.each do |target|
+			target.build_configurations.each do |config|
+				config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+			end
+		end
+	end
 end
