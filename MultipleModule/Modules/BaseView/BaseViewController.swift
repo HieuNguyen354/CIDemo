@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
 	private var navigationTitle: String
 
 	init(isShowNavigationBar: Bool = true,
-		 navigationTitle: String) {
+		 navigationTitle: String = "") {
 		self.isShowNavigationBar = isShowNavigationBar
 		self.navigationTitle = navigationTitle
 		super.init(nibName: nil, bundle: nil)

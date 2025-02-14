@@ -11,6 +11,7 @@ target 'MultipleModule' do
 	pod 'RxCocoa'
 	pod 'RxDataSources'
 	pod 'SwiftLint'
+	
 end
 
 post_install do |installer|

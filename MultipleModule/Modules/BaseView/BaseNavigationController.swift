@@ -8,12 +8,11 @@
 import UIKit
 
 class BaseNavigationController: UINavigationController {
-	private var isShowBackButton: Bool
-
-	init(rootViewController: UIViewController,
-		 isShowBackButton: Bool = false) {
+	private var isShowBackButton: Bool = false
+	
+	init(isShowBackButton: Bool = false) {
 		self.isShowBackButton = isShowBackButton
-		super.init(rootViewController: rootViewController)
+		super.init(nibName: nil, bundle: nil)
 	}
 
 	override func viewDidLoad() {
