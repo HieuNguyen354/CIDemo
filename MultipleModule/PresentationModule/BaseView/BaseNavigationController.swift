@@ -17,10 +17,11 @@ class BaseNavigationController: UINavigationController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		navigationBar.isTranslucent = false
-		navigationBar.isOpaque = false
-		navigationBar.tintColor = UIColor.white
-
+		
+//		navigationBar.isTranslucent = false
+//		navigationBar.isOpaque = false
+//		navigationBar.tintColor = UIColor.red
+//
 		let titleTextAttributes = [
 			NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
 			NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.8),
@@ -38,13 +39,9 @@ class BaseNavigationController: UINavigationController {
 			navigationBar.titleTextAttributes = titleTextAttributes
 		}
 
-		if isShowBackButton == true {
-			let backButton = UIBarButtonItem()
-			backButton.title = ""
-			navigationBar.topItem?.backBarButtonItem = backButton
-		} else {
-			navigationBar.topItem?.backBarButtonItem = nil
-		}
+		let backButton = UIBarButtonItem()
+		backButton.title = ""
+		navigationBar.topItem?.backBarButtonItem = backButton
 
 		navigationBar.setBackgroundImage(UIImage(), for: .any,
 										 barMetrics: .default)

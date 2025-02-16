@@ -24,7 +24,8 @@ class TabBarCoordinator: Coordinator {
 		let orderNavController = BaseNavigationController()
 		
 		guard let homeCoordinator = resolver.resolve(HomeCoordinator.self, argument: homeNavController),
-			  let orderCoordinator = resolver.resolve(OrderCoordinator.self, argument: orderNavController) else {
+			  let orderCoordinator = resolver.resolve(OrderCoordinator.self, argument: orderNavController)
+		else {
 			fatalError("Failed to resolve HomeCoordinator or OrderCoordinator")
 		}
 		
@@ -34,10 +35,9 @@ class TabBarCoordinator: Coordinator {
 		homeCoordinator.start()
 		orderCoordinator.start()
 		
-		tabBarController.viewControllers = [homeNavController, orderNavController]
+		tabBarController.viewControllers = [homeNavController]
 		
 		print("✅ TabBarCoordinator started successfully!")
 		print("✅ TabBarCoordinator: Tab bar has \(tabBarController.viewControllers?.count ?? 0) controllers")
-
 	}
 }

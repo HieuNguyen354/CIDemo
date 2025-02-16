@@ -10,10 +10,10 @@ import Swinject
 
 class HomeCoordinator: Coordinator {
 	var childCoordinators = [Coordinator]()
-	var navigationController: UINavigationController
+	var navigationController: BaseNavigationController
 	let resolver: Resolver
 	
-	init(navigationController: UINavigationController,
+	init(navigationController: BaseNavigationController,
 		 resolve: Resolver) {
 		self.navigationController = navigationController
 		self.resolver = resolve

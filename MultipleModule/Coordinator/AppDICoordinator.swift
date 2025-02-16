@@ -6,7 +6,6 @@
 //
 
 import Swinject
-import SwinjectAutoregistration
 
 class AppDICoordinator {
 	
@@ -27,13 +26,13 @@ class AppDICoordinator {
 	}
 	
 	private func registerCoordinator() {
-		container.register(AppCoordinator.self) { resolver, window in
-			AppCoordinator(container: resolver, window: window)
-		}
-		
 		container.register(TabBarCoordinator.self) { (resolver, tabBarController: BaseTabBarController) in
 			TabBarCoordinator(resolver: resolver, tabBarController: tabBarController)
 		}.inObjectScope(.container)
+		
+		container.register(AppCoordinator.self) { resolver, window in
+			AppCoordinator(container: resolver, window: window)
+		}
 		
 		container.register(HomeCoordinator.self) { (resolver, navigationController: BaseNavigationController) in
 			HomeCoordinator(navigationController: navigationController, resolve: resolver)
@@ -55,14 +54,14 @@ class AppDICoordinator {
 	}
 	
 	private func registerUseCase() {
-		container.register(HeroesRemoteDataSource.self) { _ in HeroesRemoteDataSource() }
-		
-		container.register(HeroesLocalDataSource.self) { _ in HeroesLocalDataSource() }
-		
 		container.register(HeroesResponsitory.self) { resolver in
 			DefaultHeroesResponsitory(remote: resolver.resolve(HeroesRemoteDataSource.self)!,
 									  local: resolver.resolve(HeroesLocalDataSource.self)!)
 		}.inObjectScope(.container)
+		
+		container.register(HeroesRemoteDataSource.self) { _ in HeroesRemoteDataSource() }
+		
+		container.register(HeroesLocalDataSource.self) { _ in HeroesLocalDataSource() }
 		
 		container.register(FetchHeroesUseCase.self) { resolver in
 			DefaultFetchHeroesUseCase(resonsitory: resolver.resolve(HeroesResponsitory.self)!)
