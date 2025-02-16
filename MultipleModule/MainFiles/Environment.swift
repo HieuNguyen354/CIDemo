@@ -10,13 +10,13 @@ import Foundation
 struct Environment {
 	private static let production: Bool = {
     #if DEBUG
-		    print("DEBUG")
+//		    print("---DEBUG---")
 		    return false
     #elseif ADHOC
-		    print("ADHOC")
+//		    print("ADHOC")
 		    return false
     #else
-		    print("PRODUCTION")
+//		    print("PRODUCTION")
 		    return true
     #endif
 	}()

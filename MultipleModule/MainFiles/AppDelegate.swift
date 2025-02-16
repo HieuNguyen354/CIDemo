@@ -6,28 +6,28 @@
 //
 
 import UIKit
+import Swinject
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	
 	var window: UIWindow?
-	private var appCoordinator: AppCoordinator!
+	var appCoordinator: AppCoordinator?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
 		setupRootViewController()
 		ClientManager.start()
 		return true
 	}
 		
 	private func setupRootViewController() {
-		
 		window = UIWindow()
-		let navController = UINavigationController()
-		appCoordinator = AppCoordinator(navigationController: navController)
-		appCoordinator?.start()
-		
-		window?.rootViewController = navController
-		window?.makeKeyAndVisible()
+		guard let window else { return }
+		let container = AppDICoordinator.shared.container
+		print("✅ Initializing AppCoordinator...")
+		guard let appCoordinator = container.resolve(AppCoordinator.self, argument: window) else {
+			fatalError("Failed Initializing AppCoordinator...")
+		}
+		self.appCoordinator = appCoordinator
+		appCoordinator.start()
 	}
 }

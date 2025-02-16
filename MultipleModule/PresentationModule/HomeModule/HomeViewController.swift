@@ -38,10 +38,6 @@ class HomeViewController: BaseViewController {
 		super.init(isShowNavigationBar: isShowNavigationBar, navigationTitle: navigationTitle)
 	}
 	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		viewModel.fetchRX.onNext(())
@@ -76,11 +72,15 @@ class HomeViewController: BaseViewController {
 			.zip(tableView.rx.itemSelected,
 				 tableView.rx.modelSelected(HeroesModel.self))
 			.subscribe { [weak self] (_, item) in
-				guard let self, let coordinator else { return }
-				coordinator.showDetail(text: item.localizedName)
+				guard let self else { return }
+				coordinator?.showDetail(text: item.localizedName)
 			}.disposed(by: disposeBag)
-
 	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 }
 
 extension HomeViewController: UITableViewDelegate {

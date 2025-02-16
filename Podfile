@@ -11,7 +11,8 @@ target 'MultipleModule' do
 	pod 'RxCocoa'
 	pod 'RxDataSources'
 	pod 'SwiftLint'
-	
+	pod 'Swinject'
+	pod 'SwinjectAutoregistration'
 end
 
 post_install do |installer|
