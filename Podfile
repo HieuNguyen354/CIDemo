@@ -13,6 +13,8 @@ target 'MultipleModule' do
 	pod 'SwiftLint'
 	pod 'Swinject'
 	pod 'SwinjectAutoregistration'
+	pod 'SDWebImage', '~> 5.0'
+	pod 'MBProgressHUD', '~> 1.2.0'
 end
 
 post_install do |installer|

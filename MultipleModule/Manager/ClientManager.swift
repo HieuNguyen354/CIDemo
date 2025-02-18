@@ -11,6 +11,7 @@ final class ClientManager {
 	static var shared = ClientManager()
 
 	var homeManager = HomeManager(apiService: APIService(baseUrl: AppConfigs.shared.baseUrl))
+	var orderManager = OrderManager(apiService: APIService(baseUrl: AppConfigs.shared.baseUrl))
 
 	private init() {
 		AppConfigs.setup()

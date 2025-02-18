@@ -1,0 +1,69 @@
+//
+//  OrderViewModel.swift
+//  MultipleModule
+//
+//  Created by HieuNguyen on 14/2/25.
+//
+
+import RxSwift
+import RxCocoa
+import RxDataSources
+
+final class OrderViewModel: BaseViewModel {
+	let fetchOrderUseCase: FetchOrderUseCase
+	typealias Sections = SectionModel<String, OrderResponseElement>
+	let sections = BehaviorRelay<[Sections]>(value: [])
+	let fetchRX = PublishSubject<Void>()
+	let responseData = PublishSubject<OrderResponse>()
+	
+	init(fetchOrderUseCase: FetchOrderUseCase) {
+		self.fetchOrderUseCase = fetchOrderUseCase
+	}
+	
+	override func setupBindings() {
+		super.setupBindings()
+		fetchRX
+			.subscribe { [weak self] _ in
+				guard let self else { return }
+				requestData()
+			}.disposed(by: disposeBag)
+		
+		responseData
+			.subscribe { [weak self] model in
+				guard let self else { return }
+				reloadTableView(model: model)
+			}.disposed(by: disposeBag)
+	}
+	
+	func reloadTableView(model: OrderResponse) {
+		var temp = [Sections]()
+		getHeroesSection(&temp, model: model)
+		sections.accept(temp)
+	}
+	
+	private func getHeroesSection(_ sections: inout [Sections],
+								  model: OrderResponse) {
+		var tableViewItem = [OrderResponseElement]()
+		model.sorted(by: { $0.accountID < $1.accountID }).forEach { item in
+			tableViewItem.append(item)
+		}
+		sections.append(.init(model: "", items: tableViewItem))
+	}
+	
+	private func requestData() {
+		showLoading.accept(true)
+		fetchOrderUseCase
+			.execute()
+			.subscribe { [weak self] model in
+				guard let self else { return }
+				showLoading.accept(false)
+				responseData.onNext(model)
+			} onFailure: { [weak self] error in
+				guard let self else { return }
+				showLoading.accept(false)
+				print(error)
+			}.disposed(by: disposeBag)
+
+	}
+	
+}

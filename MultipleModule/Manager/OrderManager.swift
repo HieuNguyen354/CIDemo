@@ -1,25 +1,29 @@
 //
-//  HomeManager.swift
+//  OrderManager.swift
 //  MultipleModule
 //
-//  Created by HieuNguyen on 12/11/24.
+//  Created by HieuNguyen on 18/2/25.
 //
 
 import Foundation
 import RxSwift
 
-final class HomeManager {
+final class OrderManager {
 	var apiService: APIService
-
+	
 	init(apiService: APIService) {
 		self.apiService = apiService
 	}
 	
-	func fetchData(apiRequest: APIServiceRequest) -> Single<[HomeModel]> {
-		return Single<[HomeModel]>.create { [weak self] observer in
-			guard let self = self else { return Disposables.create() }
+	func fetchData(apiRequest: APIServiceRequest) -> Single<OrderResponse> {
+		return Single<OrderResponse>.create { [weak self] observer in
+			guard let self
+			else {
+				return Disposables.create()
+			}
+			
 			apiService.sendRequest(apiRequest: apiRequest,
-								   responseModel: [HomeModel].self,
+								   responseModel: OrderResponse.self,
 								   errorModel: ErrorResponseModel.self) { response in
 				switch response {
 					case .success(let model):
