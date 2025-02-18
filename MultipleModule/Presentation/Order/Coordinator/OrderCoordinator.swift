@@ -24,9 +24,9 @@ class OrderCoordinator: Coordinator {
 		let viewModel = OrderViewModel(fetchOrderUseCase: container.resolve(FetchOrderUseCase.self)!)
 		let orderVC = OrderViewController(isShowNavigationBar: true,
 										 viewModel: viewModel,
-										 navigationTitle: "Order")
+										 navigationTitle: "ProPlayer")
 		
-		orderVC.tabBarItem = UITabBarItem(title: "Order", image: UIImage(named: Images.Tabbar.Order.rawValue), tag: 1)
+		orderVC.tabBarItem = UITabBarItem(title: "ProPlayer", image: UIImage(named: Images.Tabbar.Order.rawValue), tag: 1)
 		navigationController.viewControllers = [orderVC]
 	}
 }
