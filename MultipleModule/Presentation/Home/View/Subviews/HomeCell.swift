@@ -11,18 +11,33 @@ class HomeCell: BaseTableViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = UIColor.white
+		view.backgroundColor = AppColors.background
 		return view
 	}()
 
-	private lazy var titleLabel = UILabel()
-	private lazy var descriptionLabel = UILabel()
+	private lazy var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textAlignment = .center
+		label.backgroundColor = containerView.backgroundColor
+		label.font = AppFonts.bold(size: 18)
+		label.textColor = AppColors.primary
+		return label
+	}()
+	
+	private lazy var descriptionLabel: UILabel = {
+		let label = UILabel()
+		label.textAlignment = .center
+		label.backgroundColor = containerView.backgroundColor
+		label.font = AppFonts.italic(size: 16)
+		label.textColor = AppColors.secondary
+		label.numberOfLines = 0
+		return label
+	}()
+	
 	private lazy var dividerLine = UIView()
 
 	override func setupUI() {
 		super.setupUI()
-		titleLabel.applyNormalTitle(textAlignment: .center)
-		descriptionLabel.applyMediumTitle(textAlignment: .center)
 		dividerLine.appDividerLineSetup()
 		contentView.addSubview(containerView)
 		containerView.addSubViews(titleLabel,

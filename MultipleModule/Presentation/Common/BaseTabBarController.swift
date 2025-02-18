@@ -7,12 +7,12 @@
 
 import UIKit
 
-class BaseTabBarController: UITabBarController {
+class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		delegate = self
 		setupUI()
-		setupTabBarItems()
 	}
 	
 	private func setupUI() {
@@ -24,7 +24,7 @@ class BaseTabBarController: UITabBarController {
 		
 		let selectedItemTextColor = UIColor.black
 		let unselectedItemTextColor = UIColor.black.withAlphaComponent(0.7)
-		let backgroundColor = UIColor.white
+		let backgroundColor = AppColors.white
 		
 		if #available(iOS 15, *) {
 			let tabBarAppearance = UITabBarAppearance()
@@ -40,24 +40,16 @@ class BaseTabBarController: UITabBarController {
 		}
 	}
 	
-	private func setupTabBarItems() {
-//		let home = BaseNavigationController(rootViewController: HomeViewController(isShowNavigationBar: false,
-//																				   navigationTitle: "Home"))
-//		home.tabBarItem = UITabBarItem(title: "Home".txt,
-//									   image: UIImage(named: Images.Tabbar.Home.rawValue),
-//									   tag: TabBarTag.Home.rawValue)
-//		home.title = "Home".txt
-//		
-//		let order = BaseNavigationController(rootViewController: OrderViewController(isShowNavigationBar: false,
-//																					 navigationTitle: "Order"))
-//		order.tabBarItem = UITabBarItem(title: "Order".txt,
-//										image: UIImage(named: Images.Tabbar.Order.rawValue),
-//										tag: TabBarTag.Order.rawValue)
-//		order.title = "Order".txt
-//		
-//		viewControllers = [home, order]
-	}
 	
+	func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+		guard let navController = viewController as? UINavigationController,
+			  let topVC = navController.topViewController as? BaseViewController else {
+			return
+		}
+		
+		// Notify the top view controller to scroll to top
+		topVC.scrollToTop()
+	}
 }
 
 extension BaseTabBarController {

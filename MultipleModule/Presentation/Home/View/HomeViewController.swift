@@ -16,6 +16,7 @@ class HomeViewController: BaseViewController {
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(HomeCell.self)
+		tableView.contentInset.bottom = .zero
 		return tableView
 	}()
 
@@ -37,7 +38,7 @@ class HomeViewController: BaseViewController {
 		self.viewModel = viewModel
 		super.init(isShowNavigationBar: isShowNavigationBar, navigationTitle: navigationTitle)
 	}
-	
+		
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		viewModel.fetchRX.onNext(())
@@ -51,7 +52,8 @@ class HomeViewController: BaseViewController {
 	override func setupConstraints() {
 		super.setupConstraints()
 		tableView.snp.makeConstraints {
-			$0.edges.equalToSuperview()
+			$0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+			$0.leading.trailing.bottom.equalToSuperview()
 		}
 	}
 
@@ -87,9 +89,9 @@ class HomeViewController: BaseViewController {
 		Observable
 			.zip(tableView.rx.itemSelected,
 				 tableView.rx.modelSelected(HomeModel.self))
-			.subscribe { [weak self] (_, item) in
+			.subscribe { [weak self] (_, _) in
 				guard let self else { return }
-				coordinator?.showDetail(text: item.localizedName)
+//				coordinator?.showDetail(text: item.localizedName)
 			}.disposed(by: disposeBag)
 	}
 	
@@ -119,4 +121,5 @@ extension HomeViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 		return .leastNonzeroMagnitude
 	}
+	
 }

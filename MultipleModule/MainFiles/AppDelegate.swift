@@ -18,14 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		ClientManager.start()
 		return true
 	}
-		
+	
 	private func setupRootViewController() {
 		window = UIWindow()
 		guard let window else { return }
 		let container = AppDICoordinator.shared.container
 		print("✅ Initializing AppCoordinator...")
-		guard let appCoordinator = container.resolve(AppCoordinator.self, argument: window) else {
-			fatalError("Failed Initializing AppCoordinator...")
+		guard let appCoordinator = container.resolve(AppCoordinator.self,
+													 argument: window)
+		else {
+			return
 		}
 		self.appCoordinator = appCoordinator
 		appCoordinator.start()

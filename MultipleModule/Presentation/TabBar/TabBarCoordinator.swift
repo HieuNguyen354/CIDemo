@@ -19,14 +19,13 @@ class TabBarCoordinator: Coordinator {
 	}
 	
 	func start() {
-		print("✅ TabBarCoordinator started")
 		let homeNavController = BaseNavigationController()
 		let orderNavController = BaseNavigationController()
 		
 		guard let homeCoordinator = resolver.resolve(HomeCoordinator.self, argument: homeNavController),
 			  let orderCoordinator = resolver.resolve(OrderCoordinator.self, argument: orderNavController)
 		else {
-			fatalError("Failed to resolve HomeCoordinator or OrderCoordinator")
+			return
 		}
 		
 		childCoordinators.append(homeCoordinator)

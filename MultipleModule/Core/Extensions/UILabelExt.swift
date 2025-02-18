@@ -11,7 +11,7 @@ extension UILabel {
 	func applyNormalTitle(isMultipleLine: Bool = false,
 						  with color: UIColor = .black.withAlphaComponent(0.9),
 						  textAlignment: NSTextAlignment = .left) {
-		font = UIFont.systemFont(ofSize: 16)
+		font = AppFonts.regular(size: 16)
 		textColor = color
 		clipsToBounds = true
 		self.textAlignment = textAlignment
@@ -21,7 +21,7 @@ extension UILabel {
 	func applyMediumTitle(isMultipleLine: Bool = false,
 						  with color: UIColor = .black.withAlphaComponent(0.9),
 						  textAlignment: NSTextAlignment = .left) {
-		font = UIFont.systemFont(ofSize: 14)
+		font = AppFonts.regular(size: 14)
 		textColor = color
 		clipsToBounds = true
 		self.textAlignment = textAlignment
@@ -31,7 +31,7 @@ extension UILabel {
 	func applySmallTitle(isMultipleLine: Bool = false,
 						 with color: UIColor = .black.withAlphaComponent(0.9),
 						 textAlignment: NSTextAlignment = .left) {
-		font = UIFont.systemFont(ofSize: 12)
+		font = AppFonts.regular(size: 12)
 		textColor = color
 		clipsToBounds = true
 		self.textAlignment = textAlignment

@@ -39,7 +39,7 @@ class BaseViewController: UIViewController {
 	}
 
 	func setupUI() {
-		view.backgroundColor = UIColor.white
+		view.backgroundColor = AppColors.white
 		title = navigationTitle
 	}
 
@@ -75,6 +75,17 @@ class BaseViewController: UIViewController {
 			hub.bezelView.backgroundColor = .clear
 		} else {
 			MBProgressHUD.hide(for: view, animated: true)
+		}
+	}
+	
+	func scrollToTop(_ animated: Bool = true) {
+		for item in view.subviews {
+			if let tableView = item as? UITableView {
+				tableView.setContentOffset(CGPoint(x: 0,
+												   y: -tableView.contentInset.top),
+										   animated: animated)
+				break
+			}
 		}
 	}
 }

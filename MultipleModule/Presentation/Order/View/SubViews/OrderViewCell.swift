@@ -11,7 +11,7 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = UIColor.white
+		view.backgroundColor = AppColors.white
 		return view
 	}()
 	

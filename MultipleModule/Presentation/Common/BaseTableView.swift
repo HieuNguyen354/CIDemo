@@ -22,7 +22,10 @@ class BaseTableView: UITableView {
 	}
 
 	func setupUI() {
-		let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+		let emptyView = UIView(frame: CGRect(x: 0,
+											 y: 0,
+											 width: 0,
+											 height: CGFloat.leastNormalMagnitude))
 		tableHeaderView = emptyView
 		tableFooterView = emptyView
 		separatorStyle = .none
