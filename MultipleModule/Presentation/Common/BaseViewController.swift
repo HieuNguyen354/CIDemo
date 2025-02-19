@@ -56,17 +56,20 @@ class BaseViewController: UIViewController {
 				self.showLoading(isShowLoading)
 			})
 			.disposed(by: disposeBag)
-	}
-
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	deinit {
-		if Environment.isProduction() == false {
-			print("deinit " + self.className)
-		}
-		NotificationCenter.default.removeObserver(self)
+		
+		viewModel
+			.showAlertError
+			.asDriver()
+			.drive(onNext: { [weak self] errorMessage in
+				guard let self = self,
+					  let message = errorMessage else {
+					return
+				}
+				self.endRefresherAndLoadMore()
+				viewModel.showLoading.accept(false)
+				self.showErrorAlert(message: message)
+			})
+			.disposed(by: disposeBag)
 	}
 
 	func showLoading(_ isShow: Bool) {
@@ -88,4 +91,52 @@ class BaseViewController: UIViewController {
 			}
 		}
 	}
+	
+	func endRefresherAndLoadMore() {
+		for item in view.subviews {
+			if let tableView = item as? BaseTableView {
+				tableView.tableFooterView = nil
+				break
+			}
+		}
+		
+		endRefresherIfNeeded()
+	}
+	
+	func endRefresherIfNeeded(_ animated: Bool = false) {
+		for item in view.subviews {
+			if let tableView = item as? BaseTableView {
+				guard tableView.refreshControl != nil else { return }
+				if tableView.contentOffset.y < tableView.contentInset.top {
+					tableView.refresher.endRefreshing()
+					scrollToTop(animated)
+				}
+				break
+			}
+		}
+	}
+	
+	func showErrorAlert(_ title: String = "AlertErrorTitle".txt,
+					   message: String) {
+		let alert = BaseAlertBuilder()
+		alert
+			.buttons(titles: [.init(index: 0,
+									title: "AlertActionDone".txt)])
+			.message(message: message)
+			.title(title: title)
+			.parentViewController(rootVC: self)
+			.showAlert()
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	deinit {
+		if Environment.isProduction() == false {
+			print("deinit " + self.className)
+		}
+		NotificationCenter.default.removeObserver(self)
+	}
+
 }

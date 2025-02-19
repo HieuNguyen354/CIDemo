@@ -15,9 +15,11 @@ final class HomeViewModel: BaseViewModel {
 	let fetchRX = PublishSubject<Void>()
 	let responseData = PublishSubject<[HomeModel]>()
 	let fetchHeroesUseCase: FetchHomeUseCase
+	let local: HomeLocalDataSource
 	
-	init(fetchHeroesUseCase: FetchHomeUseCase) {
+	init(fetchHeroesUseCase: FetchHomeUseCase, local: HomeLocalDataSource) {
 		self.fetchHeroesUseCase = fetchHeroesUseCase
+		self.local = local
 	}
 
 	override func setupBindings() {
@@ -25,6 +27,7 @@ final class HomeViewModel: BaseViewModel {
 		fetchRX
 			.subscribe { [weak self] _ in
 				guard let self else { return }
+				getLocalDataInit()
 				requestData()
 			}.disposed(by: disposeBag)
 
@@ -49,22 +52,34 @@ final class HomeViewModel: BaseViewModel {
 		}
 		sections.append(.init(model: "", items: tableViewItem))
 	}
+	
+	private func getLocalDataInit() {
+		showLoading.accept(true)
+		local
+			.getData()
+			.subscribe { [weak self] result in
+				guard let self else { return }
+				showLoading.accept(false)
+				responseData.onNext(result)
+			}.disposed(by: disposeBag)
+	}
 
 	private func requestData() {
 		showLoading.accept(true)
+	
 		fetchHeroesUseCase
 			.execute()
-			.subscribe { [weak self] model in
+			.subscribe { [weak self] result in
 				guard let self else { return }
 				showLoading.accept(false)
-				responseData.onNext(model)
-			} onFailure: { [weak self] error in
-				guard let self else { return }
-				showLoading.accept(false)
-				print(error)
+				switch result {
+					case .success(let model):
+						responseData.onNext(model)
+					case .failure(let error):
+						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }
+						showAlertError.accept(error.internalError?.error)
+				}
 			}.disposed(by: disposeBag)
-
-
 	}
 
 }

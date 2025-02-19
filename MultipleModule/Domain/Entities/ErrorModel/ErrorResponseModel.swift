@@ -9,4 +9,4 @@ import Foundation
 
 struct ErrorResponseModel: Codable {
 	var error: String
-	}
+}

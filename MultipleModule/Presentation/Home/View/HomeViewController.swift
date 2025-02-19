@@ -86,6 +86,8 @@ class HomeViewController: BaseViewController {
 				self.tableView.refresher.endRefreshing()
 			}.disposed(by: disposeBag)
 		
+		
+		
 		Observable
 			.zip(tableView.rx.itemSelected,
 				 tableView.rx.modelSelected(HomeModel.self))

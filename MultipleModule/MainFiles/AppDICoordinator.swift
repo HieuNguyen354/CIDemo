@@ -26,26 +26,27 @@ class AppDICoordinator {
 	}
 	
 	private func registerCoordinator() {
-		container.register(TabBarCoordinator.self) { (resolver, tabBarController: BaseTabBarController) in
-			TabBarCoordinator(resolver: resolver, tabBarController: tabBarController)
+		container.register(TabBarCoordinator.self) { (r, tabBarController: BaseTabBarController) in
+			TabBarCoordinator(resolver: r, tabBarController: tabBarController)
 		}.inObjectScope(.container)
 		
-		container.register(AppCoordinator.self) { resolver, window in
-			AppCoordinator(container: resolver, window: window)
+		container.register(AppCoordinator.self) { r, window in
+			AppCoordinator(container: r, window: window)
 		}
 		
-		container.register(HomeCoordinator.self) { (resolver, navigationController: BaseNavigationController) in
-			HomeCoordinator(navigationController: navigationController, resolve: resolver)
+		container.register(HomeCoordinator.self) { (r, navigationController: BaseNavigationController) in
+			HomeCoordinator(navigationController: navigationController, resolve: r)
 		}
 		
-		container.register(OrderCoordinator.self) { (resolver, navigationController: BaseNavigationController) in
-			OrderCoordinator(navigationController: navigationController, resolve: resolver)
+		container.register(OrderCoordinator.self) { (r, navigationController: BaseNavigationController) in
+			OrderCoordinator(navigationController: navigationController, resolve: r)
 		}
 	}
 	
 	private func registerViewModel() {
-		container.register(HomeViewModel.self) { resolver in
-			HomeViewModel(fetchHeroesUseCase: resolver.resolve(FetchHomeUseCase.self)!)
+		container.register(HomeViewModel.self) { r in
+			HomeViewModel(fetchHeroesUseCase: r.resolve(FetchHomeUseCase.self)!,
+						  local: r.resolve(HomeLocalDataSource.self)!)
 		}
 		
 		container.register(HomeDetailViewModel.self) { (_, text: String) in
@@ -58,7 +59,7 @@ class AppDICoordinator {
 		// - MARK: Home UseCase
 		container.register(HomeRepository.self) { r in
 			DefaultHomeRepository(remoteDataSource: r.resolve(HomeRemoteDataSource.self)!,
-									localDataSource: r.resolve(HomeLocalDataSource.self)!)
+								  localDataSource: r.resolve(HomeLocalDataSource.self)!)
 		}.inObjectScope(.container)
 		
 		container.register(HomeRemoteDataSource.self) { _ in HomeRemoteDataSource() }

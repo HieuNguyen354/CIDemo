@@ -17,14 +17,17 @@ class DefaultHomeRepository: HomeRepository {
 	}
 	
 	func getHome() -> Single<[HomeModel]> {
-		return remoteDataSource.fetchData(apiService: HomeRequestModel())
-			.flatMap { model in
-				self.localDataSource
+		var result = remoteDataSource.fetchData(apiService: HomeRequestModel())
+		result = result
+			.flatMap { [weak self] model in
+				guard let self else { return .just([]) }
+				return localDataSource
 					.saveLocal(model)
 					.andThen(Single.just(model))
 			}
-			.catch { _ in
-				self.localDataSource.getData()
+			.catch { error in
+				return .error(error)
 			}
+		return result
 	}
 }

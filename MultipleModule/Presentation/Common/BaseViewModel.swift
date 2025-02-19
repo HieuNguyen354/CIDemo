@@ -11,6 +11,7 @@ import RxCocoa
 class BaseViewModel: NSObject {
 	let disposeBag = DisposeBag()
 	let showLoading = BehaviorRelay<Bool>(value: false)
+	let showAlertError = BehaviorRelay<String?>(value: nil)
 	
 	override init() {
 		super.init()
