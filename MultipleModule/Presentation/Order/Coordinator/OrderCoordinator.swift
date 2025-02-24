@@ -11,22 +11,26 @@ import Swinject
 class OrderCoordinator: Coordinator {
 	var childCoordinators = [Coordinator]()
 	var navigationController: UINavigationController
-	private let container: Resolver
+	private let resolver: Resolver
 	
 	
 	init(navigationController: UINavigationController,
 		 resolve: Resolver) {
 		self.navigationController = navigationController
-		self.container = resolve
+		self.resolver = resolve
 	}
 	
 	func start() {
-		let viewModel = OrderViewModel(fetchOrderUseCase: container.resolve(FetchOrderUseCase.self)!)
+		guard let viewModel = resolver.resolve(OrderViewModel.self) else { return }
+		viewModel.fetchRX.onNext(())
 		let orderVC = OrderViewController(isShowNavigationBar: true,
-										 viewModel: viewModel,
-										 navigationTitle: "ProPlayer")
+										  viewModel: viewModel,
+										  navigationTitle: "ProPlayer")
 		
-		orderVC.tabBarItem = UITabBarItem(title: "ProPlayer", image: UIImage(named: Images.Tabbar.Order.rawValue), tag: 1)
+		orderVC.tabBarItem = UITabBarItem(title: "ProPlayer",
+										  image: UIImage(named: Images.Tabbar.Order.rawValue),
+										  tag: 1)
+		
 		navigationController.viewControllers = [orderVC]
 	}
 }

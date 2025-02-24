@@ -54,16 +54,20 @@ final class OrderViewModel: BaseViewModel {
 		showLoading.accept(true)
 		fetchOrderUseCase
 			.execute()
-			.subscribe { [weak self] model in
+			.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+			.observe(on: MainScheduler.instance)
+			.subscribe { [weak self] result in
 				guard let self else { return }
 				showLoading.accept(false)
-				responseData.onNext(model)
-			} onFailure: { [weak self] error in
-				guard let self else { return }
-				showLoading.accept(false)
-				print(error)
+				switch result {
+					case .success(let model):
+						print("Order Request")
+						responseData.onNext(model)
+					case .failure(let error):
+						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }
+						showAlertError.accept(error.internalError?.error)
+				}
 			}.disposed(by: disposeBag)
-
 	}
 	
 }

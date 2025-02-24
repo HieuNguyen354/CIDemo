@@ -14,14 +14,15 @@ final class HomeViewModel: BaseViewModel {
 	let sections = BehaviorRelay<[Sections]>(value: [])
 	let fetchRX = PublishSubject<Void>()
 	let responseData = PublishSubject<[HomeModel]>()
-	let fetchHeroesUseCase: FetchHomeUseCase
 	let local: HomeLocalDataSource
 	
-	init(fetchHeroesUseCase: FetchHomeUseCase, local: HomeLocalDataSource) {
-		self.fetchHeroesUseCase = fetchHeroesUseCase
+	private let fetchHomeUseCase: FetchHomeUseCase
+	
+	init(fetchHomeUseCase: FetchHomeUseCase, local: HomeLocalDataSource) {
+		self.fetchHomeUseCase = fetchHomeUseCase
 		self.local = local
 	}
-
+	
 	override func setupBindings() {
 		super.setupBindings()
 		fetchRX
@@ -30,20 +31,20 @@ final class HomeViewModel: BaseViewModel {
 				getLocalDataInit()
 				requestData()
 			}.disposed(by: disposeBag)
-
+		
 		responseData
 			.subscribe { [weak self] model in
 				guard let self else { return }
 				reloadTableView(model: model)
 			}.disposed(by: disposeBag)
 	}
-
+	
 	private func reloadTableView(model: [HomeModel]) {
 		var temp = [Sections]()
 		getHeroesSection(&temp, model: model)
 		sections.accept(temp)
 	}
-
+	
 	private func getHeroesSection(_ sections: inout [Sections],
 								  model: [HomeModel]) {
 		var tableViewItem = [HomeModel]()
@@ -63,17 +64,20 @@ final class HomeViewModel: BaseViewModel {
 				responseData.onNext(result)
 			}.disposed(by: disposeBag)
 	}
-
+	
 	private func requestData() {
 		showLoading.accept(true)
-	
-		fetchHeroesUseCase
+		
+		fetchHomeUseCase
 			.execute()
+			.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+			.observe(on: MainScheduler.instance)
 			.subscribe { [weak self] result in
 				guard let self else { return }
 				showLoading.accept(false)
 				switch result {
 					case .success(let model):
+						print("Home Request")
 						responseData.onNext(model)
 					case .failure(let error):
 						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }
@@ -81,5 +85,5 @@ final class HomeViewModel: BaseViewModel {
 				}
 			}.disposed(by: disposeBag)
 	}
-
+	
 }

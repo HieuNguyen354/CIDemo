@@ -42,11 +42,6 @@ class OrderViewController: BaseViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		viewModel.fetchRX.onNext(())
-	}
-	
 	override func setupUI() {
 		super.setupUI()
 		view.addSubview(tableView)

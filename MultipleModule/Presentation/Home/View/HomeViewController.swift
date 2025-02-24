@@ -38,11 +38,6 @@ class HomeViewController: BaseViewController {
 		self.viewModel = viewModel
 		super.init(isShowNavigationBar: isShowNavigationBar, navigationTitle: navigationTitle)
 	}
-		
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		viewModel.fetchRX.onNext(())
-	}
 
 	override func setupUI() {
 		super.setupUI()

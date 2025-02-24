@@ -21,9 +21,10 @@ class HomeCoordinator: Coordinator {
 	
 	func start() {
 		guard let viewModel = resolver.resolve(HomeViewModel.self) else {
-			fatalError("Failed to resolve HomeViewModel")
+			return
 		}
 		
+		viewModel.fetchRX.onNext(())
 		let homeVC = HomeViewController(isShowNavigationBar: true,
 										viewModel: viewModel,
 										navigationTitle: "Heroes")
