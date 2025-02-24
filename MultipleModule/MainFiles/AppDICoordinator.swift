@@ -46,8 +46,7 @@ class AppDICoordinator {
 	private func registerViewModel() {
 		// - MARK: HomeViewModel
 		container.register(HomeViewModel.self) { r in
-			HomeViewModel(fetchHomeUseCase: r.resolve(FetchHomeUseCase.self)!,
-						  local: r.resolve(HomeLocalDataSource.self)!)
+			HomeViewModel(fetchHomeUseCase: r.resolve(FetchHomeUseCase.self)!)
 		}
 		
 		container.register(HomeDetailViewModel.self) { (_, text: String) in

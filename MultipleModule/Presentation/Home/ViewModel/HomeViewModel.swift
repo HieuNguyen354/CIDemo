@@ -14,13 +14,11 @@ final class HomeViewModel: BaseViewModel {
 	let sections = BehaviorRelay<[Sections]>(value: [])
 	let fetchRX = PublishSubject<Void>()
 	let responseData = PublishSubject<[HomeModel]>()
-	let local: HomeLocalDataSource
 	
 	private let fetchHomeUseCase: FetchHomeUseCase
 	
-	init(fetchHomeUseCase: FetchHomeUseCase, local: HomeLocalDataSource) {
+	init(fetchHomeUseCase: FetchHomeUseCase) {
 		self.fetchHomeUseCase = fetchHomeUseCase
-		self.local = local
 	}
 	
 	override func setupBindings() {
@@ -28,7 +26,6 @@ final class HomeViewModel: BaseViewModel {
 		fetchRX
 			.subscribe { [weak self] _ in
 				guard let self else { return }
-				getLocalDataInit()
 				requestData()
 			}.disposed(by: disposeBag)
 		
@@ -52,17 +49,6 @@ final class HomeViewModel: BaseViewModel {
 			tableViewItem.append(item)
 		}
 		sections.append(.init(model: "", items: tableViewItem))
-	}
-	
-	private func getLocalDataInit() {
-		showLoading.accept(true)
-		local
-			.getData()
-			.subscribe { [weak self] result in
-				guard let self else { return }
-				showLoading.accept(false)
-				responseData.onNext(result)
-			}.disposed(by: disposeBag)
 	}
 	
 	private func requestData() {

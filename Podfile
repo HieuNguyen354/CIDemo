@@ -15,6 +15,7 @@ target 'MultipleModule' do
 	pod 'SwinjectAutoregistration'
 	pod 'SDWebImage', '~> 5.0'
 	pod 'MBProgressHUD', '~> 1.2.0'
+	pod 'ReachabilitySwift'
 end
 
 post_install do |installer|

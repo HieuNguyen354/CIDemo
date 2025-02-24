@@ -1,6 +1,7 @@
 PODS:
   - Differentiator (5.0.0)
   - MBProgressHUD (1.2.0)
+  - ReachabilitySwift (5.2.4)
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
     - RxSwift (= 6.6.0)
@@ -22,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - MBProgressHUD (~> 1.2.0)
+  - ReachabilitySwift
   - RxCocoa
   - RxDataSources
   - RxSwift
@@ -35,6 +37,7 @@ SPEC REPOS:
   trunk:
     - Differentiator
     - MBProgressHUD
+    - ReachabilitySwift
     - RxCocoa
     - RxDataSources
     - RxRelay
@@ -48,6 +51,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
@@ -58,6 +62,6 @@ SPEC CHECKSUMS:
   Swinject: a827d508c6270da03ec74e558e728917a888fa9b
   SwinjectAutoregistration: a14d8ed61e88b0044a292958d63318b378375ca6
 
-PODFILE CHECKSUM: 54be12923de393c7b9902e553b2b678c1054f3c8
+PODFILE CHECKSUM: ab95d84df0b55610d5beebbb6f5a0fd633d329b4
 
 COCOAPODS: 1.10.2

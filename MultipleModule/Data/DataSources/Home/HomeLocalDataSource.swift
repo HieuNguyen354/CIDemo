@@ -9,18 +9,27 @@ import RxSwift
 import RxCocoa
 
 class HomeLocalDataSource {
+	private let defaults = UserDefaults.standard
+	
 	private var data: [HomeModel] = []
 	
 	func saveLocal(_ model: [HomeModel]) -> Completable {
 		return Completable.create { [weak self] completable in
 			guard let self else { return Disposables.create() }
 			data = model
+			if let encoded = try? JSONEncoder().encode(model) {
+				defaults.set(encoded, forKey: "userProfile")
+			}
 			completable(.completed)
 			return Disposables.create()
 		}
 	}
 	
-	func getData() -> Single<[HomeModel]> {
-		return Single.just(data)
+	func getData() -> [HomeModel]? {
+		guard let savedData = defaults.data(forKey: "userProfile"),
+			  let decoded = try? JSONDecoder().decode([HomeModel].self, from: savedData) else {
+			return nil
+		}
+		return decoded
 	}
 }
