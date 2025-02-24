@@ -116,12 +116,12 @@ class BaseViewController: UIViewController {
 		}
 	}
 	
-	func showErrorAlert(_ title: String = "AlertErrorTitle".txt,
+	func showErrorAlert(_ title: String = "Lỗi",
 					   message: String) {
 		let alert = BaseAlertBuilder()
 		alert
 			.buttons(titles: [.init(index: 0,
-									title: "AlertActionDone".txt)])
+									title: "Xong".txt)])
 			.message(message: message)
 			.title(title: title)
 			.parentViewController(rootVC: self)
