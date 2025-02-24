@@ -10,10 +10,29 @@
 		7C79707A0ACE1F33B03635D8 /* Pods_MultipleModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C9989D88CB1264A36353F8 /* Pods_MultipleModule.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A05164DF2D6C146A003515FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0D3EFB82D5B93750043F8D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0D3EFBF2D5B93750043F8D9;
+			remoteInfo = MultipleModule;
+		};
+		A05164EC2D6C14F1003515FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0D3EFB82D5B93750043F8D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0D3EFBF2D5B93750043F8D9;
+			remoteInfo = MultipleModule;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0B89BD9750566DFF53EBE9DE /* Pods-MultipleModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.release.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.release.xcconfig"; sourceTree = "<group>"; };
 		57C9989D88CB1264A36353F8 /* Pods_MultipleModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultipleModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9777273F56400C6AAC266B8E /* Pods-MultipleModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.debug.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.debug.xcconfig"; sourceTree = "<group>"; };
+		A05164DB2D6C146A003515FB /* MultipleModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultipleModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A05164E82D6C14F1003515FB /* MultipleModuleXCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultipleModuleXCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D3EFC02D5B93750043F8D9 /* MultipleModule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipleModule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -28,6 +47,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A05164E92D6C14F1003515FB /* MultipleModuleXCTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MultipleModuleXCTests;
+			sourceTree = "<group>";
+		};
 		A0D3EFC22D5B93750043F8D9 /* MultipleModule */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -39,6 +63,20 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A05164D82D6C146A003515FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A05164E52D6C14F1003515FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0D3EFBD2D5B93750043F8D9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,10 +99,11 @@
 		A0D3EFB72D5B93750043F8D9 = {
 			isa = PBXGroup;
 			children = (
-				A0D3EFC22D5B93750043F8D9 /* MultipleModule */,
-				A0D3EFC12D5B93750043F8D9 /* Products */,
-				F054B9C21A8A9B32A98448FE /* Pods */,
 				320D9C1455B41E7E8A44D3D6 /* Frameworks */,
+				A0D3EFC22D5B93750043F8D9 /* MultipleModule */,
+				A05164E92D6C14F1003515FB /* MultipleModuleXCTests */,
+				F054B9C21A8A9B32A98448FE /* Pods */,
+				A0D3EFC12D5B93750043F8D9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				A0D3EFC02D5B93750043F8D9 /* MultipleModule.app */,
+				A05164DB2D6C146A003515FB /* MultipleModuleTests.xctest */,
+				A05164E82D6C14F1003515FB /* MultipleModuleXCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +129,49 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A05164DA2D6C146A003515FB /* MultipleModuleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A05164E12D6C146B003515FB /* Build configuration list for PBXNativeTarget "MultipleModuleTests" */;
+			buildPhases = (
+				A05164D72D6C146A003515FB /* Sources */,
+				A05164D82D6C146A003515FB /* Frameworks */,
+				A05164D92D6C146A003515FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A05164E02D6C146A003515FB /* PBXTargetDependency */,
+			);
+			name = MultipleModuleTests;
+			packageProductDependencies = (
+			);
+			productName = MultipleModuleTests;
+			productReference = A05164DB2D6C146A003515FB /* MultipleModuleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A05164E72D6C14F1003515FB /* MultipleModuleXCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A05164EE2D6C14F1003515FB /* Build configuration list for PBXNativeTarget "MultipleModuleXCTests" */;
+			buildPhases = (
+				A05164E42D6C14F1003515FB /* Sources */,
+				A05164E52D6C14F1003515FB /* Frameworks */,
+				A05164E62D6C14F1003515FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A05164ED2D6C14F1003515FB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A05164E92D6C14F1003515FB /* MultipleModuleXCTests */,
+			);
+			name = MultipleModuleXCTests;
+			packageProductDependencies = (
+			);
+			productName = MultipleModuleXCTests;
+			productReference = A05164E82D6C14F1003515FB /* MultipleModuleXCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A0D3EFBF2D5B93750043F8D9 /* MultipleModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0D3EFD32D5B93770043F8D9 /* Build configuration list for PBXNativeTarget "MultipleModule" */;
@@ -121,6 +205,15 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					A05164DA2D6C146A003515FB = {
+						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
+						TestTargetID = A0D3EFBF2D5B93750043F8D9;
+					};
+					A05164E72D6C14F1003515FB = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A0D3EFBF2D5B93750043F8D9;
+					};
 					A0D3EFBF2D5B93750043F8D9 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -141,11 +234,27 @@
 			projectRoot = "";
 			targets = (
 				A0D3EFBF2D5B93750043F8D9 /* MultipleModule */,
+				A05164DA2D6C146A003515FB /* MultipleModuleTests */,
+				A05164E72D6C14F1003515FB /* MultipleModuleXCTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A05164D92D6C146A003515FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A05164E62D6C14F1003515FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0D3EFBE2D5B93750043F8D9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +324,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A05164D72D6C146A003515FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A05164E42D6C14F1003515FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0D3EFBC2D5B93750043F8D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,7 +347,97 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A05164E02D6C146A003515FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0D3EFBF2D5B93750043F8D9 /* MultipleModule */;
+			targetProxy = A05164DF2D6C146A003515FB /* PBXContainerItemProxy */;
+		};
+		A05164ED2D6C14F1003515FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0D3EFBF2D5B93750043F8D9 /* MultipleModule */;
+			targetProxy = A05164EC2D6C14F1003515FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A05164E22D6C146B003515FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3WM3Z6QX39;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MultipleModuleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "MultipleModuleTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MultipleModule.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MultipleModule";
+			};
+			name = Debug;
+		};
+		A05164E32D6C146B003515FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3WM3Z6QX39;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MultipleModuleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "MultipleModuleTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MultipleModule.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MultipleModule";
+			};
+			name = Release;
+		};
+		A05164EF2D6C14F1003515FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3WM3Z6QX39;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MultipleModuleXCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MultipleModule.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MultipleModule";
+			};
+			name = Debug;
+		};
+		A05164F02D6C14F1003515FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3WM3Z6QX39;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MultipleModuleXCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MultipleModule.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MultipleModule";
+			};
+			name = Release;
+		};
 		A0D3EFD42D5B93770043F8D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9777273F56400C6AAC266B8E /* Pods-MultipleModule.debug.xcconfig */;
@@ -407,6 +620,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A05164E12D6C146B003515FB /* Build configuration list for PBXNativeTarget "MultipleModuleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A05164E22D6C146B003515FB /* Debug */,
+				A05164E32D6C146B003515FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A05164EE2D6C14F1003515FB /* Build configuration list for PBXNativeTarget "MultipleModuleXCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A05164EF2D6C14F1003515FB /* Debug */,
+				A05164F02D6C14F1003515FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A0D3EFBB2D5B93750043F8D9 /* Build configuration list for PBXProject "MultipleModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

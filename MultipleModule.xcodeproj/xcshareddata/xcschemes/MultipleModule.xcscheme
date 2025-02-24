@@ -29,6 +29,30 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A05164DA2D6C146A003515FB"
+               BuildableName = "MultipleModuleTests.xctest"
+               BlueprintName = "MultipleModuleTests"
+               ReferencedContainer = "container:MultipleModule.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A05164E72D6C14F1003515FB"
+               BuildableName = "MultipleModuleXCTests.xctest"
+               BlueprintName = "MultipleModuleXCTests"
+               ReferencedContainer = "container:MultipleModule.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
