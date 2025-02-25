@@ -23,7 +23,7 @@ class HomeCoordinator: Coordinator {
 		let vc = resolver.resolve(HomeViewController.self)!
 		vc.viewModel.fetchRX.onNext(())
 		vc.coordinator = self
-		vc.tabBarItem = UITabBarItem(title: "Heroes",
+		vc.tabBarItem = UITabBarItem(title: "",
 									 image: UIImage(named: Images.Tabbar.Home.rawValue),
 									 tag: 0)
 		navigationController.viewControllers = [vc]

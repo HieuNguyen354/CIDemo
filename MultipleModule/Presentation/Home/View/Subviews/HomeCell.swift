@@ -7,73 +7,81 @@
 
 import UIKit
 
-class HomeCell: BaseTableViewCell {
+class HomeCell: BaseCollectionViewCell {
+	static let totalPadding = padding * (2)
+	static let originWidth: CGFloat = UIConstraints.screenSize.width / 3 - HomeCell.totalPadding
+	static let originHeight: CGFloat = HomeCell.originWidth
+	static let padding = UIConstraints.halfPadding
+	static let size = CGSize(width: HomeCell.originWidth, height: HomeCell.originHeight)
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
 		view.backgroundColor = AppColors.background
+		view.clipsToBounds = true
 		return view
 	}()
-
-	private lazy var titleLabel: UILabel = {
-		let label = UILabel()
-		label.textAlignment = .center
-		label.backgroundColor = containerView.backgroundColor
-		label.font = AppFonts.bold(size: 18)
-		label.textColor = AppColors.primary
-		return label
+	
+	private lazy var heroImage: UIImageView = {
+		let imageView = UIImageView()
+		imageView.clipsToBounds = true
+		imageView.contentMode = .scaleAspectFill
+		return imageView
 	}()
 	
-	private lazy var descriptionLabel: UILabel = {
+	private lazy var heroTitle: UILabel = {
 		let label = UILabel()
-		label.textAlignment = .center
+		label.textColor = AppColors.white
+		label.font = AppFonts.regular(size: 16)
 		label.backgroundColor = containerView.backgroundColor
-		label.font = AppFonts.italic(size: 16)
-		label.textColor = AppColors.secondary
-		label.numberOfLines = 0
+		label.clipsToBounds = true
+		label.textAlignment = .center
+		label.adjustsFontSizeToFitWidth = true
+		label.minimumScaleFactor = 0.5
+		label.numberOfLines = 1
 		return label
 	}()
-	
-	private lazy var dividerLine = UIView()
 
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		setupUI()
+		setupConstraints()
+	}
+	
 	override func setupUI() {
 		super.setupUI()
-		dividerLine.appDividerLineSetup()
 		contentView.addSubview(containerView)
-		containerView.addSubViews(titleLabel,
-								  descriptionLabel,
-								  dividerLine)
+		containerView.addSubViews(heroImage,
+								  heroTitle)
 	}
 
 	override func setupConstraints() {
 		super.setupConstraints()
 		containerView.snp.makeConstraints {
 			$0.edges.equalToSuperview()
+			$0.size.equalTo(CGSize(width: HomeCell.size.width,
+								   height: HomeCell.size.height))
 		}
 
-		titleLabel.snp.makeConstraints {
-			$0.top.leading.trailing.equalToSuperview().inset(UIConstraints.normalPadding)
+		heroImage.snp.makeConstraints {
+			$0.size.equalTo(CGSize(width: HomeCell.size.width,
+								   height: HomeCell.size.height * 0.5))
+			$0.top.leading.trailing.equalToSuperview()
 		}
-
-		descriptionLabel.snp.makeConstraints {
-			$0.top.equalTo(titleLabel.snp.bottom).offset(UIConstraints.halfPadding)
-			$0.leading.trailing.bottom.equalToSuperview().inset(UIConstraints.normalPadding)
-		}
-
-		dividerLine.snp.makeConstraints {
-			$0.leading.trailing.equalToSuperview().inset(UIConstraints.normalPadding)
-			$0.bottom.equalToSuperview()
-			$0.height.equalTo(0.5)
+		
+		heroTitle.snp.makeConstraints {
+			$0.leading.trailing.equalToSuperview()
+			$0.top.equalTo(heroImage.snp.bottom).offset(4)
 		}
 	}
-
+	
 	func setData(title: String,
-				 description: String,
-				 isHideDVL: Bool = false) {
-		titleLabel.text = title
-		descriptionLabel.text = description
-		dividerLine.snp.updateConstraints {
-			$0.leading.trailing.equalToSuperview().inset(isHideDVL ? .zero : UIConstraints.normalPadding)
-		}
+				 url: String) {
+		heroTitle.text = title
+		heroImage.setImageURLString("\(AppDefine.ImageLink.url)\(url)")
 	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 }

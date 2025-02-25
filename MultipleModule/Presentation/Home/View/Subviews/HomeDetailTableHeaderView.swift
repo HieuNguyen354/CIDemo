@@ -113,10 +113,10 @@ class HomeDetailTableHeaderView: UIView {
 	}
 	
 	func setData(model: HomeDetailElement) {
-		heroImage.load(url: URL(string: "https://cdn.cloudflare.steamstatic.com\(model.img)"))
+		heroImage.setImageURLString("https://cdn.cloudflare.steamstatic.com\(model.img)")
 		titleLabel.text = model.localizedName
 		roleLabel.text = model.roles.compactMap { $0 }.joined(separator: ", ")
-		typeLabel.text = model.primaryAttr
+		typeLabel.text = model.primaryAttr.rawValue
 		
 	}
 	

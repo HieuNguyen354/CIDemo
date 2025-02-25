@@ -11,8 +11,8 @@ import Foundation
 struct HomeDetailElement: Codable {
 	let id: Int
 	let name: String
-	let primaryAttr: String
-	let attackType: String
+	let primaryAttr: PrimaryAttr
+	let attackType: AttackType
 	let roles: [String]
 	let img, icon: String
 	let baseHealth: Int
@@ -103,6 +103,18 @@ struct HomeDetailElement: Codable {
 		case pubWin = "pub_win"
 		case pubWinTrend = "pub_win_trend"
 	}
+}
+
+enum AttackType: String, Codable {
+	case melee = "Melee"
+	case ranged = "Ranged"
+}
+
+enum PrimaryAttr: String, Codable {
+	case agi = "agi"
+	case all = "all"
+	case int = "int"
+	case str = "str"
 }
 
 typealias HomeDetail = [HomeDetailElement]

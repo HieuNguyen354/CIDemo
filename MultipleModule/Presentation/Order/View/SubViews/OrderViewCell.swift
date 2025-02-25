@@ -11,13 +11,35 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.background
+		view.backgroundColor = contentView.backgroundColor
+		view.clipsToBounds = true
 		return view
 	}()
 	
-	private lazy var titleLabel = UILabel()
-	private lazy var descriptionLabel = UILabel()
-	private lazy var profileURL = UILabel()
+	private lazy var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = AppColors.white
+		label.font = AppFonts.bold(size: 16)
+		label.backgroundColor = containerView.backgroundColor
+		return label
+	}()
+	
+	private lazy var descriptionLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = AppColors.white
+		label.font = AppFonts.regular(size: 16)
+		label.backgroundColor = containerView.backgroundColor
+		return label
+	}()
+	
+	private lazy var profileURL: UILabel = {
+		let label = UILabel()
+		label.textColor = AppColors.white
+		label.font = AppFonts.italic(size: 16)
+		label.backgroundColor = containerView.backgroundColor
+		return label
+	}()
+	
 	private lazy var dividerLine = UIView()
 	
 	private lazy var avatar: UIImageView = {
@@ -26,15 +48,14 @@ class OrderViewCell: BaseTableViewCell {
 		imageView.layer.cornerRadius = 40
 		imageView.layer.masksToBounds = false
 		imageView.clipsToBounds = true
+		imageView.backgroundColor = containerView.backgroundColor
 		return imageView
 	}()
 	
 	override func setupUI() {
 		super.setupUI()
-		titleLabel.applyNormalTitle(with: AppColors.white, textAlignment: .left)
-		descriptionLabel.applyMediumTitle(with: AppColors.white, textAlignment: .left)
-		profileURL.applyMediumTitle(isMultipleLine: true, with: AppColors.white, textAlignment: .left)
 		dividerLine.appDividerLineSetup()
+		contentView.backgroundColor = AppColors.background
 		contentView.addSubview(containerView)
 		containerView.addSubViews(titleLabel,
 								  descriptionLabel,
@@ -92,7 +113,7 @@ class OrderViewCell: BaseTableViewCell {
 			$0.leading.trailing.equalToSuperview().inset(isHideDVL ? .zero : UIConstraints.normalPadding)
 		}
 		
-		avatar.load(url: URL(string: avatarURL))
+		avatar.setImageURLString(avatarURL)
 
 	}
 }

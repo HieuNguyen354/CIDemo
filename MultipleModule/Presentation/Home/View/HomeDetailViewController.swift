@@ -26,6 +26,7 @@ class HomeDetailViewController: BaseViewController {
 	
 	private lazy var presentViewButton: UIButton = {
 		let button = UIButton()
+		button.backgroundColor = AppColors.background
 		button.setTitle("Present", for: .normal)
 		button.addTarget(self, action: #selector(presentAction), for: .touchUpInside)
 		return button
@@ -33,6 +34,7 @@ class HomeDetailViewController: BaseViewController {
 	
 	private lazy var navBackButton: UIButton = {
 		let button = UIButton()
+		button.backgroundColor = AppColors.background
 		button.setImage(UIImage(named: Images.Nav.Back.rawValue), for: .normal)
 		button.addTarget(self, action: #selector(navBackAction), for: .touchUpInside)
 		return button

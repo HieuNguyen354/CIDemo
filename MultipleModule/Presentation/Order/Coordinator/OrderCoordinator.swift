@@ -23,7 +23,7 @@ class OrderCoordinator: Coordinator {
 		let vc = resolver.resolve(OrderViewController.self)!
 		vc.viewModel.fetchRX.onNext(())
 		vc.coordinator = self
-		vc.tabBarItem = UITabBarItem(title: "ProPlayers",
+		vc.tabBarItem = UITabBarItem(title: "",
 									 image: UIImage(named: Images.Tabbar.Order.rawValue),
 									 tag: 1)
 		navigationController.viewControllers = [vc]

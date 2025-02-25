@@ -37,7 +37,7 @@ class OrderViewController: BaseViewController {
 	
 	init(viewModel: OrderViewModel) {
 		self.viewModel = viewModel
-		super.init(isShowNavigationBar: false, navigationTitle: "ProPlayers")
+		super.init(isShowNavigationBar: false)
 	}
 	
 	required init?(coder: NSCoder) {
