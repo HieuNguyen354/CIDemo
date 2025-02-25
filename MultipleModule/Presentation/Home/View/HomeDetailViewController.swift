@@ -6,40 +6,148 @@
 //
 
 import UIKit
+import RxDataSources
 
 class HomeDetailViewController: BaseViewController {
-	private var heroTitle: String?
-	
-	private lazy var titleLabel = UILabel()
 	var viewModel: HomeDetailViewModel
+	var coordinator: HomeCoordinator?
 	
-	init(isShowNavigationBar: Bool,
-		 viewModel: HomeDetailViewModel,
-		 navigationTitle: String) {
-		self.viewModel = viewModel
-		super.init(isShowNavigationBar: isShowNavigationBar, navigationTitle: navigationTitle)
+	private lazy var tableView: BaseTableView = {
+		let tableView = BaseTableView(frame: .zero, style: .grouped)
+		tableView.register(HomeDetailCell.self)
+		tableView.contentInsetAdjustmentBehavior = .never
+		tableView.backgroundColor = AppColors.background
+		tableView.contentInset = .init(top: 0,
+									   left: 0,
+									   bottom: 0,
+									   right: 0)
+		return tableView
+	}()
+	
+	private lazy var presentViewButton: UIButton = {
+		let button = UIButton()
+		button.setTitle("Present", for: .normal)
+		button.addTarget(self, action: #selector(presentAction), for: .touchUpInside)
+		return button
+	}()
+	
+	private lazy var navBackButton: UIButton = {
+		let button = UIButton()
+		button.setImage(UIImage(named: Images.Nav.Back.rawValue), for: .normal)
+		button.addTarget(self, action: #selector(navBackAction), for: .touchUpInside)
+		return button
+	}()
+	
+	private lazy var tableHeaderView = HomeDetailTableHeaderView()
+	
+	typealias DataSource = RxTableViewSectionedReloadDataSource<HomeDetailViewModel.Sections>
+	private lazy var dataSource = DataSource { _, tableView, indexPath, _ in
+		if let cell = tableView.on_dequeue(HomeDetailCell.self, for: indexPath) {
+			return cell
+		}
+		return tableView.on_dequeueDefaultCell()
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		titleLabel.applyNormalTitle(textAlignment: .center)
-		titleLabel.text = viewModel.heroTitle
+	init(viewModel: HomeDetailViewModel) {
+		self.viewModel = viewModel
+		super.init(isShowNavigationBar: false)
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.tabBarController?.tabBar.isHidden = true
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.tabBarController?.tabBar.isHidden = false
 	}
 	
 	override func setupUI() {
 		super.setupUI()
-		view.addSubview(titleLabel)
+		view.backgroundColor = AppColors.background
+		view.addSubViews(tableView,
+						 presentViewButton,
+						 navBackButton)
 	}
 	
 	override func setupConstraints() {
-		super.setupUI()
-		titleLabel.snp.makeConstraints {
-			$0.edges.equalToSuperview().inset(UIConstraints.halfPadding)
+		super.setupConstraints()
+		tableView.snp.makeConstraints {
+			$0.edges.equalToSuperview()
 		}
+		
+		presentViewButton.snp.makeConstraints {
+			$0.size.equalTo(CGSize(width: 100, height: 20))
+			$0.centerX.equalToSuperview()
+			$0.centerY.equalTo(navBackButton)
+		}
+		
+		navBackButton.snp.makeConstraints {
+			$0.size.equalTo(44)
+			$0.leading.equalToSuperview()
+			$0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+		}
+	}
+	
+	override func setupBindings() {
+		super.setupBindings()
+		setupRxGeneral(viewModel: viewModel)
+		
+		viewModel
+			.sections
+			.do(afterNext: { [weak self] _ in
+				guard let self else { return }
+				
+				if let value = viewModel.currentItem.value {
+					tableHeaderView.setData(model: value)
+				}
+				tableView.tableHeaderView = tableHeaderView
+				tableHeaderView.layoutIfNeeded()
+				tableView.autoLayoutTableHeaderView()
+			})
+			.bind(to: tableView.rx.items(dataSource: dataSource))
+			.disposed(by: disposeBag)
+		
+		tableView
+			.rx
+			.setDelegate(self)
+			.disposed(by: disposeBag)
+		
+	}
+	
+	@objc private func navBackAction() {
+		coordinator?.popDetail()
+	}
+	
+	@objc private func presentAction() {
+		coordinator?.presentPopup(from: self)
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+}
+
+extension HomeDetailViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableView.automaticDimension
+	}
+	
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		return nil
+	}
+	
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return .leastNonzeroMagnitude
+	}
+	
+	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		return nil
+	}
+	
+	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		return .leastNonzeroMagnitude
+	}
 }

@@ -9,5 +9,6 @@ import Foundation
 import RxSwift
 
 protocol HomeRepository {
-	func getHome() -> Single<[HomeModel]>
+	func getHome() -> Single<HomeDetail>
+	func getDetail() -> Single<HomeDetail>
 }

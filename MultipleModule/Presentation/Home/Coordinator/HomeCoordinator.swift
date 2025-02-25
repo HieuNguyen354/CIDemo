@@ -13,36 +13,34 @@ class HomeCoordinator: Coordinator {
 	var navigationController: BaseNavigationController
 	let resolver: Resolver
 	
-	init(navigationController: BaseNavigationController,
-		 resolve: Resolver) {
+	init(resolve: Resolver,
+		 navigationController: BaseNavigationController) {
 		self.navigationController = navigationController
 		self.resolver = resolve
 	}
 	
 	func start() {
-		guard let viewModel = resolver.resolve(HomeViewModel.self) else {
-			return
-		}
-		
-		viewModel.fetchRX.onNext(())
-		let homeVC = HomeViewController(isShowNavigationBar: true,
-										viewModel: viewModel,
-										navigationTitle: "Heroes")
-		homeVC.coordinator = self
-		homeVC.tabBarItem = UITabBarItem(title: "Heroes", image: UIImage(named: Images.Tabbar.Home.rawValue), tag: 0)
-		
-		navigationController.viewControllers = [homeVC]
+		let vc = resolver.resolve(HomeViewController.self)!
+		vc.viewModel.fetchRX.onNext(())
+		vc.coordinator = self
+		vc.tabBarItem = UITabBarItem(title: "Heroes",
+									 image: UIImage(named: Images.Tabbar.Home.rawValue),
+									 tag: 0)
+		navigationController.viewControllers = [vc]
 	}
 	
-	func showDetail(text: String) {
-		guard let viewModel = resolver.resolve(HomeDetailViewModel.self, argument: text) else {
-			fatalError("Failed to resolve HomeViewModel")
-		}
-		
-		let detailVC = HomeDetailViewController(isShowNavigationBar: true,
-												viewModel: viewModel,
-												navigationTitle: "Detail")
-		addChild(HomeDetailCoordinator(navigationController: navigationController, resolve: resolver))
+	func showDetail(model: HomeDetailElement) {
+		let detailVC = resolver.resolve(HomeDetailViewController.self, argument: model)!
+		detailVC.coordinator = self
 		navigationController.pushViewController(detailVC, animated: true)
+	}
+	
+	func presentPopup(from vc: UIViewController) {
+		let popupVC = resolver.resolve(HomePresentViewController.self)!
+		vc.presentView(to: popupVC)
+	}
+	
+	func popDetail() {
+		navigationController.popViewController(animated: true)
 	}
 }

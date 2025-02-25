@@ -12,4 +12,8 @@ struct Images {
 		case Home = "HTabBarIcon"
 		case Order = "OTabBarIcon"
 	}
+	
+	enum Nav: String {
+		case Back = "NavBack"
+	}
 }

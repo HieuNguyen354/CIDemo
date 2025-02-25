@@ -14,32 +14,55 @@ class AppDICoordinator {
 	
 	private init() {
 		container = Container()
-		
-		// Register Coordinators
-		registerCoordinator()
-		
-		// Register UseCase
-		registerUseCase()
-		
-		// Register ViewModels
-		registerViewModel()
+		registerDependencies()
 	}
 	
 	private func registerCoordinator() {
 		container.register(TabBarCoordinator.self) { (r, tabBarController: BaseTabBarController) in
-			TabBarCoordinator(resolver: r, tabBarController: tabBarController)
+			TabBarCoordinator(resolver: r,
+							  tabBarController: tabBarController)
 		}.inObjectScope(.container)
 		
 		container.register(AppCoordinator.self) { r, window in
-			AppCoordinator(container: r, window: window)
+			AppCoordinator(container: r,
+						   window: window)
 		}
 		
 		container.register(HomeCoordinator.self) { (r, navigationController: BaseNavigationController) in
-			HomeCoordinator(navigationController: navigationController, resolve: r)
+			HomeCoordinator(resolve: r,
+							navigationController: navigationController)
 		}
 		
 		container.register(OrderCoordinator.self) { (r, navigationController: BaseNavigationController) in
-			OrderCoordinator(navigationController: navigationController, resolve: r)
+			OrderCoordinator(resolve: r,
+							 navigationController: navigationController)
+		}
+	}
+	
+	private func registerViewController() {
+		// - MARK: HomeViewController
+		container.register(HomeViewController.self) { r in
+			let viewModel = r.resolve(HomeViewModel.self)!
+			let vc = HomeViewController(viewModel: viewModel)
+			return vc
+		}
+		
+		container.register(HomeDetailViewController.self) { (r, model: HomeDetailElement) in
+			let viewModel = r.resolve(HomeDetailViewModel.self,
+									  argument: model)!
+			let vc = HomeDetailViewController(viewModel: viewModel)
+			return vc
+		}
+		
+		container.register(HomePresentViewController.self) { _ in
+			HomePresentViewController()
+		}
+		
+		// - MARK: OrderViewController
+		container.register(OrderViewController.self) { r in
+			let viewModel = r.resolve(OrderViewModel.self)!
+			let vc = OrderViewController(viewModel: viewModel)
+			return vc
 		}
 	}
 	
@@ -48,9 +71,9 @@ class AppDICoordinator {
 		container.register(HomeViewModel.self) { r in
 			HomeViewModel(fetchHomeUseCase: r.resolve(FetchHomeUseCase.self)!)
 		}
-		
-		container.register(HomeDetailViewModel.self) { (_, text: String) in
-			HomeDetailViewModel(text: text)
+				
+		container.register(HomeDetailViewModel.self) { (_, model: HomeDetailElement) in
+			HomeDetailViewModel(model: model)
 		}
 		
 		// - MARK: OrderViewModel
@@ -87,4 +110,10 @@ class AppDICoordinator {
 		}
 	}
 	
+	private func registerDependencies() {
+		registerCoordinator()
+		registerViewController()
+		registerViewModel()
+		registerUseCase()
+	}
 }

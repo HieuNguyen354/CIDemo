@@ -10,10 +10,10 @@ import RxCocoa
 import RxDataSources
 
 final class HomeViewModel: BaseViewModel {
-	typealias Sections = SectionModel<String, HomeModel>
+	typealias Sections = SectionModel<String, HomeDetailElement>
 	let sections = BehaviorRelay<[Sections]>(value: [])
 	let fetchRX = PublishSubject<Void>()
-	let responseData = PublishSubject<[HomeModel]>()
+	let responseData = PublishSubject<HomeDetail>()
 	
 	private let fetchHomeUseCase: FetchHomeUseCase
 	
@@ -36,15 +36,15 @@ final class HomeViewModel: BaseViewModel {
 			}.disposed(by: disposeBag)
 	}
 	
-	private func reloadTableView(model: [HomeModel]) {
+	private func reloadTableView(model: HomeDetail) {
 		var temp = [Sections]()
 		getHeroesSection(&temp, model: model)
 		sections.accept(temp)
 	}
 	
 	private func getHeroesSection(_ sections: inout [Sections],
-								  model: [HomeModel]) {
-		var tableViewItem = [HomeModel]()
+								  model: HomeDetail) {
+		var tableViewItem = HomeDetail()
 		model.sorted(by: { $0.localizedName < $1.localizedName }).forEach { item in
 			tableViewItem.append(item)
 		}
@@ -63,7 +63,6 @@ final class HomeViewModel: BaseViewModel {
 				showLoading.accept(false)
 				switch result {
 					case .success(let model):
-						print("Home Request")
 						responseData.onNext(model)
 					case .failure(let error):
 						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }

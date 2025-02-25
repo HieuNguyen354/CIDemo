@@ -22,7 +22,7 @@ class BaseViewModel: NSObject {
 
 	deinit {
 		if Environment.isProduction() == false {
-			print("deinit " + self.className)
+			print("❌ Deinit: \(className)")
 		}
 	}
 }

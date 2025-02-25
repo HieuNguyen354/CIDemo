@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
 	func appDividerLineSetup() {
-		backgroundColor = UIColor.lightGray
+		backgroundColor = AppColors.secondary
 	}
 	
 	func addSubViews(_ view: UIView...) {

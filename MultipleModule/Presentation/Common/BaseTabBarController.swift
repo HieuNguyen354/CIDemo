@@ -17,14 +17,15 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 	
 	private func setupUI() {
 		// setup selected/unselected color
-		self.tabBar.tintColor = UIColor.black
-		self.tabBar.unselectedItemTintColor = UIColor.black.withAlphaComponent(0.7)
-		self.tabBar.isTranslucent = false
-		self.tabBar.isOpaque = false
+		self.tabBar.tintColor = AppColors.red
+		self.tabBar.unselectedItemTintColor = AppColors.white
+		self.tabBar.isTranslucent = true
+		self.tabBar.isOpaque = true
+		self.tabBar.backgroundColor = AppColors.background
 		
-		let selectedItemTextColor = UIColor.black
-		let unselectedItemTextColor = UIColor.black.withAlphaComponent(0.7)
-		let backgroundColor = AppColors.white
+		let selectedItemTextColor =  AppColors.red
+		let unselectedItemTextColor = AppColors.white
+		let backgroundColor = AppColors.background
 		
 		if #available(iOS 15, *) {
 			let tabBarAppearance = UITabBarAppearance()

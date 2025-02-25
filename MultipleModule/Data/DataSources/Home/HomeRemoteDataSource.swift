@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class HomeRemoteDataSource {
-	func fetchData(apiService: APIServiceRequest) -> Single<[HomeModel]> {
+	func fetchData(apiService: APIServiceRequest) -> Single<HomeDetail> {
 		return ClientManager.shared.homeManager.fetchData(apiRequest: apiService)
 	}
 }

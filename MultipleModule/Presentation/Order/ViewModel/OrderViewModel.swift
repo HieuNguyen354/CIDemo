@@ -61,7 +61,6 @@ final class OrderViewModel: BaseViewModel {
 				showLoading.accept(false)
 				switch result {
 					case .success(let model):
-						print("Order Request")
 						responseData.onNext(model)
 					case .failure(let error):
 						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }

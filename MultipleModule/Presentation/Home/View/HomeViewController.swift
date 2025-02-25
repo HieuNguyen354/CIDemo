@@ -10,13 +10,15 @@ import RxDataSources
 import RxSwift
 
 class HomeViewController: BaseViewController {
-	var viewModel: HomeViewModel
+	var viewModel: HomeViewModel!
 	var coordinator: HomeCoordinator?
 
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(HomeCell.self)
 		tableView.contentInset.bottom = .zero
+		tableView.contentInsetAdjustmentBehavior = .never
+		tableView.backgroundColor = AppColors.background
 		return tableView
 	}()
 
@@ -24,7 +26,7 @@ class HomeViewController: BaseViewController {
 	private lazy var dataSource = DataSource { dataSource, tableView, indexPath, item in
 		if let cell = tableView.on_dequeue(HomeCell.self, for: indexPath) {
 			cell.setData(title: item.localizedName,
-						 description: item.roles.reduce("") { $0.isEmpty ? $1 : $1.isEmpty ? "" : "\($0) - \($1)" },
+						 description: item.roles.compactMap { $0 }.joined(separator: ", "),
 						 isHideDVL: indexPath.row == dataSource[indexPath.section].items.count - 1)
 			return cell
 		}
@@ -32,23 +34,21 @@ class HomeViewController: BaseViewController {
 		return tableView.on_dequeueDefaultCell()
 	}
 
-	init(isShowNavigationBar: Bool,
-		 viewModel: HomeViewModel,
-		 navigationTitle: String) {
+	init(viewModel: HomeViewModel) {
 		self.viewModel = viewModel
-		super.init(isShowNavigationBar: isShowNavigationBar, navigationTitle: navigationTitle)
+		super.init(isShowNavigationBar: false, navigationTitle: "Heroes")
 	}
 
 	override func setupUI() {
 		super.setupUI()
+		view.backgroundColor = AppColors.background
 		view.addSubview(tableView)
 	}
 
 	override func setupConstraints() {
 		super.setupConstraints()
 		tableView.snp.makeConstraints {
-			$0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-			$0.leading.trailing.bottom.equalToSuperview()
+			$0.edges.equalTo(view.safeAreaLayoutGuide)
 		}
 	}
 
@@ -58,7 +58,7 @@ class HomeViewController: BaseViewController {
 		
 		viewModel
 			.sections
-			.do(afterNext: { [weak self] _ in
+			.do(afterNext: { [weak self] (_) in
 				guard let self else { return }
 				self.tableView.refresher.endRefreshing()
 			})
@@ -81,14 +81,12 @@ class HomeViewController: BaseViewController {
 				self.tableView.refresher.endRefreshing()
 			}.disposed(by: disposeBag)
 		
-		
-		
 		Observable
 			.zip(tableView.rx.itemSelected,
-				 tableView.rx.modelSelected(HomeModel.self))
-			.subscribe { [weak self] (_, _) in
+				 tableView.rx.modelSelected(HomeDetailElement.self))
+			.subscribe { [weak self] (_, item) in
 				guard let self else { return }
-//				coordinator?.showDetail(text: item.localizedName)
+				coordinator?.showDetail(model: item)
 			}.disposed(by: disposeBag)
 	}
 	

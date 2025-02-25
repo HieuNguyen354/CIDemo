@@ -8,7 +8,8 @@
 import RxSwift
 
 protocol FetchHomeUseCase {
-	func execute() -> Single<[HomeModel]>
+	func execute() -> Single<HomeDetail>
+	func getDetail() -> Single<HomeDetail>
 }
 
 class DefaultFetchHomeUseCase: FetchHomeUseCase {
@@ -18,7 +19,11 @@ class DefaultFetchHomeUseCase: FetchHomeUseCase {
 		self.repository = repository
 	}
 	
-	func execute() -> Single<[HomeModel]> {
+	func execute() -> Single<HomeDetail> {
 		return repository.getHome()
+	}
+	
+	func getDetail() -> Single<HomeDetail> {
+		return repository.getDetail()
 	}
 }

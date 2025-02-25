@@ -8,15 +8,17 @@
 import RxSwift
 
 class DefaultHomeRepository: HomeRepository {
+	
 	private let remoteDataSource: HomeRemoteDataSource
 	private let localDataSource: HomeLocalDataSource
 	
-	init(remoteDataSource: HomeRemoteDataSource, localDataSource: HomeLocalDataSource) {
+	init(remoteDataSource: HomeRemoteDataSource,
+		 localDataSource: HomeLocalDataSource) {
 		self.remoteDataSource = remoteDataSource
 		self.localDataSource = localDataSource
 	}
 	
-	func getHome() -> Single<[HomeModel]> {
+	func getHome() -> Single<HomeDetail> {
 		if !isOnline() {
 			if let cached = localDataSource.getData(), !cached.isEmpty {
 				return Single.just(localDataSource.getData() ?? [])
@@ -37,6 +39,10 @@ class DefaultHomeRepository: HomeRepository {
 				return .error(error)
 			}
 		return result
+	}
+	
+	func getDetail() -> Single<HomeDetail> {
+		return ClientManager.shared.homeManager.fetchHomeDetail(apiRequest: HomeDetailRequestModel())
 	}
 	
 	private func isOnline() -> Bool {

@@ -134,7 +134,7 @@ class BaseViewController: UIViewController {
 	
 	deinit {
 		if Environment.isProduction() == false {
-			print("deinit " + self.className)
+			print("❌ Deinit: \(className)")
 		}
 		NotificationCenter.default.removeObserver(self)
 	}

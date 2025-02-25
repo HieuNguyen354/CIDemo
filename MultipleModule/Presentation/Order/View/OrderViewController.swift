@@ -9,11 +9,15 @@ import UIKit
 import RxDataSources
 
 class OrderViewController: BaseViewController {
-	private let viewModel: OrderViewModel
+	
+	let viewModel: OrderViewModel
+	var coordinator: OrderCoordinator?
 	
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(OrderViewCell.self)
+		tableView.backgroundColor = AppColors.background
+		tableView.contentInset.bottom = .zero
 		return tableView
 	}()
 	
@@ -31,11 +35,9 @@ class OrderViewController: BaseViewController {
 		return tableView.on_dequeueDefaultCell()
 	}
 	
-	init(isShowNavigationBar: Bool,
-		 viewModel: OrderViewModel,
-		 navigationTitle: String) {
+	init(viewModel: OrderViewModel) {
 		self.viewModel = viewModel
-		super.init(isShowNavigationBar: isShowNavigationBar, navigationTitle: navigationTitle)
+		super.init(isShowNavigationBar: false, navigationTitle: "ProPlayers")
 	}
 	
 	required init?(coder: NSCoder) {
@@ -44,6 +46,7 @@ class OrderViewController: BaseViewController {
 	
 	override func setupUI() {
 		super.setupUI()
+		view.backgroundColor = AppColors.background
 		view.addSubview(tableView)
 	}
 	

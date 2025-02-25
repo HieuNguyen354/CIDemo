@@ -11,7 +11,7 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.white
+		view.backgroundColor = AppColors.background
 		return view
 	}()
 	
@@ -31,9 +31,9 @@ class OrderViewCell: BaseTableViewCell {
 	
 	override func setupUI() {
 		super.setupUI()
-		titleLabel.applyNormalTitle(textAlignment: .left)
-		descriptionLabel.applyMediumTitle(textAlignment: .left)
-		profileURL.applyMediumTitle(isMultipleLine: true, textAlignment: .left)
+		titleLabel.applyNormalTitle(with: AppColors.white, textAlignment: .left)
+		descriptionLabel.applyMediumTitle(with: AppColors.white, textAlignment: .left)
+		profileURL.applyMediumTitle(isMultipleLine: true, with: AppColors.white, textAlignment: .left)
 		dividerLine.appDividerLineSetup()
 		contentView.addSubview(containerView)
 		containerView.addSubViews(titleLabel,
@@ -70,8 +70,8 @@ class OrderViewCell: BaseTableViewCell {
 			$0.leading.trailing.equalToSuperview().inset(UIConstraints.normalPadding)
 			$0.bottom.equalToSuperview()
 			$0.height.equalTo(0.5)
-			$0.top.greaterThanOrEqualTo(avatar.snp.bottom).offset(UIConstraints.halfPadding)
-			$0.top.greaterThanOrEqualTo(profileURL.snp.bottom).offset(UIConstraints.halfPadding)
+			$0.top.greaterThanOrEqualTo(avatar.snp.bottom).offset(UIConstraints.normalPadding)
+			$0.top.greaterThanOrEqualTo(profileURL.snp.bottom).offset(UIConstraints.normalPadding)
 		}
 		
 		avatar.snp.makeConstraints {

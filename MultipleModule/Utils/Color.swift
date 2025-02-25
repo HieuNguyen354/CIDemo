@@ -11,8 +11,9 @@ enum AppColors {
 	static let primary = UIColor(hex: "#FFA343")
 	static let secondary = UIColor(hex: "#c10a26")
 	static let background = UIColor(hex: "#1a4c6f")
-	static let textPrimary = UIColor(hex: "#333333")
+	static let textPrimary = UIColor(hex: "#FFA343")
 	static let textSecondary = UIColor(hex: "#7f8c8d")
+	static let red = UIColor.red
 	static let white = UIColor.white
 }
 

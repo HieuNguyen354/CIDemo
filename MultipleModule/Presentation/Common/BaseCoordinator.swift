@@ -25,4 +25,5 @@ extension Coordinator {
 	func removeChild(_ coordinator: Coordinator) {
 		childCoordinators.removeAll { $0 === coordinator }
 	}
+	
 }

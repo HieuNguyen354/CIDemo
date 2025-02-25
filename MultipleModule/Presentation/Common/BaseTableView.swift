@@ -33,7 +33,7 @@ class BaseTableView: UITableView {
 	}
 
 	func setupRegister() {
-		self.register(UITableViewCell.self)
+		register(UITableViewCell.self, forCellReuseIdentifier: BaseTableView.emptyCell)
 	}
 
 	required init?(coder: NSCoder) {

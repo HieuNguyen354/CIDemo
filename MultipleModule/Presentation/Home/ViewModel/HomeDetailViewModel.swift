@@ -10,10 +10,27 @@ import RxCocoa
 import RxDataSources
 
 class HomeDetailViewModel: BaseViewModel {
-	var heroTitle: String
+	typealias Sections = SectionModel<String, HomeDetailElement>
+	let sections = BehaviorRelay<[Sections]>(value: [])
+	let currentItem = BehaviorRelay<HomeDetailElement?>(value: nil)
 	
-	let result = PublishSubject<String>()
-	init(text: String) {
-		heroTitle = text
+	init(model: HomeDetailElement) {
+		currentItem.accept(model)
 	}
+	
+	override func setupBindings() {
+		super.setupBindings()
+		currentItem
+			.subscribe { [weak self] model in
+				guard let self, let model else { return }
+				setupTableView(model: model)
+			}.disposed(by: disposeBag)
+	}
+	
+	private func setupTableView(model: HomeDetailElement) {
+		var tableViewItem = [HomeDetailElement]()
+		tableViewItem.append(model)
+		sections.accept([Sections(model: "", items: tableViewItem)])
+	}
+	
 }

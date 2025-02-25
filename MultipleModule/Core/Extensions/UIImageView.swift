@@ -22,10 +22,23 @@ extension UIImageView {
 		}
 	}
 	
-	func makeRounded() {
-		let radius = self.frame.width/2.0
-		self.layer.cornerRadius = radius
-		self.layer.masksToBounds = true
-		clipsToBounds = true
+	func setImageURLString(_ url: String,
+						   placeholderImage: UIImage? = nil,
+						   size: CGSize? = nil,
+						   showPlaceHoleder: Bool = true) {
+		guard let url = URL(string: url) else {
+			image = placeholderImage
+			return
+		}
+		
+		var context = [SDWebImageContextOption: Any]()
+		if let checkSize = size {
+			let transformer = SDImageResizingTransformer(size: checkSize,
+														 scaleMode: .aspectFill)
+			context = [.imageTransformer: transformer]
+		}
+		self.sd_setImage(with: url,
+						 placeholderImage: showPlaceHoleder ? placeholderImage : nil,
+						 context: context)
 	}
 }

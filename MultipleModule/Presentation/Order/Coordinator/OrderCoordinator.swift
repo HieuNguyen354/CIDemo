@@ -13,24 +13,19 @@ class OrderCoordinator: Coordinator {
 	var navigationController: UINavigationController
 	private let resolver: Resolver
 	
-	
-	init(navigationController: UINavigationController,
-		 resolve: Resolver) {
+	init(resolve: Resolver,
+		 navigationController: UINavigationController) {
 		self.navigationController = navigationController
 		self.resolver = resolve
 	}
 	
 	func start() {
-		guard let viewModel = resolver.resolve(OrderViewModel.self) else { return }
-		viewModel.fetchRX.onNext(())
-		let orderVC = OrderViewController(isShowNavigationBar: true,
-										  viewModel: viewModel,
-										  navigationTitle: "ProPlayer")
-		
-		orderVC.tabBarItem = UITabBarItem(title: "ProPlayer",
-										  image: UIImage(named: Images.Tabbar.Order.rawValue),
-										  tag: 1)
-		
-		navigationController.viewControllers = [orderVC]
+		let vc = resolver.resolve(OrderViewController.self)!
+		vc.viewModel.fetchRX.onNext(())
+		vc.coordinator = self
+		vc.tabBarItem = UITabBarItem(title: "ProPlayers",
+									 image: UIImage(named: Images.Tabbar.Order.rawValue),
+									 tag: 1)
+		navigationController.viewControllers = [vc]
 	}
 }

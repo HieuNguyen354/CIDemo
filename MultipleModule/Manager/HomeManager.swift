@@ -15,11 +15,11 @@ final class HomeManager {
 		self.apiService = apiService
 	}
 	
-	func fetchData(apiRequest: APIServiceRequest) -> Single<[HomeModel]> {
-		return Single<[HomeModel]>.create { [weak self] observer in
+	func fetchData(apiRequest: APIServiceRequest) -> Single<HomeDetail> {
+		return Single<HomeDetail>.create { [weak self] observer in
 			guard let self = self else { return Disposables.create() }
 			apiService.sendRequest(apiRequest: apiRequest,
-								   responseModel: [HomeModel].self,
+								   responseModel: HomeDetail.self,
 								   errorModel: ErrorResponseModel.self) { response in
 				switch response {
 					case .success(let model):
@@ -30,7 +30,23 @@ final class HomeManager {
 			}
 			return Disposables.create()
 		}
-		
+	}
+	
+	func fetchHomeDetail(apiRequest: APIServiceRequest) -> Single<HomeDetail> {
+		return Single<HomeDetail>.create { [weak self] observer in
+			guard let self = self else { return Disposables.create() }
+			apiService.sendRequest(apiRequest: apiRequest,
+								   responseModel: HomeDetail.self,
+								   errorModel: ErrorResponseModel.self) { response in
+				switch response {
+					case .success(let model):
+						observer(.success(model))
+					case .failure(let error):
+						observer(.failure(error))
+				}
+			}
+			return Disposables.create()
+		}
 	}
 	
 }
