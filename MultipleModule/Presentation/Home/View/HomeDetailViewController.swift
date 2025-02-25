@@ -43,26 +43,13 @@ class HomeDetailViewController: BaseViewController {
 	private lazy var tableHeaderView = HomeDetailTableHeaderView()
 	
 	typealias DataSource = RxTableViewSectionedReloadDataSource<HomeDetailViewModel.Sections>
-	private lazy var dataSource = DataSource { _, tableView, indexPath, _ in
-		if let cell = tableView.on_dequeue(HomeDetailCell.self, for: indexPath) {
-			return cell
-		}
+	private lazy var dataSource = DataSource { _, tableView, _, _ in
 		return tableView.on_dequeueDefaultCell()
 	}
 	
 	init(viewModel: HomeDetailViewModel) {
 		self.viewModel = viewModel
 		super.init(isShowNavigationBar: false)
-	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		self.tabBarController?.tabBar.isHidden = true
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		self.tabBarController?.tabBar.isHidden = false
 	}
 	
 	override func setupUI() {
@@ -100,7 +87,6 @@ class HomeDetailViewController: BaseViewController {
 			.sections
 			.do(afterNext: { [weak self] _ in
 				guard let self else { return }
-				
 				if let value = viewModel.currentItem.value {
 					tableHeaderView.setData(model: value)
 				}

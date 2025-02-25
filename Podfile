@@ -16,6 +16,7 @@ target 'MultipleModule' do
 	pod 'SDWebImage', '~> 5.0'
 	pod 'MBProgressHUD', '~> 1.2.0'
 	pod 'ReachabilitySwift'
+	pod 'Hero', '~> 1.5.0'
 end
 
 post_install do |installer|

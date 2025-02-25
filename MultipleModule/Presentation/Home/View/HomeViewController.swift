@@ -57,7 +57,7 @@ class HomeViewController: BaseViewController {
 	override func setupConstraints() {
 		super.setupConstraints()
 		collectionView.snp.makeConstraints {
-			$0.edges.equalTo(view.safeAreaLayoutGuide)
+			$0.edges.equalToSuperview()
 		}
 	}
 
@@ -92,6 +92,13 @@ class HomeViewController: BaseViewController {
 				guard let self else { return }
 				coordinator?.showDetail(model: item)
 			}.disposed(by: disposeBag)
+	}
+	
+	override func scrollToTop(_ animated: Bool = true) {
+		super.scrollToTop(animated)
+		collectionView.setContentOffset(.init(x: -UIConstraints.normalPadding,
+											  y: -(UIConstraints.normalPadding + UIConstraints.safeAreaInsets.top)),
+										animated: true)
 	}
 	
 	required init?(coder: NSCoder) {

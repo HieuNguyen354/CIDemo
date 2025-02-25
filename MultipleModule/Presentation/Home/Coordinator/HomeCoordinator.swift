@@ -30,9 +30,10 @@ class HomeCoordinator: Coordinator {
 	}
 	
 	func showDetail(model: HomeDetailElement) {
-		let detailVC = resolver.resolve(HomeDetailViewController.self, argument: model)!
-		detailVC.coordinator = self
-		navigationController.pushViewController(detailVC, animated: true)
+		let vc = resolver.resolve(HomeDetailViewController.self, argument: model)!
+		vc.coordinator = self
+		vc.hidesBottomBarWhenPushed = true
+		navigationController.pushViewController(vc, animated: true)
 	}
 	
 	func presentPopup(from vc: UIViewController) {

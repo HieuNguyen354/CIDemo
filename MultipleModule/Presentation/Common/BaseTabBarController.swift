@@ -48,8 +48,13 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 			return
 		}
 		
+		
 		// Notify the top view controller to scroll to top
+		view.isUserInteractionEnabled = false
 		topVC.scrollToTop()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+			self.view.isUserInteractionEnabled = true
+		}
 	}
 }
 

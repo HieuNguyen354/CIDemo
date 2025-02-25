@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Hero
 
 class BaseNavigationController: UINavigationController {
 	private var isShowBackButton: Bool = false
+	private lazy var heroTransition = HeroTransition()
 	
 	init(isShowBackButton: Bool = false) {
 		self.isShowBackButton = isShowBackButton
@@ -17,6 +19,7 @@ class BaseNavigationController: UINavigationController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		delegate = self
 		
 //		navigationBar.isTranslucent = false
 //		navigationBar.isOpaque = false
@@ -50,5 +53,20 @@ class BaseNavigationController: UINavigationController {
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+}
+
+extension BaseNavigationController: UINavigationControllerDelegate {
+	
+	func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
+	-> UIViewControllerInteractiveTransitioning? {
+		return heroTransition.navigationController(navigationController, interactionControllerFor: animationController)
+	}
+	
+	func navigationController(_ navigationController: UINavigationController,
+							  animationControllerFor operation: UINavigationController.Operation,
+							  from fromVC: UIViewController,
+							  to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		return heroTransition.navigationController(navigationController, animationControllerFor: operation, from: fromVC, to: toVC)
 	}
 }
