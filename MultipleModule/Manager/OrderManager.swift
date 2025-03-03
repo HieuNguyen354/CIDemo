@@ -8,6 +8,10 @@
 import Foundation
 import RxSwift
 
+protocol Meomeo {
+	var apiService: APIService { get set}
+}
+
 final class OrderManager {
 	var apiService: APIService
 	
@@ -15,15 +19,11 @@ final class OrderManager {
 		self.apiService = apiService
 	}
 	
-	func fetchData(apiRequest: APIServiceRequest) -> Single<OrderResponse> {
-		return Single<OrderResponse>.create { [weak self] observer in
-			guard let self
-			else {
-				return Disposables.create()
-			}
-			
+	func fetchData<T: Codable>(apiRequest: APIServiceRequest) -> Single<T> {
+		return Single<T>.create { [weak self] observer in
+			guard let self else { return Disposables.create() }
 			apiService.sendRequest(apiRequest: apiRequest,
-								   responseModel: OrderResponse.self,
+								   responseModel: T.self,
 								   errorModel: ErrorResponseModel.self) { response in
 				switch response {
 					case .success(let model):
@@ -34,7 +34,6 @@ final class OrderManager {
 			}
 			return Disposables.create()
 		}
-		
 	}
 	
 }

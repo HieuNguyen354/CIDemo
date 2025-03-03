@@ -29,8 +29,23 @@ class BaseViewController: UIViewController {
 		super.viewWillAppear(animated)
 		navigationController?.setNavigationBarHidden(!isShowNavigationBar, animated: animated)
 		navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+		if hidesBottomBarWhenPushed {
+			if #available(iOS 15.0, *) {
+				additionalSafeAreaInsets.bottom = 0
+			}
+			UIView.animate(withDuration: 0.25) {
+				self.tabBarController?.tabBar.alpha = 0
+			}
+		}
 	}
-
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		UIView.animate(withDuration: 0.25) {
+			self.tabBarController?.tabBar.alpha = 1
+		}
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()

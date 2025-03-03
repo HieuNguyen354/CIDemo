@@ -45,7 +45,7 @@ final class HomeViewModel: BaseViewModel {
 	private func getHeroesSection(_ sections: inout [Sections],
 								  model: HomeDetail) {
 		var tableViewItem = HomeDetail()
-		model.sorted(by: { $0.localizedName < $1.localizedName }).forEach { item in
+		model.forEach { item in
 			tableViewItem.append(item)
 		}
 		sections.append(.init(model: "", items: tableViewItem))
@@ -56,6 +56,7 @@ final class HomeViewModel: BaseViewModel {
 		
 		fetchHomeUseCase
 			.execute()
+			.map { $0.sorted(by: { $0.localizedName < $1.localizedName }) }
 			.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
 			.observe(on: MainScheduler.instance)
 			.subscribe { [weak self] result in

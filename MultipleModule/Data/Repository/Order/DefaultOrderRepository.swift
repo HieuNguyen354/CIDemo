@@ -15,9 +15,6 @@ class DefaultOrderRepository: OrderRepository {
 	}
 	
 	func getOrder() -> Single<OrderResponse> {
-		return remoteDataSource.fetchData(apiService: OrderRequest())
-			.flatMap { model in
-				Single.just(model)
-			}
+		return ClientManager.shared.orderManager.fetchData(apiRequest: OrderRequest())
 	}
 }

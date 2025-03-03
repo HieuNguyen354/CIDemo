@@ -13,13 +13,12 @@ class OrderViewController: BaseViewController {
 	let viewModel: OrderViewModel
 	var coordinator: OrderCoordinator?
 	var lastContentOffset: CGFloat = 0
-	let navBarHeight: CGFloat = 44 // Approximate height of UINavigationBar
 	
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(OrderViewCell.self)
 		tableView.backgroundColor = AppColors.background
-		tableView.contentInset = UIEdgeInsets(top: navBarHeight, left: 0, bottom: 0, right: 0)
+		tableView.contentInset.bottom = .zero
 		return tableView
 	}()
 	
@@ -39,7 +38,7 @@ class OrderViewController: BaseViewController {
 	
 	init(viewModel: OrderViewModel) {
 		self.viewModel = viewModel
-		super.init(isShowNavigationBar: true)
+		super.init(isShowNavigationBar: false)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -122,29 +121,26 @@ extension OrderViewController: UITableViewDelegate {
 		return .leastNonzeroMagnitude
 	}
 	
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		let offset = scrollView.contentOffset.y + scrollView.adjustedContentInset.top
-		let startOffset: CGFloat = navBarHeight // When table content reaches the navigation bar
-		let maxOffset: CGFloat = 100 // Adjust to control fade/scale speed
-		var alpha: CGFloat = 1
-		
-		if offset > startOffset {
-			let progress = min(1, (offset - startOffset) / maxOffset) // Normalize progress from 0 to 1
-			alpha = 1 - progress
-		} else {
-			alpha = 1
-		}
-		setNavigationBarAlpha(alpha)
-		lastContentOffset = offset
-	}
-	
-	func setNavigationBarAlpha(_ alpha: CGFloat) {
-		if #available(iOS 13.0, *) {
-			let navBarAppearance = UINavigationBarAppearance()
-			navBarAppearance.configureWithTransparentBackground()
-			navBarAppearance.backgroundColor = AppColors.white.withAlphaComponent(alpha)
-			navigationController?.navigationBar.standardAppearance = navBarAppearance
-			navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-		}
-	}
+//	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//		let offset = -(scrollView.contentOffset.y)
+//		let distance: CGFloat = 50
+//		let percentage = offset / distance
+//		let calculatePercentage = 0 - percentage
+//		if calculatePercentage <= 0 {
+//			setNavigationBarAlpha(min(0, calculatePercentage))
+//		} else {
+//			setNavigationBarAlpha(min(1, calculatePercentage))
+//		}
+//	}
+//	
+//	func setNavigationBarAlpha(_ alpha: CGFloat) {
+//		if #available(iOS 13.0, *) {
+//			let navBarAppearance = UINavigationBarAppearance()
+//			navBarAppearance.configureWithTransparentBackground()
+//			navBarAppearance.backgroundColor = AppColors.white.withAlphaComponent(alpha)
+//			
+//			navigationController?.navigationBar.standardAppearance = navBarAppearance
+//			navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+//		}
+//	}
 }

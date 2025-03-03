@@ -17,10 +17,7 @@ class HomeDetailViewController: BaseViewController {
 		tableView.register(HomeDetailCell.self)
 		tableView.contentInsetAdjustmentBehavior = .never
 		tableView.backgroundColor = AppColors.background
-		tableView.contentInset = .init(top: 0,
-									   left: 0,
-									   bottom: 0,
-									   right: 0)
+		tableView.contentInset = .zero
 		return tableView
 	}()
 	
@@ -43,7 +40,10 @@ class HomeDetailViewController: BaseViewController {
 	private lazy var tableHeaderView = HomeDetailTableHeaderView()
 	
 	typealias DataSource = RxTableViewSectionedReloadDataSource<HomeDetailViewModel.Sections>
-	private lazy var dataSource = DataSource { _, tableView, _, _ in
+	private lazy var dataSource = DataSource { _, tableView, indexPath, _ in
+		if let cell = tableView.on_dequeue(HomeDetailCell.self, for: indexPath) {
+			return cell
+		}
 		return tableView.on_dequeueDefaultCell()
 	}
 	
