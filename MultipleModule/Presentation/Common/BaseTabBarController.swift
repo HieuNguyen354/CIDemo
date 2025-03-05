@@ -13,15 +13,16 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 		super.viewDidLoad()
 		delegate = self
 		setupUI()
+		UITabBar.appearance().shadowImage = UIImage()
+		UITabBar.appearance().backgroundImage = UIImage()
 	}
 	
 	private func setupUI() {
-		// setup selected/unselected color
-		self.tabBar.tintColor = AppColors.red
-		self.tabBar.unselectedItemTintColor = AppColors.white
-		self.tabBar.isTranslucent = true
-		self.tabBar.isOpaque = true
-		self.tabBar.backgroundColor = AppColors.background
+		tabBar.isTranslucent = true
+		tabBar.isOpaque = true
+		tabBar.tintColor = AppColors.red
+		tabBar.unselectedItemTintColor = AppColors.white
+		tabBar.backgroundColor = AppColors.background
 		
 		let selectedItemTextColor =  AppColors.red
 		let unselectedItemTextColor = AppColors.white
@@ -48,8 +49,6 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 			return
 		}
 		
-		
-		// Notify the top view controller to scroll to top
 		view.isUserInteractionEnabled = false
 		topVC.scrollToTop()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

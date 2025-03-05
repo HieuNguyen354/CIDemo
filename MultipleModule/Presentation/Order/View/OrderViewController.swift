@@ -14,10 +14,16 @@ class OrderViewController: BaseViewController {
 	var coordinator: OrderCoordinator?
 	var lastContentOffset: CGFloat = 0
 	
+	private lazy var backgroundImage: UIImageView = {
+		let imageView = UIImageView(image: UIImage(named: Images.App.Background.rawValue)?.withRenderingMode(.alwaysOriginal))
+		imageView.clipsToBounds = true
+		return imageView
+	}()
+	
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(OrderViewCell.self)
-		tableView.backgroundColor = AppColors.background
+		tableView.backgroundColor = AppColors.clear
 		tableView.contentInset.bottom = .zero
 		return tableView
 	}()
@@ -25,11 +31,19 @@ class OrderViewController: BaseViewController {
 	typealias DataSource = RxTableViewSectionedReloadDataSource<OrderViewModel.Sections>
 	private lazy var dataSource = DataSource { dataSource, tableView, indexPath, item in
 		if let cell = tableView.on_dequeue(OrderViewCell.self, for: indexPath) {
+			cell.backgroundColor = AppColors.clear
 			cell.setData(title: item.name,
 						 description: item.teamName,
 						 profileURL: item.profileurl ?? "",
 						 avatarURL: item.avatarfull ?? "",
+						 lastMatchTime: item.lastMatchTime ?? "",
 						 isHideDVL: indexPath.row == dataSource[indexPath.section].items.count - 1)
+			cell.profileURLLinkTapped = { [weak self] link in
+				guard let self else { return }
+				if let url = URL(string: link) {
+					coordinator?.openLinkURL(url: url)
+				}
+			}
 			return cell
 		}
 		
@@ -52,12 +66,19 @@ class OrderViewController: BaseViewController {
 	
 	override func setupUI() {
 		super.setupUI()
+		
 		view.backgroundColor = AppColors.background
-		view.addSubview(tableView)
+		view.addSubviews(backgroundImage,
+						 tableView)
 	}
 	
 	override func setupConstraints() {
 		super.setupConstraints()
+		
+		backgroundImage.snp.makeConstraints {
+			$0.edges.equalToSuperview()
+		}
+		
 		tableView.snp.makeConstraints {
 			$0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
 			$0.leading.trailing.bottom.equalToSuperview()

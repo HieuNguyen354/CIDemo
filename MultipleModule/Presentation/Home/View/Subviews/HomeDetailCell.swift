@@ -45,7 +45,7 @@ class HomeDetailCell: BaseTableViewCell {
 		super.setupUI()
 		contentView.backgroundColor = AppColors.background
 		contentView.addSubview(containerView)
-		containerView.addSubViews(titleLabel,
+		containerView.addSubviews(titleLabel,
 								  roleLabel,
 								  typeLabel)
 	}

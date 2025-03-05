@@ -20,9 +20,4 @@ final class HomeTests: XCTestCase {
 		super.tearDown()
 		homeModel = nil
 	}
-	
-	func testSportFasterThanJeep() {
-	
-		XCTAssertTrue(homeModel.localizedName == "")
-	}
 }

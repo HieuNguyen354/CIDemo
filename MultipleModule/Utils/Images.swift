@@ -16,4 +16,9 @@ struct Images {
 	enum Nav: String {
 		case Back = "NavBack"
 	}
+	
+	enum App: String {
+		case Background = "Background"
+		case Background1 = "Background1"
+	}
 }

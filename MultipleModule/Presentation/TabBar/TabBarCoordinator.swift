@@ -9,6 +9,11 @@ import UIKit
 import Swinject
 
 class TabBarCoordinator: Coordinator {
+	enum Tag: Int {
+		case Home
+		case Order
+	}
+	
 	var childCoordinators = [Coordinator]()
 	var tabBarController: UITabBarController
 	let resolver: Resolver

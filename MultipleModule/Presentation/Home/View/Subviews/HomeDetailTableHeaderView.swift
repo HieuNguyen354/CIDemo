@@ -68,8 +68,8 @@ class HomeDetailTableHeaderView: UIView {
 		
 	func setupUI() {
 		verticalDividerLine.appDividerLineSetup()
-		addSubViews(containerView)
-		containerView.addSubViews(heroImage,
+		addSubviews(containerView)
+		containerView.addSubviews(heroImage,
 								  titleLabel,
 								  roleLabel,
 								  typeLabel,

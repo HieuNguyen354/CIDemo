@@ -16,15 +16,18 @@ class HomeCell: BaseCollectionViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.background
+		view.backgroundColor = AppColors.clear
 		view.clipsToBounds = true
 		return view
 	}()
 	
 	private lazy var heroImage: UIImageView = {
 		let imageView = UIImageView()
-		imageView.clipsToBounds = true
 		imageView.contentMode = .scaleAspectFill
+		imageView.layer.cornerRadius = 8
+		imageView.layer.masksToBounds = false
+		imageView.clipsToBounds = true
+
 		return imageView
 	}()
 	
@@ -49,8 +52,9 @@ class HomeCell: BaseCollectionViewCell {
 	
 	override func setupUI() {
 		super.setupUI()
+		contentView.backgroundColor = AppColors.clear
 		contentView.addSubview(containerView)
-		containerView.addSubViews(heroImage,
+		containerView.addSubviews(heroImage,
 								  heroTitle)
 	}
 

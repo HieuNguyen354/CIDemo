@@ -55,7 +55,7 @@ class HomeDetailViewController: BaseViewController {
 	override func setupUI() {
 		super.setupUI()
 		view.backgroundColor = AppColors.background
-		view.addSubViews(tableView,
+		view.addSubviews(tableView,
 						 presentViewButton,
 						 navBackButton)
 	}

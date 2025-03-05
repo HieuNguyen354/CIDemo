@@ -25,7 +25,11 @@ class OrderCoordinator: Coordinator {
 		vc.coordinator = self
 		vc.tabBarItem = UITabBarItem(title: "",
 									 image: UIImage(named: Images.Tabbar.Order.rawValue),
-									 tag: 1)
+									 tag: TabBarCoordinator.Tag.Order.rawValue)
 		navigationController.viewControllers = [vc]
+	}
+	
+	func openLinkURL(url: URL) {
+		UIApplication.shared.open(url)
 	}
 }

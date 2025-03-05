@@ -12,6 +12,12 @@ import RxSwift
 class HomeViewController: BaseViewController {
 	var viewModel: HomeViewModel!
 	var coordinator: HomeCoordinator?
+	
+	private lazy var backgroundImage: UIImageView = {
+		let imageView = UIImageView(image: UIImage(named: Images.App.Background1.rawValue)?.withRenderingMode(.alwaysOriginal))
+		imageView.clipsToBounds = true
+		return imageView
+	}()
 
 	private lazy var collectionView: BaseCollectionView = {
 		let flowLayout = UICollectionViewFlowLayout()
@@ -29,7 +35,7 @@ class HomeViewController: BaseViewController {
 											left: UIConstraints.normalPadding,
 											bottom: 0,
 											right: UIConstraints.normalPadding)
-		collectionView.backgroundColor = AppColors.background
+		collectionView.backgroundColor = AppColors.clear
 		return collectionView
 	}()
 
@@ -47,15 +53,21 @@ class HomeViewController: BaseViewController {
 		self.viewModel = viewModel
 		super.init(isShowNavigationBar: false)
 	}
-
+	
 	override func setupUI() {
 		super.setupUI()
 		view.backgroundColor = AppColors.background
-		view.addSubview(collectionView)
+		view.addSubviews(backgroundImage,
+						 collectionView)
 	}
-
+	
 	override func setupConstraints() {
 		super.setupConstraints()
+		
+		backgroundImage.snp.makeConstraints {
+			$0.edges.equalToSuperview()
+		}
+		
 		collectionView.snp.makeConstraints {
 			$0.edges.equalToSuperview()
 		}

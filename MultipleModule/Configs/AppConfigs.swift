@@ -8,6 +8,7 @@
 import Foundation
 
 struct AppConfigs {
+	static private(set) var currentTimeZone = TimeZone(abbreviation: "GMT+7")
 
 	private(set) static var shared = AppConfigs()
 
