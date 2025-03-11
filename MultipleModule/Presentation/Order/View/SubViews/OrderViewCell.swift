@@ -13,14 +13,14 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.clear
+		view.backgroundColor = AppColors.Clear
 		view.clipsToBounds = true
 		return view
 	}()
 	
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = AppColors.white
+		label.textColor = AppColors.White
 		label.font = AppFonts.bold(size: 18)
 		label.backgroundColor = containerView.backgroundColor
 		return label
@@ -28,7 +28,7 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var descriptionLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = AppColors.white
+		label.textColor = AppColors.White
 		label.font = AppFonts.regular(size: 16)
 		label.backgroundColor = containerView.backgroundColor
 		return label
@@ -36,7 +36,7 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var lastMatchTimeLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = AppColors.white
+		label.textColor = AppColors.White
 		label.font = AppFonts.regular(size: 16)
 		label.backgroundColor = containerView.backgroundColor
 		label.numberOfLines = 0
@@ -45,7 +45,7 @@ class OrderViewCell: BaseTableViewCell {
 	
 	private lazy var profileURL: UILabel = {
 		let label = UILabel()
-		label.textColor = AppColors.white
+		label.textColor = AppColors.White
 		label.font = AppFonts.regular(size: 16)
 		label.backgroundColor = containerView.backgroundColor
 		label.numberOfLines = 0
@@ -68,7 +68,7 @@ class OrderViewCell: BaseTableViewCell {
 	override func setupUI() {
 		super.setupUI()
 		dividerLine.appDividerLineSetup()
-		contentView.backgroundColor = AppColors.clear
+		contentView.backgroundColor = AppColors.Clear
 		contentView.addSubview(containerView)
 		containerView.addSubviews(titleLabel,
 								  descriptionLabel,
@@ -151,7 +151,7 @@ class OrderViewCell: BaseTableViewCell {
 		let linkRange = (fullText as NSString).range(of: url)
 		
 		// Set attributes
-		attributedString.addAttribute(.foregroundColor, value: AppColors.red, range: linkRange)
+		attributedString.addAttribute(.foregroundColor, value: AppColors.Red, range: linkRange)
 		attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: linkRange)
 		attributedString.addAttribute(.font, value: AppFonts.italic(size: 16), range: linkRange)
 		profileURL.attributedText = attributedString

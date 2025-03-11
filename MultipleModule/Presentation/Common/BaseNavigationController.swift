@@ -28,13 +28,13 @@ class BaseNavigationController: UINavigationController {
 		let titleTextAttributes = [
 			NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
 			NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.8),
-			NSAttributedString.Key.backgroundColor: AppColors.white
+			NSAttributedString.Key.backgroundColor: AppColors.White
 		]
 
 		if #available(iOS 13.0, *) {
 			let appearance = UINavigationBarAppearance()
 			appearance.configureWithOpaqueBackground()
-			appearance.backgroundColor = AppColors.white
+			appearance.backgroundColor = AppColors.White
 			appearance.titleTextAttributes = titleTextAttributes
 			navigationBar.standardAppearance = appearance
 			navigationBar.scrollEdgeAppearance = appearance

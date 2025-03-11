@@ -1,15 +1,16 @@
 //
-//  BaseCollectionViewCell.swift
+//  BaseCollectionReusableView.swift
 //  MultipleModule
 //
-//  Created by HieuNguyen on 25/2/25.
+//  Created by HieuNguyen on 7/3/25.
 //
 
 import UIKit
 import RxSwift
 
-class BaseCollectionViewCell: UICollectionViewCell {
-	var disposeBag = DisposeBag()
+class BaseCollectionReusableView: UICollectionReusableView {
+	
+	lazy var disposeBag = DisposeBag()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -18,11 +19,11 @@ class BaseCollectionViewCell: UICollectionViewCell {
 		setupBindings()
 	}
 	
-	func setupUI() { }
-	func setupConstraints() { }
-	func setupBindings() { }
-	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	func setupUI() { }
+	func setupConstraints() { }
+	func setupBindings() { }
 }

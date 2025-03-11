@@ -20,5 +20,6 @@ struct Images {
 	enum App: String {
 		case Background = "Background"
 		case Background1 = "Background1"
+		case Background2 = "Background2"
 	}
 }

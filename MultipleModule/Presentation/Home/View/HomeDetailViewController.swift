@@ -16,22 +16,21 @@ class HomeDetailViewController: BaseViewController {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(HomeDetailCell.self)
 		tableView.contentInsetAdjustmentBehavior = .never
-		tableView.backgroundColor = AppColors.background
+		tableView.backgroundColor = AppColors.Background
 		tableView.contentInset = .zero
 		return tableView
 	}()
 	
 	private lazy var presentViewButton: UIButton = {
 		let button = UIButton()
-		button.backgroundColor = AppColors.background
-		button.setTitle("Present", for: .normal)
+		button.backgroundColor = AppColors.Background
 		button.addTarget(self, action: #selector(presentAction), for: .touchUpInside)
 		return button
 	}()
 	
 	private lazy var navBackButton: UIButton = {
 		let button = UIButton()
-		button.backgroundColor = AppColors.background
+		button.backgroundColor = AppColors.Background
 		button.setImage(UIImage(named: Images.Nav.Back.rawValue), for: .normal)
 		button.addTarget(self, action: #selector(navBackAction), for: .touchUpInside)
 		return button
@@ -54,7 +53,8 @@ class HomeDetailViewController: BaseViewController {
 	
 	override func setupUI() {
 		super.setupUI()
-		view.backgroundColor = AppColors.background
+		presentViewButton.setTitle(viewModel.currentItem.value?.localizedName, for: .normal)
+		view.backgroundColor = AppColors.Background
 		view.addSubviews(tableView,
 						 presentViewButton,
 						 navBackButton)

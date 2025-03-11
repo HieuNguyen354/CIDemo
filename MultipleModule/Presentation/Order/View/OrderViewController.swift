@@ -15,15 +15,16 @@ class OrderViewController: BaseViewController {
 	var lastContentOffset: CGFloat = 0
 	
 	private lazy var backgroundImage: UIImageView = {
-		let imageView = UIImageView(image: UIImage(named: Images.App.Background.rawValue)?.withRenderingMode(.alwaysOriginal))
+		let imageView = UIImageView(image: UIImage(named: Images.App.Background2.rawValue)?.withRenderingMode(.alwaysOriginal))
 		imageView.clipsToBounds = true
+		imageView.contentMode = .scaleAspectFill
 		return imageView
 	}()
 	
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(OrderViewCell.self)
-		tableView.backgroundColor = AppColors.clear
+		tableView.backgroundColor = AppColors.Clear
 		tableView.contentInset.bottom = .zero
 		return tableView
 	}()
@@ -31,7 +32,7 @@ class OrderViewController: BaseViewController {
 	typealias DataSource = RxTableViewSectionedReloadDataSource<OrderViewModel.Sections>
 	private lazy var dataSource = DataSource { dataSource, tableView, indexPath, item in
 		if let cell = tableView.on_dequeue(OrderViewCell.self, for: indexPath) {
-			cell.backgroundColor = AppColors.clear
+			cell.backgroundColor = AppColors.Clear
 			cell.setData(title: item.name,
 						 description: item.teamName,
 						 profileURL: item.profileurl ?? "",
@@ -66,8 +67,8 @@ class OrderViewController: BaseViewController {
 	
 	override func setupUI() {
 		super.setupUI()
-		
-		view.backgroundColor = AppColors.background
+		createBlurView()
+		view.backgroundColor = AppColors.Background
 		view.addSubviews(backgroundImage,
 						 tableView)
 	}
@@ -119,6 +120,18 @@ class OrderViewController: BaseViewController {
 	func setupNavigationBar() {
 		navigationController?.navigationBar.isTranslucent = true
 	}
+	
+	private func createBlurView() {
+		let blurView = UIVisualEffectView()
+		blurView.frame = backgroundImage.bounds
+		blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // Allows resizing with the imageView
+		blurView.alpha = 0.6
+		UIViewPropertyAnimator(duration: 0.3, curve: .linear) {
+			blurView.effect = UIBlurEffect(style: .dark)
+		}.startAnimation()
+		backgroundImage.addSubview(blurView)
+	}
+	
 }
 
 extension OrderViewController: UITableViewDelegate {
@@ -158,7 +171,7 @@ extension OrderViewController: UITableViewDelegate {
 //		if #available(iOS 13.0, *) {
 //			let navBarAppearance = UINavigationBarAppearance()
 //			navBarAppearance.configureWithTransparentBackground()
-//			navBarAppearance.backgroundColor = AppColors.white.withAlphaComponent(alpha)
+//			navBarAppearance.backgroundColor = AppColors.White.withAlphaComponent(alpha)
 //			
 //			navigationController?.navigationBar.standardAppearance = navBarAppearance
 //			navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance

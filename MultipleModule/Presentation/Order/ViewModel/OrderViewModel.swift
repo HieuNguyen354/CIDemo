@@ -11,7 +11,7 @@ import RxDataSources
 
 final class OrderViewModel: BaseViewModel {
 	let fetchOrderUseCase: FetchOrderUseCase
-	typealias Sections = SectionModel<String, OrderResponseElement>
+	typealias Sections = SectionModel<SectionModelTitle, OrderResponseElement>
 	let sections = BehaviorRelay<[Sections]>(value: [])
 	let fetchRX = PublishSubject<Void>()
 	let responseData = PublishSubject<OrderResponse>()
@@ -44,10 +44,11 @@ final class OrderViewModel: BaseViewModel {
 	private func getHeroesSection(_ sections: inout [Sections],
 								  model: OrderResponse) {
 		var tableViewItem = [OrderResponseElement]()
-		model.sorted(by: { $0.accountID < $1.accountID }).forEach { item in
+		model.forEach { item in
 			tableViewItem.append(item)
 		}
-		sections.append(.init(model: "", items: tableViewItem))
+				
+		sections.append(.init(model: .empty, items: tableViewItem))
 	}
 	
 	private func requestData() {
@@ -69,4 +70,20 @@ final class OrderViewModel: BaseViewModel {
 			}.disposed(by: disposeBag)
 	}
 	
+}
+
+extension OrderViewModel {
+	enum SectionModelTitle {
+		case empty
+		case title(String)
+		
+		var rawValue: String {
+			switch self {
+				case .empty:
+					return ""
+				case .title(let text):
+					return text
+			}
+		}
+	}
 }

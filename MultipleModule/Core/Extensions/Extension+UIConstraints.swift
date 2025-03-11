@@ -23,4 +23,9 @@ struct UIConstraints {
 		return CGSize(width: ratioWidth,
 					  height: ratioWidth / ratio)
 	}
+	
+	struct View {
+		static let smallCornerRadius: CGFloat = 4
+		static let cornerRadius: CGFloat = 8
+	}
 }

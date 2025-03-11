@@ -14,11 +14,12 @@ class HomeViewController: BaseViewController {
 	var coordinator: HomeCoordinator?
 	
 	private lazy var backgroundImage: UIImageView = {
-		let imageView = UIImageView(image: UIImage(named: Images.App.Background1.rawValue)?.withRenderingMode(.alwaysOriginal))
+		let imageView = UIImageView(image: UIImage(named: Images.App.Background2.rawValue)?.withRenderingMode(.alwaysOriginal))
+		imageView.contentMode = .scaleAspectFill
 		imageView.clipsToBounds = true
 		return imageView
 	}()
-
+	
 	private lazy var collectionView: BaseCollectionView = {
 		let flowLayout = UICollectionViewFlowLayout()
 		flowLayout.scrollDirection = .vertical
@@ -26,27 +27,56 @@ class HomeViewController: BaseViewController {
 									 height: HomeCell.originHeight * 0.75)
 		flowLayout.minimumLineSpacing = UIConstraints.halfPadding
 		flowLayout.minimumInteritemSpacing = 0
-		
 		let collectionView = BaseCollectionView(frame: .zero,
 												collectionViewLayout: flowLayout)
+		collectionView.register(HomeAttributeCollectionView.self,
+								forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+								withReuseIdentifier: HomeAttributeCollectionView.className)
 		collectionView.register([HomeCell.self])
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.contentInset = .init(top: UIConstraints.normalPadding,
 											left: UIConstraints.normalPadding,
 											bottom: 0,
 											right: UIConstraints.normalPadding)
-		collectionView.backgroundColor = AppColors.clear
+		collectionView.backgroundColor = AppColors.Clear
 		return collectionView
 	}()
 
 	typealias DataSource = RxCollectionViewSectionedReloadDataSource<HomeViewModel.Sections>
 	private lazy var dataSource = DataSource { _, collectionView, indexPath, item in
-		if let cell = collectionView.on_dequeue(HomeCell.self, for: indexPath) {
-			cell.setData(title: item.localizedName, url: item.img)
-			return cell
+		switch item {
+			case .listHero(let model):
+				if let cell = collectionView.on_dequeue(HomeCell.self,
+														for: indexPath) {
+					cell.setData(title: model.localizedName,
+								 url: model.img)
+					return cell
+				}
 		}
 		
 		return collectionView.on_dequeueDefaultCell(indexPath: indexPath)
+	} configureSupplementaryView: { [weak self] dataSource, collectionView, kind, indexPath in
+		guard let self else {
+			return UICollectionReusableView()
+		}
+		switch kind {
+			case UICollectionView.elementKindSectionHeader:
+				switch dataSource[indexPath.section].model {
+					case .attributes(let model):
+						if let view = collectionView.on_dequeueOfHeaderKind(HomeAttributeCollectionView.self, for: indexPath) {
+							view.setData(model,
+										 selectedIndex: viewModel.primaryAttrSelected.value)
+							view.completionHandler = { [weak self] primaryAttr in
+								guard let self else { return }
+								viewModel.primaryAttrSelected.accept(primaryAttr)
+							}
+							return view
+						}
+				}
+			default:
+				break
+		}
+		return UICollectionReusableView()
 	}
 	
 	init(viewModel: HomeViewModel) {
@@ -56,7 +86,8 @@ class HomeViewController: BaseViewController {
 	
 	override func setupUI() {
 		super.setupUI()
-		view.backgroundColor = AppColors.background
+		createBlurView()
+		view.backgroundColor = AppColors.Background
 		view.addSubviews(backgroundImage,
 						 collectionView)
 	}
@@ -97,13 +128,24 @@ class HomeViewController: BaseViewController {
 				self.collectionView.refresher.endRefreshing()
 			}.disposed(by: disposeBag)
 		
-		Observable
-			.zip(collectionView.rx.itemSelected,
-				 collectionView.rx.modelSelected(HomeDetailElement.self))
-			.subscribe { [weak self] (_, item) in
-				guard let self else { return }
-				coordinator?.showDetail(model: item)
+		collectionView
+			.rx
+			.modelSelected(HomeViewModel.SectionModelItem.self)
+			.subscribe { [weak self] model in
+				guard let self,
+					  let model = model.element,
+					  let coordinator else { return }
+				switch model {
+					case .listHero(let item):
+						coordinator.showDetail(model: item)
+				}
+				
 			}.disposed(by: disposeBag)
+		
+		collectionView
+			.rx
+			.setDelegate(self)
+			.disposed(by: disposeBag)
 	}
 	
 	override func scrollToTop(_ animated: Bool = true) {
@@ -113,8 +155,34 @@ class HomeViewController: BaseViewController {
 										animated: true)
 	}
 	
+	private func createBlurView() {
+		let blurView = UIVisualEffectView()
+		blurView.frame = backgroundImage.bounds
+		blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // Allows resizing with the imageView
+		blurView.alpha = 0.6
+		UIViewPropertyAnimator(duration: 0.3, curve: .linear) {
+			blurView.effect = UIBlurEffect(style: .dark)
+		}.startAnimation()
+		backgroundImage.addSubview(blurView)
+	}
+	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+		switch dataSource[section].model {
+			case .attributes(let model):
+				let height = (model.compactMap { $0.rawValue.sizeOfString(usingFont: AppFonts.regular(size: 16)).height + UIConstraints.normalPadding*2 }.max() ?? 0) + UIConstraints.normalPadding
+				return .init(width: UIConstraints.screenSize.width, height: height)
+		}
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: HomeCell.originWidth,
+					  height: HomeCell.originHeight * 0.75)
+	}
 }

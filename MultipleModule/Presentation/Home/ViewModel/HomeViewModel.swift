@@ -10,11 +10,15 @@ import RxCocoa
 import RxDataSources
 
 final class HomeViewModel: BaseViewModel {
-	typealias Sections = SectionModel<String, HomeDetailElement>
+	typealias Sections = SectionModel<SectionModelTitle, SectionModelItem>
 	let sections = BehaviorRelay<[Sections]>(value: [])
+	let primaryAttrSelected = BehaviorRelay<PrimaryAttr>(value: .all)
 	let fetchRX = PublishSubject<Void>()
-	let responseData = PublishSubject<HomeDetail>()
-	
+	let responseData = PublishSubject<Void>()
+	var currentFilterTitle = [PrimaryAttr]()
+	var currentData = HomeDetail()
+	var currentFilterData = HomeDetail()
+
 	private let fetchHomeUseCase: FetchHomeUseCase
 	
 	init(fetchHomeUseCase: FetchHomeUseCase) {
@@ -30,25 +34,37 @@ final class HomeViewModel: BaseViewModel {
 			}.disposed(by: disposeBag)
 		
 		responseData
-			.subscribe { [weak self] model in
+			.subscribe { [weak self] _ in
 				guard let self else { return }
-				reloadTableView(model: model)
+				reloadTableView()
+			}.disposed(by: disposeBag)
+		
+		primaryAttrSelected
+			.subscribe { [weak self] primaryAttr in
+				guard let self else { return }
+				if primaryAttr == .all {
+					currentFilterData = currentData
+				} else {
+					currentFilterData = currentData.filter { $0.primaryAttr == primaryAttr }
+				}
+				responseData.onNext(())
 			}.disposed(by: disposeBag)
 	}
 	
-	private func reloadTableView(model: HomeDetail) {
+	private func reloadTableView() {
 		var temp = [Sections]()
-		getHeroesSection(&temp, model: model)
+		getHeroesSection(&temp)
 		sections.accept(temp)
 	}
 	
-	private func getHeroesSection(_ sections: inout [Sections],
-								  model: HomeDetail) {
-		var tableViewItem = HomeDetail()
-		model.forEach { item in
-			tableViewItem.append(item)
+	private func getHeroesSection(_ sections: inout [Sections]) {
+		var tableViewItem = [SectionModelItem]()
+		currentFilterData.forEach { item in
+			tableViewItem.append(.listHero(item))
 		}
-		sections.append(.init(model: "", items: tableViewItem))
+		
+		sections.append(Sections(model: .attributes(currentFilterTitle),
+								 items: tableViewItem))
 	}
 	
 	private func requestData() {
@@ -64,7 +80,14 @@ final class HomeViewModel: BaseViewModel {
 				showLoading.accept(false)
 				switch result {
 					case .success(let model):
-						responseData.onNext(model)
+						currentFilterTitle = Array(Set(model.compactMap { $0.primaryAttr }))
+						if let indexOfAllAttr = currentFilterTitle.firstIndex(where: { $0.rawValue == PrimaryAttr.all.rawValue }) {
+							currentFilterTitle.remove(at: indexOfAllAttr)
+							currentFilterTitle.insert(.all, at: 0)
+						}
+						currentData = model
+						currentFilterData = model
+						responseData.onNext(())
 					case .failure(let error):
 						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }
 						showAlertError.accept(error.internalError?.error)
@@ -72,4 +95,14 @@ final class HomeViewModel: BaseViewModel {
 			}.disposed(by: disposeBag)
 	}
 	
+}
+
+extension HomeViewModel {
+	enum SectionModelTitle {
+		case attributes([PrimaryAttr])
+	}
+	
+	enum SectionModelItem {
+		case listHero(HomeDetailElement)
+	}
 }

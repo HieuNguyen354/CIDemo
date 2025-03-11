@@ -13,7 +13,7 @@ class HomeDetailTableHeaderView: UIView {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.background
+		view.backgroundColor = AppColors.Background
 		view.clipsToBounds = true
 		return view
 	}()
@@ -29,7 +29,7 @@ class HomeDetailTableHeaderView: UIView {
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.bold(size: 16)
-		label.textColor = AppColors.textPrimary
+		label.textColor = AppColors.TextPrimary
 		label.clipsToBounds = true
 		label.backgroundColor = containerView.backgroundColor
 		label.numberOfLines = 0
@@ -39,7 +39,7 @@ class HomeDetailTableHeaderView: UIView {
 	private lazy var roleLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.italic(size: 16)
-		label.textColor = AppColors.textPrimary
+		label.textColor = AppColors.TextPrimary
 		label.clipsToBounds = true
 		label.backgroundColor = containerView.backgroundColor
 		label.numberOfLines = 0
@@ -49,7 +49,7 @@ class HomeDetailTableHeaderView: UIView {
 	private lazy var typeLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.regular(size: 16)
-		label.textColor = AppColors.textPrimary
+		label.textColor = AppColors.TextPrimary
 		label.clipsToBounds = true
 		label.backgroundColor = containerView.backgroundColor
 		label.numberOfLines = 0

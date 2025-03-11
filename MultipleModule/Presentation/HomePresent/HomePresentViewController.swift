@@ -10,7 +10,7 @@ import UIKit
 class HomePresentViewController: BaseViewController {
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.background
+		view.backgroundColor = AppColors.Background
 		view.clipsToBounds = true
 		return view
 	}()

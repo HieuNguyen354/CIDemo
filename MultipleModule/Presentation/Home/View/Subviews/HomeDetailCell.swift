@@ -17,7 +17,7 @@ class HomeDetailCell: BaseTableViewCell {
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.bold(size: 16)
-		label.textColor = AppColors.textPrimary
+		label.textColor = AppColors.TextPrimary
 		label.clipsToBounds = true
 		label.backgroundColor = containerView.backgroundColor
 		return label
@@ -26,7 +26,7 @@ class HomeDetailCell: BaseTableViewCell {
 	private lazy var roleLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.italic(size: 16)
-		label.textColor = AppColors.textPrimary
+		label.textColor = AppColors.TextPrimary
 		label.clipsToBounds = true
 		label.backgroundColor = containerView.backgroundColor
 		return label
@@ -35,7 +35,7 @@ class HomeDetailCell: BaseTableViewCell {
 	private lazy var typeLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.regular(size: 16)
-		label.textColor = AppColors.textPrimary
+		label.textColor = AppColors.TextPrimary
 		label.clipsToBounds = true
 		label.backgroundColor = containerView.backgroundColor
 		return label
@@ -43,7 +43,7 @@ class HomeDetailCell: BaseTableViewCell {
 	
 	override func setupUI() {
 		super.setupUI()
-		contentView.backgroundColor = AppColors.background
+		contentView.backgroundColor = AppColors.Background
 		contentView.addSubview(containerView)
 		containerView.addSubviews(titleLabel,
 								  roleLabel,
