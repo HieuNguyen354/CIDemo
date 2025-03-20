@@ -12,7 +12,7 @@ class HomeAttributeCollectionViewCell: BaseCollectionViewCell {
 		let view = UIView()
 		view.clipsToBounds = true
 		view.roundCorners()
-		view.layer.borderColor = AppColors.NeonCarrot.cgColor
+		view.layer.borderColor = AppColors.neonCarrot.cgColor
 		view.layer.borderWidth = 1
 		return view
 	}()
@@ -20,9 +20,9 @@ class HomeAttributeCollectionViewCell: BaseCollectionViewCell {
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.font = AppFonts.regular(size: 16)
-		label.textColor = AppColors.TextPrimary
+		label.textColor = AppColors.textPrimary
 		label.clipsToBounds = true
-		label.backgroundColor = AppColors.Clear
+		label.backgroundColor = AppColors.clear
 		label.textAlignment = .center
 		return label
 	}()
@@ -48,9 +48,9 @@ class HomeAttributeCollectionViewCell: BaseCollectionViewCell {
 				 selectedIndex: PrimaryAttr) {
 		titleLabel.text = title
 		if title == selectedIndex.rawValue {
-			containerView.layer.borderColor = AppColors.Red.cgColor
+			containerView.layer.borderColor = AppColors.red.cgColor
 		} else {
-			containerView.layer.borderColor = AppColors.NeonCarrot.cgColor
+			containerView.layer.borderColor = AppColors.neonCarrot.cgColor
 		}
 	}
 }

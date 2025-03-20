@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - HomeDetailElement
-struct HomeDetailElement: Codable {
+struct HomeDetailElement: Codable, Equatable {
 	let id: Int
 	let name: String
 	let primaryAttr: PrimaryAttr
@@ -102,6 +102,10 @@ struct HomeDetailElement: Codable {
 		case pubPickTrend = "pub_pick_trend"
 		case pubWin = "pub_win"
 		case pubWinTrend = "pub_win_trend"
+	}
+	
+	static func ==(lhs: HomeDetailElement, rhs: HomeDetailElement) -> Bool {
+		return lhs.id == rhs.id
 	}
 }
 

@@ -14,10 +14,9 @@ final class HomeViewModel: BaseViewModel {
 	let sections = BehaviorRelay<[Sections]>(value: [])
 	let primaryAttrSelected = BehaviorRelay<PrimaryAttr>(value: .all)
 	let fetchRX = PublishSubject<Void>()
-	let responseData = PublishSubject<Void>()
-	var currentFilterTitle = [PrimaryAttr]()
-	var currentData = HomeDetail()
-	var currentFilterData = HomeDetail()
+	let responseData = PublishSubject<HomeDetail>()
+	var listFilterTitle = [PrimaryAttr]()
+	var currentData = BehaviorRelay<(notFilter: HomeDetail, filtered: HomeDetail)>(value: (notFilter: [], filtered: []))
 
 	private let fetchHomeUseCase: FetchHomeUseCase
 	
@@ -33,37 +32,40 @@ final class HomeViewModel: BaseViewModel {
 				requestData()
 			}.disposed(by: disposeBag)
 		
-		responseData
-			.subscribe { [weak self] _ in
+		currentData
+			.subscribe { [weak self] (_, filtered) in
 				guard let self else { return }
-				reloadTableView()
+				reloadTableView(model: filtered)
 			}.disposed(by: disposeBag)
 		
 		primaryAttrSelected
 			.subscribe { [weak self] primaryAttr in
 				guard let self else { return }
 				if primaryAttr == .all {
-					currentFilterData = currentData
+					currentData.accept((notFilter: currentData.value.notFilter,
+										filtered: currentData.value.notFilter))
 				} else {
-					currentFilterData = currentData.filter { $0.primaryAttr == primaryAttr }
+					currentData.accept((notFilter: currentData.value.notFilter,
+										filtered: currentData.value.notFilter.filter { $0.primaryAttr == primaryAttr }))
 				}
-				responseData.onNext(())
 			}.disposed(by: disposeBag)
 	}
 	
-	private func reloadTableView() {
+	private func reloadTableView(model: HomeDetail) {
 		var temp = [Sections]()
-		getHeroesSection(&temp)
+		getHeroesSection(&temp,
+						 model: model)
 		sections.accept(temp)
 	}
 	
-	private func getHeroesSection(_ sections: inout [Sections]) {
+	private func getHeroesSection(_ sections: inout [Sections],
+								  model: HomeDetail) {
 		var tableViewItem = [SectionModelItem]()
-		currentFilterData.forEach { item in
+		model.forEach { item in
 			tableViewItem.append(.listHero(item))
 		}
 		
-		sections.append(Sections(model: .attributes(currentFilterTitle),
+		sections.append(Sections(model: .attributes(listFilterTitle),
 								 items: tableViewItem))
 	}
 	
@@ -80,14 +82,12 @@ final class HomeViewModel: BaseViewModel {
 				showLoading.accept(false)
 				switch result {
 					case .success(let model):
-						currentFilterTitle = Array(Set(model.compactMap { $0.primaryAttr }))
-						if let indexOfAllAttr = currentFilterTitle.firstIndex(where: { $0.rawValue == PrimaryAttr.all.rawValue }) {
-							currentFilterTitle.remove(at: indexOfAllAttr)
-							currentFilterTitle.insert(.all, at: 0)
+						listFilterTitle = Array(Set(model.compactMap { $0.primaryAttr })).sorted(by: { $0.rawValue < $1.rawValue })
+						if let index = listFilterTitle.firstIndex(where: { $0 == PrimaryAttr.all }) {
+							listFilterTitle.remove(at: index)
+							listFilterTitle.insert(.all, at: 0)
 						}
-						currentData = model
-						currentFilterData = model
-						responseData.onNext(())
+						currentData.accept((notFilter: model, filtered: model))
 					case .failure(let error):
 						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }
 						showAlertError.accept(error.internalError?.error)

@@ -16,6 +16,10 @@ class AppManager {
 	private(set) var currentTabbar: BaseTabBarController?
 	private(set) var window: UIWindow?
 	
+	let deviceOS = UIDevice.current.systemName + " " + UIDevice.current.systemVersion
+	let shortDeviceOS = "iOS"
+	let deviceModelName = UIDevice.modelName
+	
 	private init() {
 	}
 	

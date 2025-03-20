@@ -8,20 +8,20 @@
 import UIKit
 
 enum AppColors {
-	static let Primary = UIColor(hex: "#FFA343")
-	static let Secondary = UIColor(hex: "#c10a26")
-	static let Background = UIColor(hex: "#000000")
-	static let TextPrimary = UIColor(hex: "#FFA343")
-	static let TextSecondary = UIColor(hex: "#7f8c8d")
-	static let BackgroundOpaque = UIColor(hex: "#F5F5F5")
-	static let Hyperlink = UIColor(hex: "#0000FF")
-	static let SoftBlackPalette = UIColor(hex: "#0e1111")
-	static let DeepPurple = UIColor(hex: "#36013F")
-	static let Black = UIColor.black
-	static let Red = UIColor.red
-	static let Clear = UIColor.clear
-	static let White = UIColor.white
-	static let NeonCarrot = UIColor(hex: "#FFA343")
+	static let primary = UIColor(hex: "#FFA343")
+	static let secondary = UIColor(hex: "#c10a26")
+	static let background = UIColor(hex: "#000000")
+	static let textPrimary = UIColor(hex: "#FFA343")
+	static let textSecondary = UIColor(hex: "#7f8c8d")
+	static let backgroundOpaque = UIColor(hex: "#F5F5F5")
+	static let hyperlink = UIColor(hex: "#0000FF")
+	static let softBlackPalette = UIColor(hex: "#0e1111")
+	static let deepPurple = UIColor(hex: "#36013F")
+	static let neonCarrot = UIColor(hex: "#FFA343")
+	static let black = UIColor.black
+	static let red = UIColor.red
+	static let clear = UIColor.clear
+	static let white = UIColor.white
 }
 
 // UIColor Extension for Hex Support

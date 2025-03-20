@@ -29,6 +29,9 @@ final class OrderViewModel: BaseViewModel {
 			}.disposed(by: disposeBag)
 		
 		responseData
+			.throttle(.milliseconds(300),
+					  scheduler: MainScheduler.instance)
+			.distinctUntilChanged()
 			.subscribe { [weak self] model in
 				guard let self else { return }
 				reloadTableView(model: model)
@@ -53,6 +56,7 @@ final class OrderViewModel: BaseViewModel {
 	
 	private func requestData() {
 		showLoading.accept(true)
+		
 		fetchOrderUseCase
 			.execute()
 			.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))

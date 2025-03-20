@@ -16,7 +16,7 @@ class HomeCell: BaseCollectionViewCell {
 	
 	private lazy var containerView: UIView = {
 		let view = UIView()
-		view.backgroundColor = AppColors.Clear
+		view.backgroundColor = AppColors.clear
 		view.clipsToBounds = true
 		return view
 	}()
@@ -33,7 +33,7 @@ class HomeCell: BaseCollectionViewCell {
 	
 	private lazy var heroTitle: UILabel = {
 		let label = UILabel()
-		label.textColor = AppColors.White
+		label.textColor = AppColors.white
 		label.font = AppFonts.bold(size: 16)
 		label.backgroundColor = containerView.backgroundColor
 		label.clipsToBounds = true
@@ -52,7 +52,7 @@ class HomeCell: BaseCollectionViewCell {
 	
 	override func setupUI() {
 		super.setupUI()
-		contentView.backgroundColor = AppColors.Clear
+		contentView.backgroundColor = AppColors.clear
 		contentView.addSubview(containerView)
 		containerView.addSubviews(heroImage,
 								  heroTitle)

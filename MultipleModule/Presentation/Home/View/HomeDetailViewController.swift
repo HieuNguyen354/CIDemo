@@ -12,26 +12,33 @@ class HomeDetailViewController: BaseViewController {
 	var viewModel: HomeDetailViewModel
 	var coordinator: HomeCoordinator?
 	
+	private lazy var backgroundImage: UIImageView = {
+		let imageView = UIImageView(image: UIImage(named: Images.App.background2.rawValue)?.withRenderingMode(.alwaysOriginal))
+		imageView.contentMode = .scaleAspectFill
+		imageView.clipsToBounds = true
+		return imageView
+	}()
+	
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(HomeDetailCell.self)
 		tableView.contentInsetAdjustmentBehavior = .never
-		tableView.backgroundColor = AppColors.Background
+		tableView.backgroundColor = AppColors.clear
 		tableView.contentInset = .zero
 		return tableView
 	}()
 	
 	private lazy var presentViewButton: UIButton = {
 		let button = UIButton()
-		button.backgroundColor = AppColors.Background
+		button.backgroundColor = AppColors.clear
 		button.addTarget(self, action: #selector(presentAction), for: .touchUpInside)
 		return button
 	}()
 	
 	private lazy var navBackButton: UIButton = {
 		let button = UIButton()
-		button.backgroundColor = AppColors.Background
-		button.setImage(UIImage(named: Images.Nav.Back.rawValue), for: .normal)
+		button.backgroundColor = AppColors.clear
+		button.setImage(UIImage(named: Images.Nav.back.rawValue), for: .normal)
 		button.addTarget(self, action: #selector(navBackAction), for: .touchUpInside)
 		return button
 	}()
@@ -51,17 +58,29 @@ class HomeDetailViewController: BaseViewController {
 		super.init(isShowNavigationBar: false)
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		createBlurView()
+	}
+	
 	override func setupUI() {
 		super.setupUI()
-		presentViewButton.setTitle(viewModel.currentItem.value?.localizedName, for: .normal)
-		view.backgroundColor = AppColors.Background
-		view.addSubviews(tableView,
+		
+		presentViewButton.setTitle(title: viewModel.currentItem.value?.localizedName)
+		view.backgroundColor = AppColors.background
+		view.addSubviews(backgroundImage,
+						 tableView,
 						 presentViewButton,
 						 navBackButton)
 	}
 	
 	override func setupConstraints() {
 		super.setupConstraints()
+		
+		backgroundImage.snp.makeConstraints {
+			$0.edges.equalToSuperview()
+		}
+		
 		tableView.snp.makeConstraints {
 			$0.edges.equalToSuperview()
 		}
@@ -101,7 +120,14 @@ class HomeDetailViewController: BaseViewController {
 			.rx
 			.setDelegate(self)
 			.disposed(by: disposeBag)
-		
+	}
+	
+	private func createBlurView() {
+		let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+		blurView.frame = backgroundImage.bounds
+		blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // Allows resizing with the imageView
+		blurView.alpha = 0.6
+		backgroundImage.addSubview(blurView)
 	}
 	
 	@objc private func navBackAction() {

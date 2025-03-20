@@ -9,7 +9,7 @@ import Foundation
 
 typealias OrderResponse = [OrderResponseElement]
 
-struct OrderResponseElement: Codable {
+struct OrderResponseElement: Codable, Equatable {
 	let accountID: Int
 	let steamid: String?
 	let avatar, avatarmedium, avatarfull: String?
@@ -41,5 +41,9 @@ struct OrderResponseElement: Codable {
 		case teamTag = "team_tag"
 		case isLocked = "is_locked"
 		case isPro = "is_pro"
+	}
+	
+	static func ==(lhs: OrderResponseElement, rhs: OrderResponseElement) -> Bool {
+		return lhs.accountID == rhs.accountID
 	}
 }

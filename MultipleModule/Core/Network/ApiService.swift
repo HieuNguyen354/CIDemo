@@ -19,8 +19,7 @@ class APIService {
 		 urlSession: URLSession = URLSession.shared,
 		 backgroundQueue: DispatchQueue = DispatchQueue.global(qos: .background)) {
 		self.baseURL = baseUrl
-		self.httpClientService = HTTPClientService(urlSession,
-												   encodedType: .json)
+		self.httpClientService = HTTPClientService(urlSession, encodedType: .json)
 		self.httpSerivceQueue = backgroundQueue
 	}
 
@@ -44,28 +43,17 @@ class APIService {
 		httpSerivceQueue.async { [weak self] in
 			guard let self else { return }
 			var apiRequest = apiRequest
-			var endpoint = APIServiceEndpoint(host: baseURL,
+			var endPoint = APIServiceEndpoint(host: baseURL,
 											  path: apiRequest.path,
 											  method: HTTPClientServiceRequestMethod(rawValue: apiRequest.method.rawValue),
-											  header: getHeader(method: apiRequest.method))
+											  header: getHeader())
 
-			if let apiServicePagingRequest = apiRequest as? APIServicePagingRequest {
-				apiRequest.parameters?[RequestKey.Paging.page] = apiServicePagingRequest.paging.page
-			}
+			getParameters(apiRequest: &apiRequest)
+			getEndPoint(apiRequest: apiRequest,
+						parameters: apiRequest.parameters,
+						endPoint: &endPoint)
 
-			if let parameters = apiRequest.parameters {
-				switch apiRequest.method {
-					case .GET:
-						endpoint.queryItems = parameters.map {
-							URLQueryItem(name: String($0),
-										 value: String(describing: $1))
-						}
-					default:
-						endpoint.body = parameters
-				}
-			}
-
-			httpClientService.sendRequest(endpoint: endpoint,
+			httpClientService.sendRequest(endpoint: endPoint,
 										  responseModel: responseModel,
 										  internalErrorModel: internalErrorModel) { httpServiceCompletion in
 				DispatchQueue.main.async {
@@ -74,10 +62,41 @@ class APIService {
 			}
 		}
 	}
+	
+	func getParameters(apiRequest: inout APIServiceRequest) {
+		if let apiServicePagingRequest = apiRequest as? APIServicePagingRequest {
+			apiRequest.parameters?[RequestKey.Paging.page] = apiServicePagingRequest.paging.page
+		}
+	}
+	
+	func getEndPoint(apiRequest: APIServiceRequest,
+					 parameters: [String: Any]?,
+					 endPoint: inout APIServiceEndpoint) {
+		guard let parameters else { return }
+		switch apiRequest.method {
+			case .GET:
+				endPoint.queryItems = parameters.map {
+					URLQueryItem(name: String($0),
+								 value: String(describing: $1))
+				}
+			case .DELETE:
+				endPoint.body = parameters
+			case .POST:
+				endPoint.body = parameters
+			case .PUT:
+				endPoint.body = parameters
+		}
+	}
 
-	func getHeader(method: APIServiceRequestMethod) -> [String: String] {
+	func getHeader() -> [String: String] {
 		var header = [String: String]()
 		header[RequestKey.contentType] = RequestKey.Encoded.normalEncoded
+		var userAgent = "\(AppManager.shared.deviceModelName); \(AppManager.shared.deviceOS)"
+		if Environment.isProduction() == false {
+			userAgent += "; \(String(describing: Environment.status))"
+		}
+		header[RequestKey.Header.userAgent] = userAgent
 		return header
 	}
+
 }

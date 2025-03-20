@@ -20,13 +20,13 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 	private func setupUI() {
 		tabBar.isTranslucent = true
 		tabBar.isOpaque = true
-		tabBar.tintColor = AppColors.Red
-		tabBar.unselectedItemTintColor = AppColors.White
-		tabBar.backgroundColor = AppColors.Background
+		tabBar.tintColor = AppColors.red
+		tabBar.unselectedItemTintColor = AppColors.white
+		tabBar.backgroundColor = AppColors.background
 		
-		let selectedItemTextColor =  AppColors.Red
-		let unselectedItemTextColor = AppColors.White
-		let backgroundColor = AppColors.Background
+		let selectedItemTextColor =  AppColors.red
+		let unselectedItemTextColor = AppColors.white
+		let backgroundColor = AppColors.background
 		
 		if #available(iOS 15, *) {
 			let tabBarAppearance = UITabBarAppearance()

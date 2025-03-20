@@ -24,7 +24,7 @@ class OrderCoordinator: Coordinator {
 		vc.viewModel.fetchRX.onNext(())
 		vc.coordinator = self
 		vc.tabBarItem = UITabBarItem(title: "",
-									 image: UIImage(named: Images.Tabbar.Order.rawValue),
+									 image: UIImage(named: Images.Tabbar.order.rawValue),
 									 tag: TabBarCoordinator.Tag.Order.rawValue)
 		navigationController.viewControllers = [vc]
 	}

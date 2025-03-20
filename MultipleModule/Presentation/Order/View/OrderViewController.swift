@@ -15,7 +15,7 @@ class OrderViewController: BaseViewController {
 	var lastContentOffset: CGFloat = 0
 	
 	private lazy var backgroundImage: UIImageView = {
-		let imageView = UIImageView(image: UIImage(named: Images.App.Background2.rawValue)?.withRenderingMode(.alwaysOriginal))
+		let imageView = UIImageView(image: UIImage(named: Images.App.background2.rawValue)?.withRenderingMode(.alwaysOriginal))
 		imageView.clipsToBounds = true
 		imageView.contentMode = .scaleAspectFill
 		return imageView
@@ -24,7 +24,7 @@ class OrderViewController: BaseViewController {
 	private lazy var tableView: BaseTableView = {
 		let tableView = BaseTableView(frame: .zero, style: .grouped)
 		tableView.register(OrderViewCell.self)
-		tableView.backgroundColor = AppColors.Clear
+		tableView.backgroundColor = AppColors.clear
 		tableView.contentInset.bottom = .zero
 		return tableView
 	}()
@@ -32,7 +32,7 @@ class OrderViewController: BaseViewController {
 	typealias DataSource = RxTableViewSectionedReloadDataSource<OrderViewModel.Sections>
 	private lazy var dataSource = DataSource { dataSource, tableView, indexPath, item in
 		if let cell = tableView.on_dequeue(OrderViewCell.self, for: indexPath) {
-			cell.backgroundColor = AppColors.Clear
+			cell.backgroundColor = AppColors.clear
 			cell.setData(title: item.name,
 						 description: item.teamName,
 						 profileURL: item.profileurl ?? "",
@@ -68,7 +68,7 @@ class OrderViewController: BaseViewController {
 	override func setupUI() {
 		super.setupUI()
 		createBlurView()
-		view.backgroundColor = AppColors.Background
+		view.backgroundColor = AppColors.background
 		view.addSubviews(backgroundImage,
 						 tableView)
 	}
@@ -171,7 +171,7 @@ extension OrderViewController: UITableViewDelegate {
 //		if #available(iOS 13.0, *) {
 //			let navBarAppearance = UINavigationBarAppearance()
 //			navBarAppearance.configureWithTransparentBackground()
-//			navBarAppearance.backgroundColor = AppColors.White.withAlphaComponent(alpha)
+//			navBarAppearance.backgroundColor = AppColors.white.withAlphaComponent(alpha)
 //			
 //			navigationController?.navigationBar.standardAppearance = navBarAppearance
 //			navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance

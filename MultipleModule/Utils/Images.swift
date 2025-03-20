@@ -9,17 +9,17 @@ import Foundation
 
 struct Images {
 	enum Tabbar: String {
-		case Home = "HTabBarIcon"
-		case Order = "OTabBarIcon"
+		case home = "HTabBarIcon"
+		case order = "OTabBarIcon"
 	}
 	
 	enum Nav: String {
-		case Back = "NavBack"
+		case back = "NavBack"
 	}
 	
 	enum App: String {
-		case Background = "Background"
-		case Background1 = "Background1"
-		case Background2 = "Background2"
+		case background = "Background"
+		case background1 = "Background1"
+		case background2 = "Background2"
 	}
 }

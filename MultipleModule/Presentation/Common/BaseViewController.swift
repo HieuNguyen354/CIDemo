@@ -54,7 +54,7 @@ class BaseViewController: UIViewController {
 	}
 
 	func setupUI() {
-		view.backgroundColor = AppColors.White
+		view.backgroundColor = AppColors.white
 		title = navigationTitle
 	}
 

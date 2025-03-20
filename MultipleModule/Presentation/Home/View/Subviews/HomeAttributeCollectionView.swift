@@ -25,7 +25,7 @@ class HomeAttributeCollectionView: BaseCollectionViewCell {
 		collectionView.register([HomeAttributeCollectionViewCell.self])
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.contentInset = .zero
-		collectionView.backgroundColor = AppColors.Clear
+		collectionView.backgroundColor = AppColors.clear
 		return collectionView
 	}()
 	

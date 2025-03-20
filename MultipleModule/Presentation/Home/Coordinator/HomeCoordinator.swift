@@ -24,7 +24,7 @@ class HomeCoordinator: Coordinator {
 		vc.viewModel.fetchRX.onNext(())
 		vc.coordinator = self
 		vc.tabBarItem = UITabBarItem(title: "",
-									 image: UIImage(named: Images.Tabbar.Home.rawValue),
+									 image: UIImage(named: Images.Tabbar.home.rawValue),
 									 tag: TabBarCoordinator.Tag.Home.rawValue)
 		navigationController.viewControllers = [vc]
 	}

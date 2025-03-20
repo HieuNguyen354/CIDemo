@@ -14,7 +14,7 @@ class HomeViewController: BaseViewController {
 	var coordinator: HomeCoordinator?
 	
 	private lazy var backgroundImage: UIImageView = {
-		let imageView = UIImageView(image: UIImage(named: Images.App.Background2.rawValue)?.withRenderingMode(.alwaysOriginal))
+		let imageView = UIImageView(image: UIImage(named: Images.App.background2.rawValue)?.withRenderingMode(.alwaysOriginal))
 		imageView.contentMode = .scaleAspectFill
 		imageView.clipsToBounds = true
 		return imageView
@@ -38,7 +38,7 @@ class HomeViewController: BaseViewController {
 											left: UIConstraints.normalPadding,
 											bottom: 0,
 											right: UIConstraints.normalPadding)
-		collectionView.backgroundColor = AppColors.Clear
+		collectionView.backgroundColor = AppColors.clear
 		return collectionView
 	}()
 
@@ -87,7 +87,7 @@ class HomeViewController: BaseViewController {
 	override func setupUI() {
 		super.setupUI()
 		createBlurView()
-		view.backgroundColor = AppColors.Background
+		view.backgroundColor = AppColors.background
 		view.addSubviews(backgroundImage,
 						 collectionView)
 	}
