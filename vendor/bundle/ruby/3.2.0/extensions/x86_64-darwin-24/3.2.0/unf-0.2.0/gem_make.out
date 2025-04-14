@@ -1,0 +1,6 @@
+current directory: /Users/hieunguyen/MyProject/CIDemo/vendor/bundle/ruby/3.2.0/gems/unf-0.2.0/ext
+/Users/hieunguyen/.rbenv/versions/3.2.2/bin/ruby mkrf_conf.rb
+
+current directory: /Users/hieunguyen/MyProject/CIDemo/vendor/bundle/ruby/3.2.0/gems/unf-0.2.0/ext
+/Users/hieunguyen/.rbenv/versions/3.2.2/bin/ruby -rrubygems /Users/hieunguyen/MyProject/CIDemo/vendor/bundle/ruby/3.2.0/gems/rake-13.2.1/exe/rake RUBYARCHDIR\=/Users/hieunguyen/MyProject/CIDemo/vendor/bundle/ruby/3.2.0/extensions/x86_64-darwin-24/3.2.0/unf-0.2.0 RUBYLIBDIR\=/Users/hieunguyen/MyProject/CIDemo/vendor/bundle/ruby/3.2.0/extensions/x86_64-darwin-24/3.2.0/unf-0.2.0
+[/Users/hieunguyen/MyProject/CIDemo/vendor/bundle/ruby/3.2.0/specifications/faraday-httpclient-1.0.1.gemspec] isn't a Gem::Specification (NilClass instead).

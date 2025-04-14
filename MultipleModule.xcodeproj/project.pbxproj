@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C920A0860B6635B7F58D0CB1 /* Pods_MultipleModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022EBBD4247C4CD707116021 /* Pods_MultipleModule.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A05164DF2D6C146A003515FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022EBBD4247C4CD707116021 /* Pods_MultipleModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultipleModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B89BD9750566DFF53EBE9DE /* Pods-MultipleModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.release.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.release.xcconfig"; sourceTree = "<group>"; };
 		9777273F56400C6AAC266B8E /* Pods-MultipleModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultipleModule.debug.xcconfig"; path = "Target Support Files/Pods-MultipleModule/Pods-MultipleModule.debug.xcconfig"; sourceTree = "<group>"; };
 		A05164DB2D6C146A003515FB /* MultipleModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultipleModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,12 +81,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C920A0860B6635B7F58D0CB1 /* Pods_MultipleModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09FF1F0D260C44E58311E867 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				022EBBD4247C4CD707116021 /* Pods_MultipleModule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A0D3EFB72D5B93750043F8D9 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +103,7 @@
 				A05164E92D6C14F1003515FB /* MultipleModuleXCTests */,
 				F054B9C21A8A9B32A98448FE /* Pods */,
 				A0D3EFC12D5B93750043F8D9 /* Products */,
+				09FF1F0D260C44E58311E867 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,8 +143,6 @@
 				A05164E02D6C146A003515FB /* PBXTargetDependency */,
 			);
 			name = MultipleModuleTests;
-			packageProductDependencies = (
-			);
 			productName = MultipleModuleTests;
 			productReference = A05164DB2D6C146A003515FB /* MultipleModuleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -151,8 +164,6 @@
 				A05164E92D6C14F1003515FB /* MultipleModuleXCTests */,
 			);
 			name = MultipleModuleXCTests;
-			packageProductDependencies = (
-			);
 			productName = MultipleModuleXCTests;
 			productReference = A05164E82D6C14F1003515FB /* MultipleModuleXCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";

@@ -29,23 +29,27 @@ class APIService {
 								 errorModel: U.Type,
 								 completion: @escaping Completion<T, U>) {
 		sendRequestToHttpService(apiRequest: apiRequest,
-								 responseModel: responseModel,
-								 internalErrorModel: errorModel) { httpServiceCompletion in
+								 response: responseModel,
+								 error: errorModel) { httpServiceCompletion in
 			completion(httpServiceCompletion)
 		}
 	}
 
 	func sendRequestToHttpService<T: Codable,
 								  U: Codable>(apiRequest: APIServiceRequest,
-											  responseModel: T.Type,
-											  internalErrorModel: U.Type,
+											  response: T.Type,
+											  error: U.Type,
 											  completion: @escaping Completion<T, U>) {
 		httpSerivceQueue.async { [weak self] in
 			guard let self else { return }
+			let requestBuilder = RequestBuilder(url: baseURL)
+			
+			
+			
 			var apiRequest = apiRequest
 			var endPoint = APIServiceEndpoint(host: baseURL,
 											  path: apiRequest.path,
-											  method: HTTPClientServiceRequestMethod(rawValue: apiRequest.method.rawValue),
+											  method: HTTPMethod(rawValue: apiRequest.method.rawValue),
 											  header: getHeader())
 
 			getParameters(apiRequest: &apiRequest)
@@ -54,8 +58,8 @@ class APIService {
 						endPoint: &endPoint)
 
 			httpClientService.sendRequest(endpoint: endPoint,
-										  responseModel: responseModel,
-										  internalErrorModel: internalErrorModel) { httpServiceCompletion in
+										  response: response,
+										  error: error) { httpServiceCompletion in
 				DispatchQueue.main.async {
 					completion(httpServiceCompletion)
 				}

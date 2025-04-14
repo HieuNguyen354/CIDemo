@@ -9,8 +9,8 @@ import UIKit
 
 protocol HTTPClient {
 	func sendRequest<T: Codable, U: Codable>(endpoint: HTTPRequestEndpoint,
-											 responseModel: T.Type,
-											 internalErrorModel: U.Type,
+											 response: T.Type,
+											 error: U.Type,
 											 completion: @escaping (Result<T, ErrorServer<U>>) -> Void)
 }
 
@@ -35,14 +35,14 @@ class HTTPClientService: HTTPClient {
 
 	func sendRequest<T: Codable,
 					 U: Codable>(endpoint: HTTPRequestEndpoint,
-								 responseModel: T.Type,
-								 internalErrorModel: U.Type,
+								 response: T.Type,
+								 error: U.Type,
 								 completion: @escaping Completion<T, U>) {
 		var urlComponent = URLComponents()
 		urlComponent.scheme = endpoint.scheme
 		urlComponent.host = endpoint.host
 		urlComponent.path = endpoint.path
-
+		
 		if let queryItems = endpoint.queryItems {
 			urlComponent.queryItems = queryItems
 		}
