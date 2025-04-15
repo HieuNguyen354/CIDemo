@@ -262,9 +262,9 @@ private extension DispatchTimeInterval {
         case let .milliseconds(value):
             result = TimeInterval(value) * 0.001
         case let .microseconds(value):
-            result = TimeInterval(value) * 0.000_001
+            result = TimeInterval(value) * 0.000001
         case let .nanoseconds(value):
-            result = TimeInterval(value) * 0.000_000_001
+            result = TimeInterval(value) * 0.000000001
         case .never:
             fatalError()
         @unknown default:

@@ -42,10 +42,6 @@ class APIService {
 											  completion: @escaping Completion<T, U>) {
 		httpSerivceQueue.async { [weak self] in
 			guard let self else { return }
-			let requestBuilder = RequestBuilder(url: baseURL)
-			
-			
-			
 			var apiRequest = apiRequest
 			var endPoint = APIServiceEndpoint(host: baseURL,
 											  path: apiRequest.path,

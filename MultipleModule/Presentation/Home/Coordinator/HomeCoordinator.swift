@@ -41,7 +41,7 @@ class HomeCoordinator: Coordinator {
 		vc.presentView(to: popupVC)
 	}
 	
-	func popDetail() {
+	func pop() {
 		navigationController.popViewController(animated: true)
 	}
 }

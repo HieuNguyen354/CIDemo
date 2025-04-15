@@ -131,7 +131,7 @@ class HomeDetailViewController: BaseViewController {
 	}
 	
 	@objc private func navBackAction() {
-		coordinator?.popDetail()
+		coordinator?.pop()
 	}
 	
 	@objc private func presentAction() {

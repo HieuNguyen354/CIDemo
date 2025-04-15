@@ -15,9 +15,11 @@ final class HomeViewModel: BaseViewModel {
 	let primaryAttrSelected = BehaviorRelay<PrimaryAttr>(value: .all)
 	let fetchRX = PublishSubject<Void>()
 	let responseData = PublishSubject<HomeDetail>()
-	var listFilterTitle = [PrimaryAttr]()
-	var currentData = BehaviorRelay<(notFilter: HomeDetail, filtered: HomeDetail)>(value: (notFilter: [], filtered: []))
-
+	let filteredData = BehaviorRelay<HomeDetail>(value: [])
+	let currentData = BehaviorRelay<HomeDetail>(value: [])
+	let error = PublishSubject<ErrorServer<ErrorResponseModel>>()
+	
+	private var listFilterTitle = [PrimaryAttr]()
 	private let fetchHomeUseCase: FetchHomeUseCase
 	
 	init(fetchHomeUseCase: FetchHomeUseCase) {
@@ -33,35 +35,39 @@ final class HomeViewModel: BaseViewModel {
 			}.disposed(by: disposeBag)
 		
 		currentData
-			.subscribe { [weak self] (_, filtered) in
+			.subscribe { [weak self] model in
 				guard let self else { return }
-				reloadTableView(model: filtered)
+				filteredData.accept(model)
+			}.disposed(by: disposeBag)
+		
+		filteredData
+			.subscribe { [weak self] _ in
+				guard let self else { return }
+				reloadTableView()
+			}.disposed(by: disposeBag)
+		
+		error
+			.subscribe { [weak self] error in
+				guard let self, let interalError = error.internalError else { return }
+				showAlertError.accept(interalError.error)
 			}.disposed(by: disposeBag)
 		
 		primaryAttrSelected
 			.subscribe { [weak self] primaryAttr in
 				guard let self else { return }
-				if primaryAttr == .all {
-					currentData.accept((notFilter: currentData.value.notFilter,
-										filtered: currentData.value.notFilter))
-				} else {
-					currentData.accept((notFilter: currentData.value.notFilter,
-										filtered: currentData.value.notFilter.filter { $0.primaryAttr == primaryAttr }))
-				}
+				filteredData.accept(primaryAttr == .all ? currentData.value : currentData.value.filter { $0.primaryAttr == primaryAttr })
 			}.disposed(by: disposeBag)
 	}
 	
-	private func reloadTableView(model: HomeDetail) {
+	private func reloadTableView() {
 		var temp = [Sections]()
-		getHeroesSection(&temp,
-						 model: model)
+		getHeroesSection(&temp)
 		sections.accept(temp)
 	}
 	
-	private func getHeroesSection(_ sections: inout [Sections],
-								  model: HomeDetail) {
+	private func getHeroesSection(_ sections: inout [Sections]) {
 		var tableViewItem = [SectionModelItem]()
-		model.forEach { item in
+		filteredData.value.forEach { item in
 			tableViewItem.append(.listHero(item))
 		}
 		
@@ -87,10 +93,10 @@ final class HomeViewModel: BaseViewModel {
 							listFilterTitle.remove(at: index)
 							listFilterTitle.insert(.all, at: 0)
 						}
-						currentData.accept((notFilter: model, filtered: model))
+						currentData.accept(model)
 					case .failure(let error):
 						guard let error = error as? ErrorServer<ErrorResponseModel> else { return }
-						showAlertError.accept(error.internalError?.error)
+						self.error.onNext(error)
 				}
 			}.disposed(by: disposeBag)
 	}

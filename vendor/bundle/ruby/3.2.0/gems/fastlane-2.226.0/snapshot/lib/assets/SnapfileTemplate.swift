@@ -2,7 +2,7 @@
 
 class Snapshotfile: SnapshotfileProtocol {
     // A list of devices you want to take the screenshots from
-    //var devices: [String] { return [
+    // var devices: [String] { return [
     //    "iPhone 6",
     //    "iPhone 6 Plus",
     //    "iPhone 5",
@@ -11,7 +11,7 @@ class Snapshotfile: SnapshotfileProtocol {
     //    "Apple TV 1080p",
     //    "Apple Watch Series 6 - 44mm"
     //    ]
-    //}
+    // }
 
     // locales not supported in Swift yet
     var languages: [String] { return [

@@ -57,95 +57,8 @@ class HTTPClientService: HTTPClient {
 		var request = URLRequest(url: url)
 		request.httpMethod = endpoint.method.rawValue
 		request.allHTTPHeaderFields = endpoint.header
-
 		getBody(request: &request, endpoint: endpoint)
-
-		let task = urlSession.dataTask(with: request) { data, urlResponse, error in
-			if let error {
-				completion(.failure(.init(internalError: nil,
-										  statusCode: 0,
-										  error: .undefine(error.localizedDescription))))
-			}
-
-			guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
-				completion(.failure(.init(internalError: nil,
-										  statusCode: 0,
-										  error: .errorServer)))
-				return
-			}
-
-			guard 200...299 ~= httpURLResponse.statusCode else {
-				if httpURLResponse.statusCode == 403 {
-					// MARK: - Reauthorization
-					return
-				}
-
-				do {
-					guard let data else { return }
-					let decode = try JSONDecoder().decode(U.self, from: data)
-					completion(.failure(.init(internalError: decode,
-											  statusCode: httpURLResponse.statusCode,
-											  error: nil)))
-				} catch {
-					completion(.failure(.init(internalError: nil,
-											  statusCode: httpURLResponse.statusCode,
-											  error: nil)))
-				}
-
-				return
-			}
-
-			do {
-				guard let data else { return }
-				let decode = try JSONDecoder().decode(T.self, from: data)
-				completion(.success(decode))
-			} catch {
-				completion(.failure(.init(internalError: nil,
-										  statusCode: httpURLResponse.statusCode,
-										  error: .decode)))
-			}
-		}
-
-		task.resume()
-	}
-
-	private func photoDataToFormData(data: Data, boundary: String, fileName: String) -> Data {
-		let fullData = NSMutableData()
-
-		// 1 - Boundary should start with --
-		let lineOne = "--" + boundary + "\r\n"
-		if let lineData = lineOne.data(using: .utf8, allowLossyConversion: false) {
-			fullData.append(lineData)
-		}
-
-		// 2
-		let lineTwo = "Content-Disposition: form-data; name=\"file\"; filename=\"" + fileName + "\"\r\n"
-		if let lineData = lineTwo.data(using: .utf8, allowLossyConversion: false) {
-			fullData.append(lineData)
-		}
-
-		// 3
-		let lineThree = "Content-Type: image/jpg\r\n\r\n"
-		if let lineData = lineThree.data(using: .utf8, allowLossyConversion: false) {
-			fullData.append(lineData)
-		}
-
-		// 4
-		fullData.append(data as Data)
-
-		// 5
-		let lineFive = "\r\n"
-		if let lineData = lineFive.data(using: .utf8, allowLossyConversion: false) {
-			fullData.append(lineData)
-		}
-
-		// 6 - The end. Notice -- at the start and at the end
-		let lineSix = "--" + boundary + "--\r\n"
-		if let lineData = lineSix.data(using: .utf8, allowLossyConversion: false) {
-			fullData.append(lineData)
-		}
-
-		return Data(referencing: fullData)
+		getTask(with: request, completion: completion)
 	}
 
 	private func getBody(request: inout URLRequest,
@@ -167,12 +80,61 @@ class HTTPClientService: HTTPClient {
 					let dataFile: Data = Data(base64Encoded: dataString, options: .ignoreUnknownCharacters)!
 					let fileName = body["fileName"] as? String ?? ""
 					let boundary = UUID().uuidString
-					let data = photoDataToFormData(data: dataFile,
-												   boundary: boundary,
-												   fileName: fileName)
 					request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-					request.httpBody = data
+					request.httpBody = Data().photoData(data: dataFile, boundary: boundary, fileName: fileName)
 			}
 		}
+	}
+	
+	private func getTask<T: Codable,
+						 U: Codable>(with request: URLRequest,
+									 completion: @escaping Completion<T, U>) {
+		let task = urlSession.dataTask(with: request) { data, urlResponse, error in
+			if let error {
+				completion(.failure(.init(internalError: nil,
+										  statusCode: 0,
+										  error: .undefine(error.localizedDescription))))
+			}
+			
+			guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
+				completion(.failure(.init(internalError: nil,
+										  statusCode: 0,
+										  error: .errorServer)))
+				return
+			}
+			
+			guard 200...299 ~= httpURLResponse.statusCode else {
+				guard httpURLResponse.statusCode != ApiErrorCode.tokenInvalid.rawValue else {
+					// MARK: - Reauthorization
+					return
+				}
+				
+				do {
+					guard let data else { return }
+					let decode = try JSONDecoder().decode(U.self, from: data)
+					completion(.failure(.init(internalError: decode,
+											  statusCode: httpURLResponse.statusCode,
+											  error: nil)))
+				} catch {
+					completion(.failure(.init(internalError: nil,
+											  statusCode: httpURLResponse.statusCode,
+											  error: nil)))
+				}
+				
+				return
+			}
+			
+			do {
+				guard let data else { return }
+				let decode = try JSONDecoder().decode(T.self, from: data)
+				completion(.success(decode))
+			} catch {
+				completion(.failure(.init(internalError: nil,
+										  statusCode: httpURLResponse.statusCode,
+										  error: .decode)))
+			}
+		}
+		
+		task.resume()
 	}
 }

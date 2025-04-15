@@ -22,7 +22,8 @@ class AppCoordinator: Coordinator {
 	func start() {
 		let tabBarController = BaseTabBarController()
 		guard let tabBarCoordinator = container.resolve(TabBarCoordinator.self, argument: tabBarController) else {
-			fatalError("Failed to resolve TabBarCoordinator")
+			print("Failed to resolve TabBarCoordinator")
+			return
 		}
 		
 		childCoordinators.append(tabBarCoordinator)

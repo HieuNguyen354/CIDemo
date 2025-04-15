@@ -24,11 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		guard let window else { return }
 		let container = AppDICoordinator.shared.container
 		print("✅ Initializing AppCoordinator...")
-		guard let appCoordinator = container.resolve(AppCoordinator.self,
-													 argument: window)
-		else {
-			return
-		}
+		guard let appCoordinator = container.resolve(AppCoordinator.self, argument: window) else { return }
 		self.appCoordinator = appCoordinator
 		appCoordinator.start()
 	}

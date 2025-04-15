@@ -17,8 +17,7 @@ import Foundation
  */
 @discardableResult public func adb(serial: String = "",
                                    command: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                   adbPath: String = "adb") -> String
-{
+                                   adbPath: String = "adb") -> String {
     let serialArg = RubyCommand.Argument(name: "serial", value: serial, type: nil)
     let commandArg = command.asRubyArgument(name: "command", type: nil)
     let adbPathArg = RubyCommand.Argument(name: "adb_path", value: adbPath, type: nil)
@@ -100,8 +99,7 @@ public func addGitTag(tag: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       message: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       commit: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                      sign: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                      sign: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let tagArg = tag.asRubyArgument(name: "tag", type: nil)
     let groupingArg = RubyCommand.Argument(name: "grouping", value: grouping, type: nil)
     let includesLaneArg = includesLane.asRubyArgument(name: "includes_lane", type: nil)
@@ -156,8 +154,7 @@ public func appStoreBuildNumber(apiKeyPath: OptionalConfigValue<String?> = .fast
                                 live: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                                 version: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                 platform: String = "ios",
-                                teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let initialBuildNumberArg = RubyCommand.Argument(name: "initial_build_number", value: initialBuildNumber, type: nil)
@@ -207,8 +204,7 @@ public func appStoreConnectApiKey(keyId: String,
                                   isKeyContentBase64: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                   duration: Int = 500,
                                   inHouse: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                  setSpaceshipToken: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                                  setSpaceshipToken: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let keyIdArg = RubyCommand.Argument(name: "key_id", value: keyId, type: nil)
     let issuerIdArg = issuerId.asRubyArgument(name: "issuer_id", type: nil)
     let keyFilepathArg = keyFilepath.asRubyArgument(name: "key_filepath", type: nil)
@@ -258,8 +254,7 @@ public func appaloosa(binary: String,
                       locale: String = "en-US",
                       device: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       description: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                      changelog: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                      changelog: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let binaryArg = RubyCommand.Argument(name: "binary", value: binary, type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let storeIdArg = RubyCommand.Argument(name: "store_id", value: storeId, type: nil)
@@ -309,8 +304,7 @@ public func appetize(apiHost: String = "api.appetize.io",
                      path: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                      publicKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                      note: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                     timeout: OptionalConfigValue<Int?> = .fastlaneDefault(nil))
-{
+                     timeout: OptionalConfigValue<Int?> = .fastlaneDefault(nil)) {
     let apiHostArg = RubyCommand.Argument(name: "api_host", value: apiHost, type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let urlArg = url.asRubyArgument(name: "url", type: nil)
@@ -364,8 +358,7 @@ public func appetizeViewingUrlGenerator(publicKey: String,
                                         launchUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                         osVersion: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                         params: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                        proxy: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                        proxy: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let publicKeyArg = RubyCommand.Argument(name: "public_key", value: publicKey, type: nil)
     let baseUrlArg = RubyCommand.Argument(name: "base_url", value: baseUrl, type: nil)
     let deviceArg = RubyCommand.Argument(name: "device", value: device, type: nil)
@@ -417,8 +410,7 @@ public func appium(platform: String,
                    port: Int = 4723,
                    appiumPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    caps: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
-                   appiumLib: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil))
-{
+                   appiumLib: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil)) {
     let platformArg = RubyCommand.Argument(name: "platform", value: platform, type: nil)
     let specPathArg = RubyCommand.Argument(name: "spec_path", value: specPath, type: nil)
     let appPathArg = RubyCommand.Argument(name: "app_path", value: appPath, type: nil)
@@ -540,8 +532,7 @@ public func appledoc(input: [String],
                      docsSectionTitle: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                      warnings: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                      logformat: OptionalConfigValue<Int?> = .fastlaneDefault(nil),
-                     verbose: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                     verbose: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let inputArg = RubyCommand.Argument(name: "input", value: input, type: nil)
     let outputArg = output.asRubyArgument(name: "output", type: nil)
     let templatesArg = templates.asRubyArgument(name: "templates", type: nil)
@@ -782,8 +773,7 @@ public func appstore(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefault
                      languages: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                      ignoreLanguageDirectoryValidation: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                      precheckIncludeInAppPurchases: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                     app: OptionalConfigValue<Int?> = .fastlaneDefault(nil))
-{
+                     app: OptionalConfigValue<Int?> = .fastlaneDefault(nil)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = username.asRubyArgument(name: "username", type: nil)
@@ -933,8 +923,7 @@ public func appstore(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefault
  */
 public func apteligent(dsym: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                        appId: String,
-                       apiKey: String)
-{
+                       apiKey: String) {
     let dsymArg = dsym.asRubyArgument(name: "dsym", type: nil)
     let appIdArg = RubyCommand.Argument(name: "app_id", value: appId, type: nil)
     let apiKeyArg = RubyCommand.Argument(name: "api_key", value: apiKey, type: nil)
@@ -984,8 +973,7 @@ public func artifactory(file: String,
                         proxyPassword: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                         proxyAddress: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                         proxyPort: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                        readTimeout: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                        readTimeout: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let fileArg = RubyCommand.Argument(name: "file", value: file, type: nil)
     let repoArg = RubyCommand.Argument(name: "repo", value: repo, type: nil)
     let repoPathArg = RubyCommand.Argument(name: "repo_path", value: repoPath, type: nil)
@@ -1047,8 +1035,7 @@ public func automaticCodeSigning(path: String,
                                  codeSignIdentity: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                  profileName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                  profileUuid: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                 bundleIdentifier: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                 bundleIdentifier: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let useAutomaticSigningArg = useAutomaticSigning.asRubyArgument(name: "use_automatic_signing", type: nil)
     let teamIdArg = teamId.asRubyArgument(name: "team_id", type: nil)
@@ -1101,8 +1088,7 @@ public func backupXcarchive(xcarchive: String,
                             destination: String,
                             zip: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                             zipFilename: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                            versioned: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                            versioned: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let xcarchiveArg = RubyCommand.Argument(name: "xcarchive", value: xcarchive, type: nil)
     let destinationArg = RubyCommand.Argument(name: "destination", value: destination, type: nil)
     let zipArg = zip.asRubyArgument(name: "zip", type: nil)
@@ -1152,8 +1138,7 @@ public func badge(dark: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                   glob: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                   alphaChannel: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                   shieldGravity: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                  shieldNoResize: OptionalConfigValue<Bool?> = .fastlaneDefault(nil))
-{
+                  shieldNoResize: OptionalConfigValue<Bool?> = .fastlaneDefault(nil)) {
     let darkArg = dark.asRubyArgument(name: "dark", type: nil)
     let customArg = custom.asRubyArgument(name: "custom", type: nil)
     let noBadgeArg = noBadge.asRubyArgument(name: "no_badge", type: nil)
@@ -1202,8 +1187,7 @@ public func buildAndUploadToAppetize(xcodebuild: [String: Any] = [:],
                                      apiToken: String,
                                      publicKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                      note: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                     timeout: OptionalConfigValue<Int?> = .fastlaneDefault(nil))
-{
+                                     timeout: OptionalConfigValue<Int?> = .fastlaneDefault(nil)) {
     let xcodebuildArg = RubyCommand.Argument(name: "xcodebuild", value: xcodebuild, type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
@@ -1255,8 +1239,7 @@ public func buildAndroidApp(task: OptionalConfigValue<String?> = .fastlaneDefaul
                             systemProperties: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
                             serial: String = "",
                             printCommand: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                            printCommandOutput: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                            printCommandOutput: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let taskArg = task.asRubyArgument(name: "task", type: nil)
     let flavorArg = flavor.asRubyArgument(name: "flavor", type: nil)
     let buildTypeArg = buildType.asRubyArgument(name: "build_type", type: nil)
@@ -1398,8 +1381,7 @@ public func buildAndroidApp(task: OptionalConfigValue<String?> = .fastlaneDefaul
                                         skipPackageDependenciesResolution: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                         disablePackageAutomaticUpdates: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                         useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                        packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                        packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
@@ -1613,8 +1595,7 @@ public func buildAndroidApp(task: OptionalConfigValue<String?> = .fastlaneDefaul
                                            skipPackageDependenciesResolution: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                            disablePackageAutomaticUpdates: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                            useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                           packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                           packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
@@ -1824,8 +1805,7 @@ public func buildAndroidApp(task: OptionalConfigValue<String?> = .fastlaneDefaul
                                            skipPackageDependenciesResolution: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                            disablePackageAutomaticUpdates: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                            useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                           packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                           packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
@@ -1975,8 +1955,7 @@ public func bundleInstall(binstubs: OptionalConfigValue<String?> = .fastlaneDefa
                           without: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                           with: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                           frozen: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                          redownload: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                          redownload: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let binstubsArg = binstubs.asRubyArgument(name: "binstubs", type: nil)
     let cleanArg = clean.asRubyArgument(name: "clean", type: nil)
     let fullIndexArg = fullIndex.asRubyArgument(name: "full_index", type: nil)
@@ -2072,8 +2051,7 @@ public func captureAndroidScreenshots(androidHome: OptionalConfigValue<String?> 
                                       exitOnTestFailure: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                                       reinstallApp: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                       useTimestampSuffix: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                                      adbHost: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                      adbHost: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let androidHomeArg = androidHome.asRubyArgument(name: "android_home", type: nil)
     let buildToolsVersionArg = buildToolsVersion.asRubyArgument(name: "build_tools_version", type: nil)
     let localesArg = RubyCommand.Argument(name: "locales", value: locales, type: nil)
@@ -2229,8 +2207,7 @@ public func captureIosScreenshots(workspace: OptionalConfigValue<String?> = .fas
                                   xcprettyArgs: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                   disableXcpretty: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                                   suppressXcodeOutput: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
-                                  useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                                  useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let xcargsArg = xcargs.asRubyArgument(name: "xcargs", type: nil)
@@ -2442,8 +2419,7 @@ public func captureScreenshots(workspace: OptionalConfigValue<String?> = .fastla
                                xcprettyArgs: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                disableXcpretty: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                                suppressXcodeOutput: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
-                               useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                               useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let xcargsArg = xcargs.asRubyArgument(name: "xcargs", type: nil)
@@ -2601,8 +2577,7 @@ public func carthage(command: String = "bootstrap",
                      logPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                      useXcframeworks: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                      archive: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                     executable: String = "carthage")
-{
+                     executable: String = "carthage") {
     let commandArg = RubyCommand.Argument(name: "command", value: command, type: nil)
     let dependenciesArg = RubyCommand.Argument(name: "dependencies", value: dependencies, type: nil)
     let useSshArg = useSsh.asRubyArgument(name: "use_ssh", type: nil)
@@ -2693,8 +2668,7 @@ public func cert(development: OptionalConfigValue<Bool> = .fastlaneDefault(false
                  keychainPath: String,
                  keychainPassword: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                  skipSetPartitionList: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                 platform: String = "ios")
-{
+                 platform: String = "ios") {
     let developmentArg = development.asRubyArgument(name: "development", type: nil)
     let typeArg = type.asRubyArgument(name: "type", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
@@ -2764,8 +2738,7 @@ public func cert(development: OptionalConfigValue<Bool> = .fastlaneDefault(false
                                                        quiet: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                                        includeMerges: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                                                        mergeCommitFiltering: String = "include_merges",
-                                                       appPath: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                                       appPath: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let betweenArg = between.asRubyArgument(name: "between", type: nil)
     let commitsCountArg = commitsCount.asRubyArgument(name: "commits_count", type: nil)
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
@@ -2811,8 +2784,7 @@ public func cert(development: OptionalConfigValue<Bool> = .fastlaneDefault(false
 public func chatwork(apiToken: String,
                      message: String,
                      roomid: Int,
-                     success: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                     success: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let messageArg = RubyCommand.Argument(name: "message", value: message, type: nil)
     let roomidArg = RubyCommand.Argument(name: "roomid", value: roomid, type: nil)
@@ -2876,8 +2848,7 @@ public func chatwork(apiToken: String,
                                                      freeStuffInIap: Any? = nil,
                                                      customText: Any? = nil,
                                                      copyrightDate: Any? = nil,
-                                                     unreachableUrls: Any? = nil) -> Bool
-{
+                                                     unreachableUrls: Any? = nil) -> Bool {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
@@ -2958,8 +2929,7 @@ public func cleanCocoapodsCache(name: OptionalConfigValue<String?> = .fastlaneDe
                                 noAnsi: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                 verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                 silent: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                allowRoot: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                                allowRoot: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let nameArg = name.asRubyArgument(name: "name", type: nil)
     let noAnsiArg = noAnsi.asRubyArgument(name: "no_ansi", type: nil)
     let verboseArg = verbose.asRubyArgument(name: "verbose", type: nil)
@@ -3026,8 +2996,7 @@ public func cloc(binaryPath: String = "/usr/local/bin/cloc",
                  excludeDir: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                  outputDirectory: String = "build",
                  sourceDirectory: String = "",
-                 xml: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                 xml: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let binaryPathArg = RubyCommand.Argument(name: "binary_path", value: binaryPath, type: nil)
     let excludeDirArg = excludeDir.asRubyArgument(name: "exclude_dir", type: nil)
     let outputDirectoryArg = RubyCommand.Argument(name: "output_directory", value: outputDirectory, type: nil)
@@ -3086,8 +3055,7 @@ public func cocoapods(repoUpdate: OptionalConfigValue<Bool> = .fastlaneDefault(f
                       deployment: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                       allowRoot: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                       clean: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                      integrate: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                      integrate: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let repoUpdateArg = repoUpdate.asRubyArgument(name: "repo_update", type: nil)
     let cleanInstallArg = cleanInstall.asRubyArgument(name: "clean_install", type: nil)
     let silentArg = silent.asRubyArgument(name: "silent", type: nil)
@@ -3148,8 +3116,7 @@ public func cocoapods(repoUpdate: OptionalConfigValue<Bool> = .fastlaneDefault(f
                                                 branch: String = "master",
                                                 path: String,
                                                 message: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                secure: OptionalConfigValue<Bool> = .fastlaneDefault(true)) -> [String: String]
-{
+                                                secure: OptionalConfigValue<Bool> = .fastlaneDefault(true)) -> [String: String] {
     let repositoryNameArg = RubyCommand.Argument(name: "repository_name", value: repositoryName, type: nil)
     let serverUrlArg = RubyCommand.Argument(name: "server_url", value: serverUrl, type: nil)
     let apiTokenArg = apiToken.asRubyArgument(name: "api_token", type: nil)
@@ -3201,8 +3168,7 @@ public func commitVersionBump(message: OptionalConfigValue<String?> = .fastlaneD
                               settings: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                               ignore: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                               include: [String] = [],
-                              noVerify: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                              noVerify: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let messageArg = message.asRubyArgument(name: "message", type: nil)
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
@@ -3239,8 +3205,7 @@ public func commitVersionBump(message: OptionalConfigValue<String?> = .fastlaneD
 public func copyArtifacts(keepOriginal: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                           targetPath: String = "artifacts",
                           artifacts: [String] = [],
-                          failOnMissing: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                          failOnMissing: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let keepOriginalArg = keepOriginal.asRubyArgument(name: "keep_original", type: nil)
     let targetPathArg = RubyCommand.Argument(name: "target_path", value: targetPath, type: nil)
     let artifactsArg = RubyCommand.Argument(name: "artifacts", value: artifacts, type: nil)
@@ -3278,8 +3243,7 @@ public func createAppOnManagedPlayStore(jsonKey: OptionalConfigValue<String?> = 
                                         appTitle: String,
                                         language: String = "en_US",
                                         rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                        timeout: Int = 300)
-{
+                                        timeout: Int = 300) {
     let jsonKeyArg = jsonKey.asRubyArgument(name: "json_key", type: nil)
     let jsonKeyDataArg = jsonKeyData.asRubyArgument(name: "json_key_data", type: nil)
     let developerAccountIdArg = RubyCommand.Argument(name: "developer_account_id", value: developerAccountId, type: nil)
@@ -3349,8 +3313,7 @@ public func createAppOnline(username: String,
                             teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             itcTeamId: Any? = nil,
-                            itcTeamName: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                            itcTeamName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
     let bundleIdentifierSuffixArg = bundleIdentifierSuffix.asRubyArgument(name: "bundle_identifier_suffix", type: nil)
@@ -3420,8 +3383,7 @@ public func createKeychain(name: OptionalConfigValue<String?> = .fastlaneDefault
                            lockWhenSleeps: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                            lockAfterTimeout: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                            addToSearchList: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                           requireCreate: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                           requireCreate: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let nameArg = name.asRubyArgument(name: "name", type: nil)
     let pathArg = path.asRubyArgument(name: "path", type: nil)
     let passwordArg = RubyCommand.Argument(name: "password", value: password, type: nil)
@@ -3483,8 +3445,7 @@ public func createPullRequest(apiToken: OptionalConfigValue<String?> = .fastlane
                               apiUrl: String = "https://api.github.com",
                               assignees: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                               reviewers: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
-                              teamReviewers: OptionalConfigValue<[String]?> = .fastlaneDefault(nil))
-{
+                              teamReviewers: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) {
     let apiTokenArg = apiToken.asRubyArgument(name: "api_token", type: nil)
     let apiBearerArg = apiBearer.asRubyArgument(name: "api_bearer", type: nil)
     let repoArg = RubyCommand.Argument(name: "repo", value: repo, type: nil)
@@ -3569,8 +3530,7 @@ public func createXcframework(frameworks: OptionalConfigValue<[String]?> = .fast
                               libraries: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                               librariesWithHeadersOrDsyms: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
                               output: String,
-                              allowInternalDistribution: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                              allowInternalDistribution: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let frameworksArg = frameworks.asRubyArgument(name: "frameworks", type: nil)
     let frameworksWithDsymsArg = frameworksWithDsyms.asRubyArgument(name: "frameworks_with_dsyms", type: nil)
     let librariesArg = libraries.asRubyArgument(name: "libraries", type: nil)
@@ -3625,8 +3585,7 @@ public func danger(useBundleExec: OptionalConfigValue<Bool> = .fastlaneDefault(t
                    base: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    head: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    pr: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                   failIfNoPr: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                   failIfNoPr: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let useBundleExecArg = useBundleExec.asRubyArgument(name: "use_bundle_exec", type: nil)
     let verboseArg = verbose.asRubyArgument(name: "verbose", type: nil)
     let dangerIdArg = dangerId.asRubyArgument(name: "danger_id", type: nil)
@@ -3690,8 +3649,7 @@ public func defaultPlatform() {
  Keychains can be deleted after being created with `create_keychain`
  */
 public func deleteKeychain(name: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                           keychainPath: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                           keychainPath: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let nameArg = name.asRubyArgument(name: "name", type: nil)
     let keychainPathArg = keychainPath.asRubyArgument(name: "keychain_path", type: nil)
     let array: [RubyCommand.Argument?] = [nameArg,
@@ -3846,8 +3804,7 @@ public func deliver(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefault(
                     languages: OptionalConfigValue<[String]?> = .fastlaneDefault(deliverfile.languages),
                     ignoreLanguageDirectoryValidation: OptionalConfigValue<Bool> = .fastlaneDefault(deliverfile.ignoreLanguageDirectoryValidation),
                     precheckIncludeInAppPurchases: OptionalConfigValue<Bool> = .fastlaneDefault(deliverfile.precheckIncludeInAppPurchases),
-                    app: OptionalConfigValue<Int?> = .fastlaneDefault(deliverfile.app))
-{
+                    app: OptionalConfigValue<Int?> = .fastlaneDefault(deliverfile.app)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = username.asRubyArgument(name: "username", type: nil)
@@ -4012,8 +3969,7 @@ public func deploygate(apiToken: String,
                        distributionKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                        releaseNote: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                        disableNotify: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                       distributionName: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                       distributionName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let userArg = RubyCommand.Argument(name: "user", value: user, type: nil)
     let ipaArg = ipa.asRubyArgument(name: "ipa", type: nil)
@@ -4091,8 +4047,7 @@ public func downloadAppPrivacyDetailsFromAppStore(username: String,
                                                   appIdentifier: String,
                                                   teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                   teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                  outputJsonPath: String = "./fastlane/app_privacy_details.json")
-{
+                                                  outputJsonPath: String = "./fastlane/app_privacy_details.json") {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
     let teamIdArg = teamId.asRubyArgument(name: "team_id", type: nil)
@@ -4153,8 +4108,7 @@ public func downloadDsyms(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDe
                           afterUploadedDate: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                           outputDirectory: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                           waitForDsymProcessing: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                          waitTimeout: Int = 300)
-{
+                          waitTimeout: Int = 300) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
@@ -4216,8 +4170,7 @@ public func downloadFromPlayStore(packageName: String,
                                   jsonKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                   jsonKeyData: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                   rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                  timeout: Int = 300)
-{
+                                  timeout: Int = 300) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let versionNameArg = versionName.asRubyArgument(name: "version_name", type: nil)
     let trackArg = RubyCommand.Argument(name: "track", value: track, type: nil)
@@ -4275,8 +4228,7 @@ public func downloadUniversalApkFromGooglePlay(packageName: String,
                                                rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                timeout: Int = 300,
                                                destination: String,
-                                               certificateSha256Hash: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                               certificateSha256Hash: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let versionCodeArg = versionCode.asRubyArgument(name: "version_code", type: nil)
     let jsonKeyArg = jsonKey.asRubyArgument(name: "json_key", type: nil)
@@ -4312,8 +4264,7 @@ public func downloadUniversalApkFromGooglePlay(packageName: String,
  */
 public func dsymZip(archivePath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     dsymPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                    all: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                    all: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let archivePathArg = archivePath.asRubyArgument(name: "archive_path", type: nil)
     let dsymPathArg = dsymPath.asRubyArgument(name: "dsym_path", type: nil)
     let allArg = all.asRubyArgument(name: "all", type: nil)
@@ -4405,8 +4356,7 @@ public func ensureGitBranch(branch: String = "master") {
 public func ensureGitStatusClean(showUncommittedChanges: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                  showDiff: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                  ignored: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                 ignoreFiles: OptionalConfigValue<[String]?> = .fastlaneDefault(nil))
-{
+                                 ignoreFiles: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) {
     let showUncommittedChangesArg = showUncommittedChanges.asRubyArgument(name: "show_uncommitted_changes", type: nil)
     let showDiffArg = showDiff.asRubyArgument(name: "show_diff", type: nil)
     let ignoredArg = ignored.asRubyArgument(name: "ignored", type: nil)
@@ -4441,8 +4391,7 @@ public func ensureNoDebugCode(text: String,
                               extension: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                               extensions: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                               exclude: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                              excludeDirs: OptionalConfigValue<[String]?> = .fastlaneDefault(nil))
-{
+                              excludeDirs: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) {
     let textArg = RubyCommand.Argument(name: "text", value: text, type: nil)
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let extensionArg = `extension`.asRubyArgument(name: "extension", type: nil)
@@ -4475,8 +4424,7 @@ public func ensureNoDebugCode(text: String,
  Using the `strict` parameter, you can either verify the full set of version numbers strictly (i.e. `11.3.1`) or only a subset of them (i.e. `11.3` or `11`).
  */
 public func ensureXcodeVersion(version: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                               strict: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                               strict: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let versionArg = version.asRubyArgument(name: "version", type: nil)
     let strictArg = strict.asRubyArgument(name: "strict", type: nil)
     let array: [RubyCommand.Argument?] = [versionArg,
@@ -4498,8 +4446,7 @@ public func ensureXcodeVersion(version: OptionalConfigValue<String?> = .fastlane
  */
 @discardableResult public func environmentVariable(set: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
                                                    get: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                   remove: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                                   remove: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let setArg = set.asRubyArgument(name: "set", type: nil)
     let getArg = get.asRubyArgument(name: "get", type: nil)
     let removeArg = remove.asRubyArgument(name: "remove", type: nil)
@@ -4528,8 +4475,7 @@ public func ensureXcodeVersion(version: OptionalConfigValue<String?> = .fastlane
 public func erb(template: String,
                 destination: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                 placeholders: [String: Any] = [:],
-                trimMode: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                trimMode: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let templateArg = RubyCommand.Argument(name: "template", value: template, type: nil)
     let destinationArg = destination.asRubyArgument(name: "destination", type: nil)
     let placeholdersArg = RubyCommand.Argument(name: "placeholders", value: placeholders, type: nil)
@@ -4569,8 +4515,7 @@ public func fastlaneVersion() {
  */
 public func flock(message: String,
                   token: String,
-                  baseUrl: String = "https://api.flock.co/hooks/sendMessage")
-{
+                  baseUrl: String = "https://api.flock.co/hooks/sendMessage") {
     let messageArg = RubyCommand.Argument(name: "message", value: message, type: nil)
     let tokenArg = RubyCommand.Argument(name: "token", value: token, type: nil)
     let baseUrlArg = RubyCommand.Argument(name: "base_url", value: baseUrl, type: nil)
@@ -4625,8 +4570,7 @@ public func frameScreenshots(white: OptionalConfigValue<Bool?> = .fastlaneDefaul
                              debugMode: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                              resume: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                              usePlatform: String = "IOS",
-                             path: String = "./")
-{
+                             path: String = "./") {
     let whiteArg = white.asRubyArgument(name: "white", type: nil)
     let silverArg = silver.asRubyArgument(name: "silver", type: nil)
     let roseGoldArg = roseGold.asRubyArgument(name: "rose_gold", type: nil)
@@ -4709,8 +4653,7 @@ public func frameit(white: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                     debugMode: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                     resume: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                     usePlatform: String = "IOS",
-                    path: String = "./")
-{
+                    path: String = "./") {
     let whiteArg = white.asRubyArgument(name: "white", type: nil)
     let silverArg = silver.asRubyArgument(name: "silver", type: nil)
     let roseGoldArg = roseGold.asRubyArgument(name: "rose_gold", type: nil)
@@ -4774,8 +4717,7 @@ public func gcovr() {
  You first have to set up your Xcode project, if you haven't done it already: [https://developer.apple.com/library/ios/qa/qa1827/_index.html](https://developer.apple.com/library/ios/qa/qa1827/_index.html).
  */
 @discardableResult public func getBuildNumber(xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                              hideErrorWhenVersioningDisabled: OptionalConfigValue<Bool> = .fastlaneDefault(false)) -> String
-{
+                                              hideErrorWhenVersioningDisabled: OptionalConfigValue<Bool> = .fastlaneDefault(false)) -> String {
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let hideErrorWhenVersioningDisabledArg = hideErrorWhenVersioningDisabled.asRubyArgument(name: "hide_error_when_versioning_disabled", type: nil)
     let array: [RubyCommand.Argument?] = [xcodeprojArg,
@@ -4845,8 +4787,7 @@ public func getCertificates(development: OptionalConfigValue<Bool> = .fastlaneDe
                             keychainPath: String,
                             keychainPassword: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             skipSetPartitionList: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                            platform: String = "ios")
-{
+                            platform: String = "ios") {
     let developmentArg = development.asRubyArgument(name: "development", type: nil)
     let typeArg = type.asRubyArgument(name: "type", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
@@ -4941,8 +4882,7 @@ public func getGithubRelease(url: String,
                              serverUrl: String = "https://api.github.com",
                              version: String,
                              apiToken: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                             apiBearer: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                             apiBearer: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let urlArg = RubyCommand.Argument(name: "url", value: url, type: nil)
     let serverUrlArg = RubyCommand.Argument(name: "server_url", value: serverUrl, type: nil)
     let versionArg = RubyCommand.Argument(name: "version", value: version, type: nil)
@@ -4970,8 +4910,7 @@ public func getGithubRelease(url: String,
  Get a value from a plist file, which can be used to fetch the app identifier and more information about your app
  */
 @discardableResult public func getInfoPlistValue(key: String,
-                                                 path: String) -> String
-{
+                                                 path: String) -> String {
     let keyArg = RubyCommand.Argument(name: "key", value: key, type: nil)
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let array: [RubyCommand.Argument?] = [keyArg,
@@ -4995,8 +4934,7 @@ public func getGithubRelease(url: String,
  This is useful for introspecting Info.plist files for `.ipa` files that have already been built.
  */
 @discardableResult public func getIpaInfoPlistValue(key: String,
-                                                    ipa: String) -> String
-{
+                                                    ipa: String) -> String {
     let keyArg = RubyCommand.Argument(name: "key", value: key, type: nil)
     let ipaArg = RubyCommand.Argument(name: "ipa", value: ipa, type: nil)
     let array: [RubyCommand.Argument?] = [keyArg,
@@ -5023,8 +4961,7 @@ public func getGithubRelease(url: String,
  Run the action and supply the "private key file" to it as the `json_key` parameter. The command will output a URL to visit. After logging in you are redirected to a page that outputs your "Developer Account ID" - take note of that, you will need it to be able to use [`create_app_on_managed_play_store`](https://docs.fastlane.tools/actions/create_app_on_managed_play_store/).
  */
 public func getManagedPlayStorePublishingRights(jsonKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                jsonKeyData: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                                jsonKeyData: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let jsonKeyArg = jsonKey.asRubyArgument(name: "json_key", type: nil)
     let jsonKeyDataArg = jsonKeyData.asRubyArgument(name: "json_key_data", type: nil)
     let array: [RubyCommand.Argument?] = [jsonKeyArg,
@@ -5102,8 +5039,7 @@ public func getManagedPlayStorePublishingRights(jsonKey: OptionalConfigValue<Str
                                                       cachedCertificates: Any? = nil,
                                                       cachedDevices: Any? = nil,
                                                       cachedBundleIds: Any? = nil,
-                                                      cachedProfiles: Any? = nil) -> String
-{
+                                                      cachedProfiles: Any? = nil) -> String {
     let adhocArg = adhoc.asRubyArgument(name: "adhoc", type: nil)
     let developerIdArg = developerId.asRubyArgument(name: "developer_id", type: nil)
     let developmentArg = development.asRubyArgument(name: "development", type: nil)
@@ -5215,8 +5151,7 @@ public func getPushCertificate(platform: String = "ios",
                                p12Password: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                pemName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                outputPath: String = ".",
-                               newProfile: ((String) -> Void)? = nil)
-{
+                               newProfile: ((String) -> Void)? = nil) {
     let platformArg = RubyCommand.Argument(name: "platform", value: platform, type: nil)
     let developmentArg = development.asRubyArgument(name: "development", type: nil)
     let websitePushArg = websitePush.asRubyArgument(name: "website_push", type: nil)
@@ -5266,8 +5201,7 @@ public func getPushCertificate(platform: String = "ios",
  */
 @discardableResult public func getVersionNumber(xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                 target: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                configuration: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                                configuration: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let targetArg = target.asRubyArgument(name: "target", type: nil)
     let configurationArg = configuration.asRubyArgument(name: "configuration", type: nil)
@@ -5293,8 +5227,7 @@ public func getPushCertificate(platform: String = "ios",
 public func gitAdd(path: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                    shellEscape: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                    force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                   pathspec: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                   pathspec: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let pathArg = path.asRubyArgument(name: "path", type: nil)
     let shellEscapeArg = shellEscape.asRubyArgument(name: "shell_escape", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
@@ -5333,8 +5266,7 @@ public func gitAdd(path: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
 public func gitCommit(path: [String],
                       message: String,
                       skipGitHooks: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                      allowNothingToCommit: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                      allowNothingToCommit: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let messageArg = RubyCommand.Argument(name: "message", value: message, type: nil)
     let skipGitHooksArg = skipGitHooks.asRubyArgument(name: "skip_git_hooks", type: nil)
@@ -5358,8 +5290,7 @@ public func gitCommit(path: [String],
    - rebase: Rebase on top of the remote branch instead of merge
  */
 public func gitPull(onlyTags: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                    rebase: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                    rebase: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let onlyTagsArg = onlyTags.asRubyArgument(name: "only_tags", type: nil)
     let rebaseArg = rebase.asRubyArgument(name: "rebase", type: nil)
     let array: [RubyCommand.Argument?] = [onlyTagsArg,
@@ -5396,8 +5327,7 @@ public func gitPull(onlyTags: OptionalConfigValue<Bool> = .fastlaneDefault(false
    - init: Should the submodules be initiated before update?
  */
 public func gitSubmoduleUpdate(recursive: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                               init: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                               init: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let recursiveArg = recursive.asRubyArgument(name: "recursive", type: nil)
     let initArg = `init`.asRubyArgument(name: "init", type: nil)
     let array: [RubyCommand.Argument?] = [recursiveArg,
@@ -5421,8 +5351,7 @@ public func gitSubmoduleUpdate(recursive: OptionalConfigValue<Bool> = .fastlaneD
  */
 @discardableResult public func gitTagExists(tag: String,
                                             remote: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                            remoteName: String = "origin") -> Bool
-{
+                                            remoteName: String = "origin") -> Bool {
     let tagArg = RubyCommand.Argument(name: "tag", value: tag, type: nil)
     let remoteArg = remote.asRubyArgument(name: "remote", type: nil)
     let remoteNameArg = RubyCommand.Argument(name: "remote_name", value: remoteName, type: nil)
@@ -5468,8 +5397,7 @@ public func githubApi(serverUrl: String = "https://api.github.com",
                       url: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       errorHandlers: [String: Any] = [:],
                       headers: [String: Any] = [:],
-                      secure: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                      secure: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let serverUrlArg = RubyCommand.Argument(name: "server_url", value: serverUrl, type: nil)
     let apiTokenArg = apiToken.asRubyArgument(name: "api_token", type: nil)
     let apiBearerArg = apiBearer.asRubyArgument(name: "api_bearer", type: nil)
@@ -5523,8 +5451,7 @@ public func googlePlayTrackReleaseNames(packageName: String,
                                         jsonKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                         jsonKeyData: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                         rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                        timeout: Int = 300)
-{
+                                        timeout: Int = 300) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let trackArg = RubyCommand.Argument(name: "track", value: track, type: nil)
     let keyArg = key.asRubyArgument(name: "key", type: nil)
@@ -5572,8 +5499,7 @@ public func googlePlayTrackVersionCodes(packageName: String,
                                         jsonKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                         jsonKeyData: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                         rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                        timeout: Int = 300)
-{
+                                        timeout: Int = 300) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let trackArg = RubyCommand.Argument(name: "track", value: track, type: nil)
     let keyArg = key.asRubyArgument(name: "key", type: nil)
@@ -5629,8 +5555,7 @@ public func gradle(task: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    systemProperties: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
                    serial: String = "",
                    printCommand: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                   printCommandOutput: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                   printCommandOutput: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let taskArg = task.asRubyArgument(name: "task", type: nil)
     let flavorArg = flavor.asRubyArgument(name: "flavor", type: nil)
     let buildTypeArg = buildType.asRubyArgument(name: "build_type", type: nil)
@@ -5772,8 +5697,7 @@ public func gradle(task: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                    skipPackageDependenciesResolution: OptionalConfigValue<Bool> = .fastlaneDefault(gymfile.skipPackageDependenciesResolution),
                                    disablePackageAutomaticUpdates: OptionalConfigValue<Bool> = .fastlaneDefault(gymfile.disablePackageAutomaticUpdates),
                                    useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(gymfile.useSystemScm),
-                                   packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(gymfile.packageAuthorizationProvider)) -> String
-{
+                                   packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(gymfile.packageAuthorizationProvider)) -> String {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
@@ -5922,8 +5846,7 @@ public func hgCommitVersionBump(message: String = "Version Bump",
                                 xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                 force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                 testDirtyFiles: String = "file1, file2",
-                                testExpectedFiles: String = "file1, file2")
-{
+                                testExpectedFiles: String = "file1, file2") {
     let messageArg = RubyCommand.Argument(name: "message", value: message, type: nil)
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
@@ -5962,8 +5885,7 @@ public func hgEnsureCleanStatus() {
  The mercurial equivalent of [push_to_git_remote](https://docs.fastlane.tools/actions/push_to_git_remote/). Pushes your local commits to a remote mercurial repo. Useful when local changes such as adding a version bump commit or adding a tag are part of your lane’s actions.
  */
 public func hgPush(force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                   destination: String = "")
-{
+                   destination: String = "") {
     let forceArg = force.asRubyArgument(name: "force", type: nil)
     let destinationArg = RubyCommand.Argument(name: "destination", value: destination, type: nil)
     let array: [RubyCommand.Argument?] = [forceArg,
@@ -6003,8 +5925,7 @@ public func hipchat(message: String = "",
                     apiHost: String = "api.hipchat.com",
                     messageFormat: String = "html",
                     includeHtmlHeader: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                    from: String = "fastlane")
-{
+                    from: String = "fastlane") {
     let messageArg = RubyCommand.Argument(name: "message", value: message, type: nil)
     let channelArg = RubyCommand.Argument(name: "channel", value: channel, type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
@@ -6098,8 +6019,7 @@ public func hockey(apk: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    strategy: String = "add",
                    timeout: OptionalConfigValue<Int?> = .fastlaneDefault(nil),
                    bypassCdn: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                   dsaSignature: String = "")
-{
+                   dsaSignature: String = "") {
     let apkArg = apk.asRubyArgument(name: "apk", type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let ipaArg = ipa.asRubyArgument(name: "ipa", type: nil)
@@ -6177,8 +6097,7 @@ public func ifttt(apiKey: String,
                   eventName: String,
                   value1: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                   value2: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                  value3: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                  value3: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let apiKeyArg = RubyCommand.Argument(name: "api_key", value: apiKey, type: nil)
     let eventNameArg = RubyCommand.Argument(name: "event_name", value: eventName, type: nil)
     let value1Arg = value1.asRubyArgument(name: "value1", type: nil)
@@ -6214,8 +6133,7 @@ public func importCertificate(certificatePath: String,
                               keychainName: String,
                               keychainPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                               keychainPassword: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                              logOutput: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                              logOutput: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let certificatePathArg = RubyCommand.Argument(name: "certificate_path", value: certificatePath, type: nil)
     let certificatePasswordArg = certificatePassword.asRubyArgument(name: "certificate_password", type: nil)
     let keychainNameArg = RubyCommand.Argument(name: "keychain_name", value: keychainName, type: nil)
@@ -6247,8 +6165,7 @@ public func importCertificate(certificatePath: String,
  */
 @discardableResult public func incrementBuildNumber(buildNumber: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                     skipInfoPlist: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                                    xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                                    xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let buildNumberArg = buildNumber.asRubyArgument(name: "build_number", type: nil)
     let skipInfoPlistArg = skipInfoPlist.asRubyArgument(name: "skip_info_plist", type: nil)
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
@@ -6277,8 +6194,7 @@ public func importCertificate(certificatePath: String,
  */
 @discardableResult public func incrementVersionNumber(bumpType: String = "bump",
                                                       versionNumber: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                      xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                                      xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let bumpTypeArg = RubyCommand.Argument(name: "bump_type", value: bumpType, type: nil)
     let versionNumberArg = versionNumber.asRubyArgument(name: "version_number", type: nil)
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
@@ -6306,8 +6222,7 @@ public func importCertificate(certificatePath: String,
 public func installOnDevice(extra: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             deviceId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             skipWifi: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
-                            ipa: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                            ipa: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let extraArg = extra.asRubyArgument(name: "extra", type: nil)
     let deviceIdArg = deviceId.asRubyArgument(name: "device_id", type: nil)
     let skipWifiArg = skipWifi.asRubyArgument(name: "skip_wifi", type: nil)
@@ -6350,8 +6265,7 @@ public func installOnDevice(extra: OptionalConfigValue<String?> = .fastlaneDefau
    - github: GitHub repository URL for Xcode plugin
  */
 public func installXcodePlugin(url: String,
-                               github: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                               github: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let urlArg = RubyCommand.Argument(name: "url", value: url, type: nil)
     let githubArg = github.asRubyArgument(name: "github", type: nil)
     let array: [RubyCommand.Argument?] = [urlArg,
@@ -6377,8 +6291,7 @@ public func installr(apiToken: String,
                      ipa: String,
                      notes: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                      notify: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                     add: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                     add: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let ipaArg = RubyCommand.Argument(name: "ipa", value: ipa, type: nil)
     let notesArg = notes.asRubyArgument(name: "notes", type: nil)
@@ -6426,8 +6339,7 @@ public func ipa(workspace: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                 sdk: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                 ipa: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                 xcconfig: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                xcargs: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                xcargs: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let configurationArg = configuration.asRubyArgument(name: "configuration", type: nil)
@@ -6480,8 +6392,7 @@ public func ipa(workspace: OptionalConfigValue<String?> = .fastlaneDefault(nil),
    - moduleVersion: Version string to use as part of the default docs title and inside the docset
  */
 public func jazzy(config: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                  moduleVersion: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                  moduleVersion: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let configArg = config.asRubyArgument(name: "config", type: nil)
     let moduleVersionArg = moduleVersion.asRubyArgument(name: "module_version", type: nil)
     let array: [RubyCommand.Argument?] = [configArg,
@@ -6514,8 +6425,7 @@ public func jazzy(config: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                     password: String,
                                     ticketId: String,
                                     commentText: String,
-                                    failOnError: OptionalConfigValue<Bool> = .fastlaneDefault(true)) -> [String: Any]
-{
+                                    failOnError: OptionalConfigValue<Bool> = .fastlaneDefault(true)) -> [String: Any] {
     let urlArg = RubyCommand.Argument(name: "url", value: url, type: nil)
     let contextPathArg = RubyCommand.Argument(name: "context_path", value: contextPath, type: nil)
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
@@ -6607,8 +6517,7 @@ public func jazzy(config: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                            platform: String = "ios",
                                                            initialBuildNumber: Int = 1,
                                                            teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                           teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> Int
-{
+                                                           teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> Int {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let liveArg = live.asRubyArgument(name: "live", type: nil)
@@ -6648,8 +6557,7 @@ public func jazzy(config: OptionalConfigValue<String?> = .fastlaneDefault(nil),
 public func lcov(projectName: String,
                  scheme: String,
                  arch: String = "i386",
-                 outputDir: String = "coverage_reports")
-{
+                 outputDir: String = "coverage_reports") {
     let projectNameArg = RubyCommand.Argument(name: "project_name", value: projectName, type: nil)
     let schemeArg = RubyCommand.Argument(name: "scheme", value: scheme, type: nil)
     let archArg = RubyCommand.Argument(name: "arch", value: arch, type: nil)
@@ -6701,8 +6609,7 @@ public func mailgun(mailgunSandboxDomain: OptionalConfigValue<String?> = .fastla
                     templatePath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     replyTo: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     attachment: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
-                    customPlaceholders: [String: Any] = [:])
-{
+                    customPlaceholders: [String: Any] = [:]) {
     let mailgunSandboxDomainArg = mailgunSandboxDomain.asRubyArgument(name: "mailgun_sandbox_domain", type: nil)
     let mailgunSandboxPostmasterArg = mailgunSandboxPostmaster.asRubyArgument(name: "mailgun_sandbox_postmaster", type: nil)
     let mailgunApikeyArg = mailgunApikey.asRubyArgument(name: "mailgun_apikey", type: nil)
@@ -6752,8 +6659,7 @@ public func mailgun(mailgunSandboxDomain: OptionalConfigValue<String?> = .fastla
  This is useful when deploying automated builds. The changelog from Jenkins lists all the commit messages since the last build.
  */
 public func makeChangelogFromJenkins(fallbackChangelog: String = "",
-                                     includeCommitBody: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                                     includeCommitBody: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let fallbackChangelogArg = RubyCommand.Argument(name: "fallback_changelog", value: fallbackChangelog, type: nil)
     let includeCommitBodyArg = includeCommitBody.asRubyArgument(name: "include_commit_body", type: nil)
     let array: [RubyCommand.Argument?] = [fallbackChangelogArg,
@@ -6883,8 +6789,7 @@ public func match(type: String = matchfile.type,
                   outputPath: OptionalConfigValue<String?> = .fastlaneDefault(matchfile.outputPath),
                   skipSetPartitionList: OptionalConfigValue<Bool> = .fastlaneDefault(matchfile.skipSetPartitionList),
                   forceLegacyEncryption: OptionalConfigValue<Bool> = .fastlaneDefault(matchfile.forceLegacyEncryption),
-                  verbose: OptionalConfigValue<Bool> = .fastlaneDefault(matchfile.verbose))
-{
+                  verbose: OptionalConfigValue<Bool> = .fastlaneDefault(matchfile.verbose)) {
     let typeArg = RubyCommand.Argument(name: "type", value: type, type: nil)
     let additionalCertTypesArg = additionalCertTypes.asRubyArgument(name: "additional_cert_types", type: nil)
     let readonlyArg = readonly.asRubyArgument(name: "readonly", type: nil)
@@ -7126,8 +7031,7 @@ public func matchNuke(type: String = "development",
                       outputPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       skipSetPartitionList: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                       forceLegacyEncryption: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                      verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                      verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let typeArg = RubyCommand.Argument(name: "type", value: type, type: nil)
     let additionalCertTypesArg = additionalCertTypes.asRubyArgument(name: "additional_cert_types", type: nil)
     let readonlyArg = readonly.asRubyArgument(name: "readonly", type: nil)
@@ -7275,8 +7179,7 @@ public func modifyServices(username: String,
                            appIdentifier: String,
                            services: [String: Any] = [:],
                            teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                           teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                           teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
     let servicesArg = RubyCommand.Argument(name: "services", value: services, type: nil)
@@ -7332,8 +7235,7 @@ public func nexusUpload(file: String,
                         proxyUsername: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                         proxyPassword: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                         proxyAddress: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                        proxyPort: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                        proxyPort: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let fileArg = RubyCommand.Argument(name: "file", value: file, type: nil)
     let repoIdArg = RubyCommand.Argument(name: "repo_id", value: repoId, type: nil)
     let repoGroupIdArg = RubyCommand.Argument(name: "repo_group_id", value: repoGroupId, type: nil)
@@ -7401,8 +7303,7 @@ public func notarize(package: String,
                      printLog: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                      verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                      apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                     apiKey: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil))
-{
+                     apiKey: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil)) {
     let packageArg = RubyCommand.Argument(name: "package", value: package, type: nil)
     let useNotarytoolArg = useNotarytool.asRubyArgument(name: "use_notarytool", type: nil)
     let tryEarlyStaplingArg = tryEarlyStapling.asRubyArgument(name: "try_early_stapling", type: nil)
@@ -7454,8 +7355,7 @@ public func notification(title: String = "fastlane",
                          appIcon: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                          contentImage: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                          open: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                         execute: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                         execute: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let titleArg = RubyCommand.Argument(name: "title", value: title, type: nil)
     let subtitleArg = subtitle.asRubyArgument(name: "subtitle", type: nil)
     let messageArg = RubyCommand.Argument(name: "message", value: message, type: nil)
@@ -7553,8 +7453,7 @@ public func oclint(oclintPath: String = "oclint",
                    enableClangStaticAnalyzer: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                    enableGlobalAnalysis: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                    allowDuplicatedViolations: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                   extraArg: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                   extraArg: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let oclintPathArg = RubyCommand.Argument(name: "oclint_path", value: oclintPath, type: nil)
     let compileCommandsArg = RubyCommand.Argument(name: "compile_commands", value: compileCommands, type: nil)
     let selectReqexArg = selectReqex.asRubyArgument(name: "select_reqex", type: nil)
@@ -7626,8 +7525,7 @@ public func onesignal(appId: OptionalConfigValue<String?> = .fastlaneDefault(nil
                       apnsP12: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       apnsP12Password: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       apnsEnv: String = "production",
-                      organizationId: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                      organizationId: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let appIdArg = appId.asRubyArgument(name: "app_id", type: nil)
     let authTokenArg = RubyCommand.Argument(name: "auth_token", value: authToken, type: nil)
     let appNameArg = appName.asRubyArgument(name: "app_name", type: nil)
@@ -7725,8 +7623,7 @@ public func pem(platform: String = "ios",
                 p12Password: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                 pemName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                 outputPath: String = ".",
-                newProfile: ((String) -> Void)? = nil)
-{
+                newProfile: ((String) -> Void)? = nil) {
     let platformArg = RubyCommand.Argument(name: "platform", value: platform, type: nil)
     let developmentArg = development.asRubyArgument(name: "development", type: nil)
     let websitePushArg = websitePush.asRubyArgument(name: "website_push", type: nil)
@@ -7849,8 +7746,7 @@ public func pilot(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefault(ni
                   waitProcessingTimeoutDuration: OptionalConfigValue<Int?> = .fastlaneDefault(nil),
                   waitForUploadedBuild: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                   rejectBuildWaitingForReview: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                  submitBetaReview: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                  submitBetaReview: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = username.asRubyArgument(name: "username", type: nil)
@@ -7946,8 +7842,7 @@ public func pilot(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefault(ni
  */
 public func pluginScores(outputPath: String,
                          templatePath: String,
-                         cachePath: String)
-{
+                         cachePath: String) {
     let outputPathArg = RubyCommand.Argument(name: "output_path", value: outputPath, type: nil)
     let templatePathArg = RubyCommand.Argument(name: "template_path", value: templatePath, type: nil)
     let cachePathArg = RubyCommand.Argument(name: "cache_path", value: cachePath, type: nil)
@@ -8007,8 +7902,7 @@ public func podLibLint(useBundleExec: OptionalConfigValue<Bool> = .fastlaneDefau
                        platforms: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                        skipImportValidation: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                        skipTests: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                       analyze: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                       analyze: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let useBundleExecArg = useBundleExec.asRubyArgument(name: "use_bundle_exec", type: nil)
     let podspecArg = podspec.asRubyArgument(name: "podspec", type: nil)
     let verboseArg = verbose.asRubyArgument(name: "verbose", type: nil)
@@ -8090,8 +7984,7 @@ public func podPush(useBundleExec: OptionalConfigValue<Bool> = .fastlaneDefault(
                     useModularHeaders: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                     synchronous: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                     noOverwrite: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
-                    localOnly: OptionalConfigValue<Bool?> = .fastlaneDefault(nil))
-{
+                    localOnly: OptionalConfigValue<Bool?> = .fastlaneDefault(nil)) {
     let useBundleExecArg = useBundleExec.asRubyArgument(name: "use_bundle_exec", type: nil)
     let pathArg = path.asRubyArgument(name: "path", type: nil)
     let repoArg = repo.asRubyArgument(name: "repo", type: nil)
@@ -8151,8 +8044,7 @@ public func podioItem(clientId: String,
                       appToken: String,
                       identifyingField: String,
                       identifyingValue: String,
-                      otherFields: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil))
-{
+                      otherFields: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil)) {
     let clientIdArg = RubyCommand.Argument(name: "client_id", value: clientId, type: nil)
     let clientSecretArg = RubyCommand.Argument(name: "client_secret", value: clientSecret, type: nil)
     let appIdArg = RubyCommand.Argument(name: "app_id", value: appId, type: nil)
@@ -8204,8 +8096,7 @@ public func podioItem(clientId: String,
                                         defaultRuleLevel: Any = precheckfile.defaultRuleLevel,
                                         includeInAppPurchases: OptionalConfigValue<Bool> = .fastlaneDefault(precheckfile.includeInAppPurchases),
                                         useLive: OptionalConfigValue<Bool> = .fastlaneDefault(precheckfile.useLive),
-                                        freeStuffInIap: Any? = precheckfile.freeStuffInIap) -> Bool
-{
+                                        freeStuffInIap: Any? = precheckfile.freeStuffInIap) -> Bool {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
@@ -8296,8 +8187,7 @@ public func produce(username: String,
                     teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     itcTeamId: Any? = nil,
-                    itcTeamName: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                    itcTeamName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
     let bundleIdentifierSuffixArg = bundleIdentifierSuffix.asRubyArgument(name: "bundle_identifier_suffix", type: nil)
@@ -8361,8 +8251,7 @@ public func produce(username: String,
                                       ciInput: String = "",
                                       boolean: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                       secureText: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                      multiLineEndKeyword: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                      multiLineEndKeyword: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let textArg = RubyCommand.Argument(name: "text", value: text, type: nil)
     let ciInputArg = RubyCommand.Argument(name: "ci_input", value: ciInput, type: nil)
     let booleanArg = boolean.asRubyArgument(name: "boolean", type: nil)
@@ -8392,8 +8281,7 @@ public func produce(username: String,
  */
 public func pushGitTags(force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                         remote: String = "origin",
-                        tag: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                        tag: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let forceArg = force.asRubyArgument(name: "force", type: nil)
     let remoteArg = RubyCommand.Argument(name: "remote", value: remote, type: nil)
     let tagArg = tag.asRubyArgument(name: "tag", type: nil)
@@ -8432,8 +8320,7 @@ public func pushToGitRemote(localBranch: OptionalConfigValue<String?> = .fastlan
                             remote: String = "origin",
                             noVerify: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                             setUpstream: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                            pushOptions: [String] = [])
-{
+                            pushOptions: [String] = []) {
     let localBranchArg = localBranch.asRubyArgument(name: "local_branch", type: nil)
     let remoteBranchArg = remoteBranch.asRubyArgument(name: "remote_branch", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
@@ -8533,8 +8420,7 @@ public func recreateSchemes(project: String) {
                                               apiKey: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
                                               teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                               teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                              username: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                              username: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let nameArg = RubyCommand.Argument(name: "name", value: name, type: nil)
     let platformArg = RubyCommand.Argument(name: "platform", value: platform, type: nil)
     let udidArg = RubyCommand.Argument(name: "udid", value: udid, type: nil)
@@ -8582,8 +8468,7 @@ public func registerDevices(devices: OptionalConfigValue<[String: Any]?> = .fast
                             teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             username: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                            platform: String = "ios")
-{
+                            platform: String = "ios") {
     let devicesArg = devices.asRubyArgument(name: "devices", type: nil)
     let devicesFileArg = devicesFile.asRubyArgument(name: "devices_file", type: nil)
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
@@ -8628,8 +8513,7 @@ public func resetGitRepo(files: OptionalConfigValue<[String]?> = .fastlaneDefaul
                          force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                          skipClean: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                          disregardGitignore: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                         exclude: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                         exclude: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let filesArg = files.asRubyArgument(name: "files", type: nil)
     let forceArg = force.asRubyArgument(name: "force", type: nil)
     let skipCleanArg = skipClean.asRubyArgument(name: "skip_clean", type: nil)
@@ -8655,8 +8539,7 @@ public func resetGitRepo(files: OptionalConfigValue<[String]?> = .fastlaneDefaul
    - osVersions: Which OS versions of Simulators you want to reset content and settings, this does not remove/recreate the simulators
  */
 public func resetSimulatorContents(ios: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
-                                   osVersions: OptionalConfigValue<[String]?> = .fastlaneDefault(nil))
-{
+                                   osVersions: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) {
     let iosArg = ios.asRubyArgument(name: "ios", type: nil)
     let osVersionsArg = osVersions.asRubyArgument(name: "os_versions", type: nil)
     let array: [RubyCommand.Argument?] = [iosArg,
@@ -8694,8 +8577,7 @@ public func resign(ipa: String,
                    bundleVersion: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    bundleId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    useAppEntitlements: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
-                   keychainPath: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                   keychainPath: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let ipaArg = RubyCommand.Argument(name: "ipa", value: ipa, type: nil)
     let signingIdentityArg = RubyCommand.Argument(name: "signing_identity", value: signingIdentity, type: nil)
     let entitlementsArg = entitlements.asRubyArgument(name: "entitlements", type: nil)
@@ -8772,8 +8654,7 @@ public func rspec() {
  */
 public func rsync(extra: String = "-av",
                   source: String,
-                  destination: String)
-{
+                  destination: String) {
     let extraArg = RubyCommand.Argument(name: "extra", value: extra, type: nil)
     let sourceArg = RubyCommand.Argument(name: "source", value: source, type: nil)
     let destinationArg = RubyCommand.Argument(name: "destination", value: destination, type: nil)
@@ -8974,8 +8855,7 @@ public func rubyVersion() {
                                         useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                         numberOfRetries: Int = 0,
                                         failBuild: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                                        packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> [String: Any]
-{
+                                        packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> [String: Any] {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let packagePathArg = packagePath.asRubyArgument(name: "package_path", type: nil)
@@ -9181,8 +9061,7 @@ public func s3(ipa: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                region: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                path: String = "v{CFBundleShortVersionString}_b{CFBundleVersion}/",
                source: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-               acl: String = "public_read")
-{
+               acl: String = "public_read") {
     let ipaArg = ipa.asRubyArgument(name: "ipa", type: nil)
     let dsymArg = dsym.asRubyArgument(name: "dsym", type: nil)
     let uploadMetadataArg = uploadMetadata.asRubyArgument(name: "upload_metadata", type: nil)
@@ -9230,8 +9109,7 @@ public func s3(ipa: OptionalConfigValue<String?> = .fastlaneDefault(nil),
    - mute: If say should be muted with text printed out
  */
 public func say(text: [String],
-                mute: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                mute: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let textArg = RubyCommand.Argument(name: "text", value: text, type: nil)
     let muteArg = mute.asRubyArgument(name: "mute", type: nil)
     let array: [RubyCommand.Argument?] = [textArg,
@@ -9409,8 +9287,7 @@ public func say(text: [String],
                                     useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(scanfile.useSystemScm),
                                     numberOfRetries: Int = scanfile.numberOfRetries,
                                     failBuild: OptionalConfigValue<Bool> = .fastlaneDefault(scanfile.failBuild),
-                                    packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(scanfile.packageAuthorizationProvider)) -> [String: Any]
-{
+                                    packageAuthorizationProvider: OptionalConfigValue<String?> = .fastlaneDefault(scanfile.packageAuthorizationProvider)) -> [String: Any] {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let packagePathArg = packagePath.asRubyArgument(name: "package_path", type: nil)
@@ -9592,8 +9469,7 @@ public func scp(username: String,
                 host: String,
                 port: String = "22",
                 upload: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil),
-                download: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil))
-{
+                download: OptionalConfigValue<[String: Any]?> = .fastlaneDefault(nil)) {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let passwordArg = password.asRubyArgument(name: "password", type: nil)
     let hostArg = RubyCommand.Argument(name: "host", value: host, type: nil)
@@ -9661,8 +9537,7 @@ public func screengrab(androidHome: OptionalConfigValue<String?> = .fastlaneDefa
                        exitOnTestFailure: OptionalConfigValue<Bool> = .fastlaneDefault(screengrabfile.exitOnTestFailure),
                        reinstallApp: OptionalConfigValue<Bool> = .fastlaneDefault(screengrabfile.reinstallApp),
                        useTimestampSuffix: OptionalConfigValue<Bool> = .fastlaneDefault(screengrabfile.useTimestampSuffix),
-                       adbHost: OptionalConfigValue<String?> = .fastlaneDefault(screengrabfile.adbHost))
-{
+                       adbHost: OptionalConfigValue<String?> = .fastlaneDefault(screengrabfile.adbHost)) {
     let androidHomeArg = androidHome.asRubyArgument(name: "android_home", type: nil)
     let buildToolsVersionArg = buildToolsVersion.asRubyArgument(name: "build_tools_version", type: nil)
     let localesArg = RubyCommand.Argument(name: "locales", value: locales, type: nil)
@@ -9726,8 +9601,7 @@ public func screengrab(androidHome: OptionalConfigValue<String?> = .fastlaneDefa
  There is an option, `:use_hg_revision_number`, which allows to use mercurial revision number instead of hash.
  */
 public func setBuildNumberRepository(useHgRevisionNumber: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                     xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                     xcodeproj: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let useHgRevisionNumberArg = useHgRevisionNumber.asRubyArgument(name: "use_hg_revision_number", type: nil)
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let array: [RubyCommand.Argument?] = [useHgRevisionNumberArg,
@@ -9765,8 +9639,7 @@ public func setChangelog(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDef
                          changelog: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                          teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                          teamName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                         platform: String = "ios")
-{
+                         platform: String = "ios") {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
@@ -9827,8 +9700,7 @@ public func setChangelog(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDef
                                                 isDraft: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                                 isPrerelease: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                                 isGenerateReleaseNotes: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                                uploadAssets: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) -> [String: Any]
-{
+                                                uploadAssets: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) -> [String: Any] {
     let repositoryNameArg = RubyCommand.Argument(name: "repository_name", value: repositoryName, type: nil)
     let serverUrlArg = RubyCommand.Argument(name: "server_url", value: serverUrl, type: nil)
     let apiTokenArg = apiToken.asRubyArgument(name: "api_token", type: nil)
@@ -9874,8 +9746,7 @@ public func setInfoPlistValue(key: String,
                               subkey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                               value: String,
                               path: String,
-                              outputFileName: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                              outputFileName: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let keyArg = RubyCommand.Argument(name: "key", value: key, type: nil)
     let subkeyArg = subkey.asRubyArgument(name: "subkey", type: nil)
     let valueArg = RubyCommand.Argument(name: "value", value: value, type: nil)
@@ -9907,8 +9778,7 @@ public func setInfoPlistValue(key: String,
 public func setPodKey(useBundleExec: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                       key: String,
                       value: String,
-                      project: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                      project: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let useBundleExecArg = useBundleExec.asRubyArgument(name: "use_bundle_exec", type: nil)
     let keyArg = RubyCommand.Argument(name: "key", value: key, type: nil)
     let valueArg = RubyCommand.Argument(name: "value", value: value, type: nil)
@@ -9940,8 +9810,7 @@ public func setPodKey(useBundleExec: OptionalConfigValue<Bool> = .fastlaneDefaul
  */
 public func setupCi(force: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                     provider: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                    timeout: Int = 3600)
-{
+                    timeout: Int = 3600) {
     let forceArg = force.asRubyArgument(name: "force", type: nil)
     let providerArg = provider.asRubyArgument(name: "provider", type: nil)
     let timeoutArg = RubyCommand.Argument(name: "timeout", value: timeout, type: nil)
@@ -10014,8 +9883,7 @@ public func setupJenkins(force: OptionalConfigValue<Bool> = .fastlaneDefault(fal
                          codeSigningIdentity: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                          outputDirectory: String = "./output",
                          derivedDataPath: String = "./derivedData",
-                         resultBundle: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                         resultBundle: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let forceArg = force.asRubyArgument(name: "force", type: nil)
     let unlockKeychainArg = unlockKeychain.asRubyArgument(name: "unlock_keychain", type: nil)
     let addKeychainToSearchListArg = RubyCommand.Argument(name: "add_keychain_to_search_list", value: addKeychainToSearchList, type: nil)
@@ -10080,8 +9948,7 @@ public func setupTravis(force: OptionalConfigValue<Bool> = .fastlaneDefault(fals
  */
 @discardableResult public func sh(command: String,
                                   log: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                                  errorCallback: ((String) -> Void)? = nil) -> String
-{
+                                  errorCallback: ((String) -> Void)? = nil) -> String {
     let commandArg = RubyCommand.Argument(name: "command", value: command, type: nil)
     let logArg = log.asRubyArgument(name: "log", type: nil)
     let errorCallbackArg = RubyCommand.Argument(name: "error_callback", value: errorCallback, type: .stringClosure)
@@ -10161,8 +10028,7 @@ public func setupTravis(force: OptionalConfigValue<Bool> = .fastlaneDefault(fals
                                     cachedCertificates: Any? = nil,
                                     cachedDevices: Any? = nil,
                                     cachedBundleIds: Any? = nil,
-                                    cachedProfiles: Any? = nil) -> String
-{
+                                    cachedProfiles: Any? = nil) -> String {
     let adhocArg = adhoc.asRubyArgument(name: "adhoc", type: nil)
     let developerIdArg = developerId.asRubyArgument(name: "developer_id", type: nil)
     let developmentArg = development.asRubyArgument(name: "development", type: nil)
@@ -10273,8 +10139,7 @@ public func slack(message: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                   attachmentProperties: [String: Any] = [:],
                   success: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                   failOnError: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                  linkNames: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                  linkNames: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let messageArg = message.asRubyArgument(name: "message", type: nil)
     let pretextArg = pretext.asRubyArgument(name: "pretext", type: nil)
     let channelArg = channel.asRubyArgument(name: "channel", type: nil)
@@ -10342,8 +10207,7 @@ public func slackTrainCrash() {
 public func slackTrainStart(distance: Int = 5,
                             train: String = "🚝",
                             rail: String = "=",
-                            reverseDirection: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                            reverseDirection: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let distanceArg = RubyCommand.Argument(name: "distance", value: distance, type: nil)
     let trainArg = RubyCommand.Argument(name: "train", value: train, type: nil)
     let railArg = RubyCommand.Argument(name: "rail", value: rail, type: nil)
@@ -10432,8 +10296,7 @@ public func slather(buildDirectory: OptionalConfigValue<String?> = .fastlaneDefa
                     arch: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     sourceFiles: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                     decimals: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                    ymlfile: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                    ymlfile: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let buildDirectoryArg = buildDirectory.asRubyArgument(name: "build_directory", type: nil)
     let projArg = proj.asRubyArgument(name: "proj", type: nil)
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
@@ -10611,8 +10474,7 @@ public func snapshot(workspace: OptionalConfigValue<String?> = .fastlaneDefault(
                      xcprettyArgs: OptionalConfigValue<String?> = .fastlaneDefault(snapshotfile.xcprettyArgs),
                      disableXcpretty: OptionalConfigValue<Bool?> = .fastlaneDefault(snapshotfile.disableXcpretty),
                      suppressXcodeOutput: OptionalConfigValue<Bool?> = .fastlaneDefault(snapshotfile.suppressXcodeOutput),
-                     useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(snapshotfile.useSystemScm))
-{
+                     useSystemScm: OptionalConfigValue<Bool> = .fastlaneDefault(snapshotfile.useSystemScm)) {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let xcargsArg = xcargs.asRubyArgument(name: "xcargs", type: nil)
@@ -10763,8 +10625,7 @@ public func sonar(projectConfigurationPath: OptionalConfigValue<String?> = .fast
                   branchName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                   pullRequestBranch: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                   pullRequestBase: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                  pullRequestKey: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                  pullRequestKey: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let projectConfigurationPathArg = projectConfigurationPath.asRubyArgument(name: "project_configuration_path", type: nil)
     let projectKeyArg = projectKey.asRubyArgument(name: "project_key", type: nil)
     let projectNameArg = projectName.asRubyArgument(name: "project_name", type: nil)
@@ -10838,8 +10699,7 @@ public func sourcedocs(allModules: OptionalConfigValue<Bool?> = .fastlaneDefault
                        tableOfContents: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                        reproducible: OptionalConfigValue<Bool?> = .fastlaneDefault(nil),
                        scheme: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                       sdkPlatform: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                       sdkPlatform: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let allModulesArg = allModules.asRubyArgument(name: "all_modules", type: nil)
     let spmModuleArg = spmModule.asRubyArgument(name: "spm_module", type: nil)
     let moduleNameArg = moduleName.asRubyArgument(name: "module_name", type: nil)
@@ -10891,8 +10751,7 @@ public func sourcedocs(allModules: OptionalConfigValue<Bool?> = .fastlaneDefault
                                              printContents: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                              printPaths: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                              copyToPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                             copyToClipboard: OptionalConfigValue<Bool> = .fastlaneDefault(false)) -> [String]
-{
+                                             copyToClipboard: OptionalConfigValue<Bool> = .fastlaneDefault(false)) -> [String] {
     let latestArg = latest.asRubyArgument(name: "latest", type: nil)
     let printContentsArg = printContents.asRubyArgument(name: "print_contents", type: nil)
     let printPathsArg = printPaths.asRubyArgument(name: "print_paths", type: nil)
@@ -10947,8 +10806,7 @@ public func splunkmint(dsym: OptionalConfigValue<String?> = .fastlaneDefault(nil
                        proxyUsername: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                        proxyPassword: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                        proxyAddress: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                       proxyPort: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                       proxyPort: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let dsymArg = dsym.asRubyArgument(name: "dsym", type: nil)
     let apiKeyArg = RubyCommand.Argument(name: "api_key", value: apiKey, type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
@@ -11008,8 +10866,7 @@ public func spm(command: String = "build",
                 verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                 veryVerbose: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                 simulator: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                simulatorArch: String = "arm64")
-{
+                simulatorArch: String = "arm64") {
     let commandArg = RubyCommand.Argument(name: "command", value: command, type: nil)
     let enableCodeCoverageArg = enableCodeCoverage.asRubyArgument(name: "enable_code_coverage", type: nil)
     let scratchPathArg = scratchPath.asRubyArgument(name: "scratch_path", type: nil)
@@ -11065,8 +10922,7 @@ public func ssh(username: String,
                 host: String,
                 port: String = "22",
                 commands: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
-                log: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                log: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let passwordArg = password.asRubyArgument(name: "password", type: nil)
     let hostArg = RubyCommand.Argument(name: "host", value: host, type: nil)
@@ -11172,8 +11028,7 @@ public func supply(packageName: String,
                    obbMainFileSize: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    obbPatchReferencesVersion: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                    obbPatchFileSize: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                   ackBundleInstallationWarning: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                   ackBundleInstallationWarning: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let versionNameArg = versionName.asRubyArgument(name: "version_name", type: nil)
     let versionCodeArg = versionCode.asRubyArgument(name: "version_code", type: nil)
@@ -11293,8 +11148,7 @@ public func swiftlint(mode: String = "lint",
                       executable: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                       format: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                       noCache: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                      compilerLogPath: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                      compilerLogPath: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let modeArg = RubyCommand.Argument(name: "mode", value: mode, type: nil)
     let pathArg = path.asRubyArgument(name: "path", type: nil)
     let outputFileArg = outputFile.asRubyArgument(name: "output_file", type: nil)
@@ -11448,8 +11302,7 @@ public func syncCodeSigning(type: String = "development",
                             outputPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             skipSetPartitionList: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                             forceLegacyEncryption: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                            verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                            verbose: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let typeArg = RubyCommand.Argument(name: "type", value: type, type: nil)
     let additionalCertTypesArg = additionalCertTypes.asRubyArgument(name: "additional_cert_types", type: nil)
     let readonlyArg = readonly.asRubyArgument(name: "readonly", type: nil)
@@ -11629,8 +11482,7 @@ public func testfairy(apiKey: String,
                       folderName: String = "",
                       landingPageMode: String = "open",
                       uploadToSaucelabs: String = "off",
-                      platform: String = "")
-{
+                      platform: String = "") {
     let apiKeyArg = RubyCommand.Argument(name: "api_key", value: apiKey, type: nil)
     let ipaArg = ipa.asRubyArgument(name: "ipa", type: nil)
     let apkArg = apk.asRubyArgument(name: "apk", type: nil)
@@ -11759,8 +11611,7 @@ public func testflight(apiKeyPath: OptionalConfigValue<String?> = .fastlaneDefau
                        waitProcessingTimeoutDuration: OptionalConfigValue<Int?> = .fastlaneDefault(nil),
                        waitForUploadedBuild: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                        rejectBuildWaitingForReview: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                       submitBetaReview: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                       submitBetaReview: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = username.asRubyArgument(name: "username", type: nil)
@@ -11868,8 +11719,7 @@ public func trainer(path: String = ".",
                     failBuild: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                     xcprettyNaming: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                     silent: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                    outputRemoveRetryAttempts: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                    outputRemoveRetryAttempts: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let extensionArg = RubyCommand.Argument(name: "extension", value: `extension`, type: nil)
     let outputDirectoryArg = outputDirectory.asRubyArgument(name: "output_directory", type: nil)
@@ -11913,8 +11763,7 @@ public func tryouts(appId: String,
                     notes: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     notesPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                     notify: Int = 1,
-                    status: Int = 2)
-{
+                    status: Int = 2) {
     let appIdArg = RubyCommand.Argument(name: "app_id", value: appId, type: nil)
     let apiTokenArg = RubyCommand.Argument(name: "api_token", value: apiToken, type: nil)
     let buildFileArg = RubyCommand.Argument(name: "build_file", value: buildFile, type: nil)
@@ -11952,8 +11801,7 @@ public func twitter(consumerKey: String,
                     consumerSecret: String,
                     accessToken: String,
                     accessTokenSecret: String,
-                    message: String)
-{
+                    message: String) {
     let consumerKeyArg = RubyCommand.Argument(name: "consumer_key", value: consumerKey, type: nil)
     let consumerSecretArg = RubyCommand.Argument(name: "consumer_secret", value: consumerSecret, type: nil)
     let accessTokenArg = RubyCommand.Argument(name: "access_token", value: accessToken, type: nil)
@@ -11995,8 +11843,7 @@ public func typetalk() {
 public func unlockKeychain(path: String = "login",
                            password: String,
                            addToSearchList: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                           setDefault: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                           setDefault: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let passwordArg = RubyCommand.Argument(name: "password", value: password, type: nil)
     let addToSearchListArg = addToSearchList.asRubyArgument(name: "add_to_search_list", type: nil)
@@ -12022,8 +11869,7 @@ public func unlockKeychain(path: String = "login",
  Updates the App Group Identifiers in the given Entitlements file, so you can have app groups for the app store build and app groups for an enterprise build.
  */
 public func updateAppGroupIdentifiers(entitlementsFile: String,
-                                      appGroupIdentifiers: [String])
-{
+                                      appGroupIdentifiers: [String]) {
     let entitlementsFileArg = RubyCommand.Argument(name: "entitlements_file", value: entitlementsFile, type: nil)
     let appGroupIdentifiersArg = RubyCommand.Argument(name: "app_group_identifiers", value: appGroupIdentifiers, type: nil)
     let array: [RubyCommand.Argument?] = [entitlementsFileArg,
@@ -12047,8 +11893,7 @@ public func updateAppGroupIdentifiers(entitlementsFile: String,
  */
 public func updateAppIdentifier(xcodeproj: String,
                                 plistPath: String,
-                                appIdentifier: String)
-{
+                                appIdentifier: String) {
     let xcodeprojArg = RubyCommand.Argument(name: "xcodeproj", value: xcodeproj, type: nil)
     let plistPathArg = RubyCommand.Argument(name: "plist_path", value: plistPath, type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
@@ -12092,8 +11937,7 @@ public func updateCodeSigningSettings(path: String,
                                       entitlementsFilePath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                       profileName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                       profileUuid: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                      bundleIdentifier: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                      bundleIdentifier: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let useAutomaticSigningArg = useAutomaticSigning.asRubyArgument(name: "use_automatic_signing", type: nil)
     let sdkArg = sdk.asRubyArgument(name: "sdk", type: nil)
@@ -12146,8 +11990,7 @@ public func updateCodeSigningSettings(path: String,
  Recommended usage of the `update_fastlane` action is at the top inside of the `before_all` block, before running any other action.
  */
 public func updateFastlane(noUpdate: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                           nightly: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                           nightly: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let noUpdateArg = noUpdate.asRubyArgument(name: "no_update", type: nil)
     let nightlyArg = nightly.asRubyArgument(name: "nightly", type: nil)
     let array: [RubyCommand.Argument?] = [noUpdateArg,
@@ -12169,8 +12012,7 @@ public func updateFastlane(noUpdate: OptionalConfigValue<Bool> = .fastlaneDefaul
  Updates the iCloud Container Identifiers in the given Entitlements file, so you can use different iCloud containers for different builds like Adhoc, App Store, etc.
  */
 public func updateIcloudContainerIdentifiers(entitlementsFile: String,
-                                             icloudContainerIdentifiers: [String])
-{
+                                             icloudContainerIdentifiers: [String]) {
     let entitlementsFileArg = RubyCommand.Argument(name: "entitlements_file", value: entitlementsFile, type: nil)
     let icloudContainerIdentifiersArg = RubyCommand.Argument(name: "icloud_container_identifiers", value: icloudContainerIdentifiers, type: nil)
     let array: [RubyCommand.Argument?] = [entitlementsFileArg,
@@ -12200,8 +12042,7 @@ public func updateInfoPlist(xcodeproj: OptionalConfigValue<String?> = .fastlaneD
                             scheme: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             appIdentifier: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                             displayName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                            block: ((String) -> Void)? = nil)
-{
+                            block: ((String) -> Void)? = nil) {
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let plistPathArg = plistPath.asRubyArgument(name: "plist_path", type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
@@ -12231,8 +12072,7 @@ public func updateInfoPlist(xcodeproj: OptionalConfigValue<String?> = .fastlaneD
  Updates the Keychain Group Access Groups in the given Entitlements file, so you can have keychain access groups for the app store build and keychain access groups for an enterprise build.
  */
 public func updateKeychainAccessGroups(entitlementsFile: String,
-                                       identifiers: [String])
-{
+                                       identifiers: [String]) {
     let entitlementsFileArg = RubyCommand.Argument(name: "entitlements_file", value: entitlementsFile, type: nil)
     let identifiersArg = RubyCommand.Argument(name: "identifiers", value: identifiers, type: nil)
     let array: [RubyCommand.Argument?] = [entitlementsFileArg,
@@ -12254,8 +12094,7 @@ public func updateKeychainAccessGroups(entitlementsFile: String,
  This action allows you to modify any value inside any `plist` file.
  */
 public func updatePlist(plistPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                        block: ((String) -> Void)? = nil)
-{
+                        block: ((String) -> Void)? = nil) {
     let plistPathArg = plistPath.asRubyArgument(name: "plist_path", type: nil)
     let blockArg = RubyCommand.Argument(name: "block", value: block, type: .stringClosure)
     let array: [RubyCommand.Argument?] = [plistPathArg,
@@ -12277,8 +12116,7 @@ public func updatePlist(plistPath: OptionalConfigValue<String?> = .fastlaneDefau
  */
 public func updateProjectCodeSigning(path: String,
                                      udid: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                     uuid: String)
-{
+                                     uuid: String) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let udidArg = udid.asRubyArgument(name: "udid", type: nil)
     let uuidArg = RubyCommand.Argument(name: "uuid", value: uuid, type: nil)
@@ -12317,8 +12155,7 @@ public func updateProjectProvisioning(xcodeproj: OptionalConfigValue<String?> = 
                                       buildConfigurationFilter: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                       buildConfiguration: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                       certificate: String = "/tmp/AppleIncRootCertificate.cer",
-                                      codeSigningIdentity: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                                      codeSigningIdentity: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let xcodeprojArg = xcodeproj.asRubyArgument(name: "xcodeproj", type: nil)
     let profileArg = RubyCommand.Argument(name: "profile", value: profile, type: nil)
     let targetFilterArg = targetFilter.asRubyArgument(name: "target_filter", type: nil)
@@ -12352,8 +12189,7 @@ public func updateProjectProvisioning(xcodeproj: OptionalConfigValue<String?> = 
  */
 public func updateProjectTeam(path: String,
                               targets: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
-                              teamid: String)
-{
+                              teamid: String) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let targetsArg = targets.asRubyArgument(name: "targets", type: nil)
     let teamidArg = RubyCommand.Argument(name: "teamid", value: teamid, type: nil)
@@ -12385,8 +12221,7 @@ public func updateUrbanAirshipConfiguration(plistPath: String,
                                             developmentAppSecret: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                             productionAppKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                             productionAppSecret: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                            detectProvisioningMode: OptionalConfigValue<Bool?> = .fastlaneDefault(nil))
-{
+                                            detectProvisioningMode: OptionalConfigValue<Bool?> = .fastlaneDefault(nil)) {
     let plistPathArg = RubyCommand.Argument(name: "plist_path", value: plistPath, type: nil)
     let developmentAppKeyArg = developmentAppKey.asRubyArgument(name: "development_app_key", type: nil)
     let developmentAppSecretArg = developmentAppSecret.asRubyArgument(name: "development_app_secret", type: nil)
@@ -12419,8 +12254,7 @@ public func updateUrbanAirshipConfiguration(plistPath: String,
  */
 public func updateUrlSchemes(path: String,
                              urlSchemes: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
-                             updateUrlSchemes: ((String) -> Void)? = nil)
-{
+                             updateUrlSchemes: ((String) -> Void)? = nil) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let urlSchemesArg = urlSchemes.asRubyArgument(name: "url_schemes", type: nil)
     let updateUrlSchemesArg = RubyCommand.Argument(name: "update_url_schemes", value: updateUrlSchemes, type: .stringClosure)
@@ -12458,8 +12292,7 @@ public func uploadAppPrivacyDetailsToAppStore(username: String,
                                               outputJsonPath: String = "./fastlane/app_privacy_details.json",
                                               skipJsonFileSaving: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                               skipUpload: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                              skipPublish: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                                              skipPublish: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let appIdentifierArg = RubyCommand.Argument(name: "app_identifier", value: appIdentifier, type: nil)
     let teamIdArg = teamId.asRubyArgument(name: "team_id", type: nil)
@@ -12509,8 +12342,7 @@ public func uploadSymbolsToCrashlytics(dsymPath: String = "./spec/fixtures/dSYM/
                                        binaryPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                        platform: String = "ios",
                                        dsymWorkerThreads: Int = 1,
-                                       debug: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                                       debug: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let dsymPathArg = RubyCommand.Argument(name: "dsym_path", value: dsymPath, type: nil)
     let dsymPathsArg = dsymPaths.asRubyArgument(name: "dsym_paths", type: nil)
     let apiTokenArg = apiToken.asRubyArgument(name: "api_token", type: nil)
@@ -12558,8 +12390,7 @@ public func uploadSymbolsToSentry(apiHost: String = "https://app.getsentry.com/a
                                   orgSlug: String,
                                   projectSlug: String,
                                   dsymPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                  dsymPaths: OptionalConfigValue<[String]?> = .fastlaneDefault(nil))
-{
+                                  dsymPaths: OptionalConfigValue<[String]?> = .fastlaneDefault(nil)) {
     let apiHostArg = RubyCommand.Argument(name: "api_host", value: apiHost, type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let authTokenArg = authToken.asRubyArgument(name: "auth_token", type: nil)
@@ -12724,8 +12555,7 @@ public func uploadToAppStore(apiKeyPath: OptionalConfigValue<String?> = .fastlan
                              languages: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                              ignoreLanguageDirectoryValidation: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                              precheckIncludeInAppPurchases: OptionalConfigValue<Bool> = .fastlaneDefault(true),
-                             app: OptionalConfigValue<Int?> = .fastlaneDefault(nil))
-{
+                             app: OptionalConfigValue<Int?> = .fastlaneDefault(nil)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = username.asRubyArgument(name: "username", type: nil)
@@ -12951,8 +12781,7 @@ public func uploadToPlayStore(packageName: String,
                               obbMainFileSize: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                               obbPatchReferencesVersion: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                               obbPatchFileSize: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                              ackBundleInstallationWarning: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                              ackBundleInstallationWarning: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let versionNameArg = versionName.asRubyArgument(name: "version_name", type: nil)
     let versionCodeArg = versionCode.asRubyArgument(name: "version_code", type: nil)
@@ -13066,8 +12895,7 @@ public func uploadToPlayStoreInternalAppSharing(packageName: String,
                                                 aab: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                 aabPaths: OptionalConfigValue<[String]?> = .fastlaneDefault(nil),
                                                 rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                                timeout: Int = 300)
-{
+                                                timeout: Int = 300) {
     let packageNameArg = RubyCommand.Argument(name: "package_name", value: packageName, type: nil)
     let jsonKeyArg = jsonKey.asRubyArgument(name: "json_key", type: nil)
     let jsonKeyDataArg = jsonKeyData.asRubyArgument(name: "json_key_data", type: nil)
@@ -13178,8 +13006,7 @@ public func uploadToTestflight(apiKeyPath: OptionalConfigValue<String?> = .fastl
                                waitProcessingTimeoutDuration: OptionalConfigValue<Int?> = .fastlaneDefault(nil),
                                waitForUploadedBuild: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                rejectBuildWaitingForReview: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                               submitBetaReview: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                               submitBetaReview: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let apiKeyPathArg = apiKeyPath.asRubyArgument(name: "api_key_path", type: nil)
     let apiKeyArg = apiKey.asRubyArgument(name: "api_key", type: nil)
     let usernameArg = username.asRubyArgument(name: "username", type: nil)
@@ -13279,8 +13106,7 @@ public func uploadToTestflight(apiKeyPath: OptionalConfigValue<String?> = .fastl
 public func validatePlayStoreJsonKey(jsonKey: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                      jsonKeyData: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                      rootUrl: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                     timeout: Int = 300)
-{
+                                     timeout: Int = 300) {
     let jsonKeyArg = jsonKey.asRubyArgument(name: "json_key", type: nil)
     let jsonKeyDataArg = jsonKeyData.asRubyArgument(name: "json_key_data", type: nil)
     let rootUrlArg = rootUrl.asRubyArgument(name: "root_url", type: nil)
@@ -13318,8 +13144,7 @@ public func verifyBuild(provisioningType: OptionalConfigValue<String?> = .fastla
                         appName: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                         bundleIdentifier: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                         ipaPath: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                        buildPath: OptionalConfigValue<String?> = .fastlaneDefault(nil))
-{
+                        buildPath: OptionalConfigValue<String?> = .fastlaneDefault(nil)) {
     let provisioningTypeArg = provisioningType.asRubyArgument(name: "provisioning_type", type: nil)
     let provisioningUuidArg = provisioningUuid.asRubyArgument(name: "provisioning_uuid", type: nil)
     let teamIdentifierArg = teamIdentifier.asRubyArgument(name: "team_identifier", type: nil)
@@ -13390,8 +13215,7 @@ public func versionBumpPodspec(path: String,
                                bumpType: String = "patch",
                                versionNumber: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                versionAppendix: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                               requireVariablePrefix: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                               requireVariablePrefix: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let bumpTypeArg = RubyCommand.Argument(name: "bump_type", value: bumpType, type: nil)
     let versionNumberArg = versionNumber.asRubyArgument(name: "version_number", type: nil)
@@ -13417,8 +13241,7 @@ public func versionBumpPodspec(path: String,
    - requireVariablePrefix: true by default, this is used for non CocoaPods version bumps only
  */
 public func versionGetPodspec(path: String,
-                              requireVariablePrefix: OptionalConfigValue<Bool> = .fastlaneDefault(true))
-{
+                              requireVariablePrefix: OptionalConfigValue<Bool> = .fastlaneDefault(true)) {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let requireVariablePrefixArg = requireVariablePrefix.asRubyArgument(name: "require_variable_prefix", type: nil)
     let array: [RubyCommand.Argument?] = [pathArg,
@@ -13482,8 +13305,7 @@ public func xcexport() {
 @discardableResult public func xcodeInstall(version: String,
                                             username: String,
                                             teamId: OptionalConfigValue<String?> = .fastlaneDefault(nil),
-                                            downloadRetryAttempts: Int = 3) -> String
-{
+                                            downloadRetryAttempts: Int = 3) -> String {
     let versionArg = RubyCommand.Argument(name: "version", value: version, type: nil)
     let usernameArg = RubyCommand.Argument(name: "username", value: username, type: nil)
     let teamIdArg = teamId.asRubyArgument(name: "team_id", type: nil)
@@ -13537,8 +13359,7 @@ public func xcodeSelect() {
                                                     password: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                                     targetFolder: String = "./xcs_assets",
                                                     keepAllAssets: OptionalConfigValue<Bool> = .fastlaneDefault(false),
-                                                    trustSelfSignedCerts: OptionalConfigValue<Bool> = .fastlaneDefault(true)) -> [String]
-{
+                                                    trustSelfSignedCerts: OptionalConfigValue<Bool> = .fastlaneDefault(true)) -> [String] {
     let hostArg = RubyCommand.Argument(name: "host", value: host, type: nil)
     let botNameArg = RubyCommand.Argument(name: "bot_name", value: botName, type: nil)
     let integrationNumberArg = integrationNumber.asRubyArgument(name: "integration_number", type: nil)
@@ -13593,8 +13414,7 @@ public func xcodebuild() {
                                       updateList: OptionalConfigValue<Bool> = .fastlaneDefault(true),
                                       selectForCurrentBuildOnly: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                       binaryPath: String = "/opt/homebrew/bin/xcodes",
-                                      xcodesArgs: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String
-{
+                                      xcodesArgs: OptionalConfigValue<String?> = .fastlaneDefault(nil)) -> String {
     let versionArg = RubyCommand.Argument(name: "version", value: version, type: nil)
     let updateListArg = updateList.asRubyArgument(name: "update_list", type: nil)
     let selectForCurrentBuildOnlyArg = selectForCurrentBuildOnly.asRubyArgument(name: "select_for_current_build_only", type: nil)
@@ -13675,8 +13495,7 @@ public func xcov(workspace: OptionalConfigValue<String?> = .fastlaneDefault(nil)
                  coverallsRepoToken: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                  xcconfig: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                  ideFoundationPath: String = "/Applications/Xcode_15.4.app/Contents/Developer/../Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation",
-                 legacySupport: OptionalConfigValue<Bool> = .fastlaneDefault(false))
-{
+                 legacySupport: OptionalConfigValue<Bool> = .fastlaneDefault(false)) {
     let workspaceArg = workspace.asRubyArgument(name: "workspace", type: nil)
     let projectArg = project.asRubyArgument(name: "project", type: nil)
     let schemeArg = scheme.asRubyArgument(name: "scheme", type: nil)
@@ -13800,8 +13619,7 @@ public func xcversion(version: String) {
                                    password: OptionalConfigValue<String?> = .fastlaneDefault(nil),
                                    symlinks: OptionalConfigValue<Bool> = .fastlaneDefault(false),
                                    include: [String] = [],
-                                   exclude: [String] = []) -> String
-{
+                                   exclude: [String] = []) -> String {
     let pathArg = RubyCommand.Argument(name: "path", value: path, type: nil)
     let outputPathArg = outputPath.asRubyArgument(name: "output_path", type: nil)
     let verboseArg = verbose.asRubyArgument(name: "verbose", type: nil)

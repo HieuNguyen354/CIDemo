@@ -83,7 +83,6 @@ class AppDICoordinator {
 	}
 	
 	private func registerUseCase() {
-		
 		// - MARK: Home UseCase
 		container.register(HomeRepository.self) { r in
 			DefaultHomeRepository(remoteDataSource: r.resolve(HomeRemoteDataSource.self)!,
