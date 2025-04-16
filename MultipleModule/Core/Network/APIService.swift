@@ -21,19 +21,19 @@ class APIService {
 		self.httpSerivceQueue = backgroundQueue
 	}
 	
-	func sendRequest<T: Codable, U: Codable>(apiRequest: APIServiceRequest, responseModel: T.Type, errorModel: U.Type, completion: @escaping Completion<T, U>) {
-		sendRequestToHttpService(apiRequest: apiRequest, response: responseModel, error: errorModel) { httpServiceCompletion in
+	func sendRequest<T: Codable, U: Codable>(request: APIServiceRequest, response: T.Type, error: U.Type, completion: @escaping Completion<T, U>) {
+		sendRequestToHttpService(request: request, response: response, error: error) { httpServiceCompletion in
 			completion(httpServiceCompletion)
 		}
 	}
 	
-	private func sendRequestToHttpService<T: Codable, U: Codable>(apiRequest: APIServiceRequest, response: T.Type, error: U.Type, completion: @escaping Completion<T, U>) {
+	private func sendRequestToHttpService<T: Codable, U: Codable>(request: APIServiceRequest, response: T.Type, error: U.Type, completion: @escaping Completion<T, U>) {
 		httpSerivceQueue.async { [weak self] in
 			guard let self else { return }
-			var apiRequest = apiRequest
-			var endPoint = APIServiceEndpoint(host: baseURL, path: apiRequest.path, method: HTTPMethod(rawValue: apiRequest.method.rawValue), header: getHeader())
-			getParameters(apiRequest: &apiRequest)
-			getBody(apiRequest: apiRequest, parameters: apiRequest.parameters, endPoint: &endPoint)
+			var request = request
+			var endPoint = APIServiceEndpoint(host: baseURL, path: request.path, method: HTTPMethod(rawValue: request.method.rawValue), header: getHeader())
+			getParameters(apiRequest: &request)
+			getBody(apiRequest: request, parameters: request.parameters, endPoint: &endPoint)
 			httpClientService.sendRequest(endpoint: endPoint, response: response, error: error) { httpServiceCompletion in
 				DispatchQueue.main.async {
 					completion(httpServiceCompletion)

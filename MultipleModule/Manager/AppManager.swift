@@ -43,12 +43,9 @@ class AppManager {
 		}
 	}
 	
-	func changeTabbar(tabIndex: TabBarCoordinator.Tag? = .Home,
-					  childViewController: UIViewController? = nil) {
-		guard let tabIndex = tabIndex,
-			  let tabbar = AppManager.shared.currentTabbar else { return }
+	func changeTabbar(tabIndex: TabBarCoordinator.Tag? = .Home, childViewController: UIViewController? = nil) {
+		guard let tabIndex = tabIndex, let tabbar = AppManager.shared.currentTabbar else { return }
 		tabbar.selectedIndex = tabIndex.rawValue
-		
 		tabbar.selectedViewController?.top?.navigationController?.popToRootViewController(animated: false)
 	}
 	

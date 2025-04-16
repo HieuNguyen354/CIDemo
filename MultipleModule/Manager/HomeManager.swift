@@ -18,9 +18,9 @@ final class HomeManager {
 	func fetchData(apiRequest: APIServiceRequest) -> Single<HomeDetail> {
 		return Single<HomeDetail>.create { [weak self] observer in
 			guard let self = self else { return Disposables.create() }
-			apiService.sendRequest(apiRequest: apiRequest,
-								   responseModel: HomeDetail.self,
-								   errorModel: ErrorResponseModel.self) { response in
+			apiService.sendRequest(request: apiRequest,
+								   response: HomeDetail.self,
+								   error: ErrorResponseModel.self) { response in
 				switch response {
 					case .success(let model):
 						observer(.success(model))
@@ -35,9 +35,9 @@ final class HomeManager {
 	func fetchHomeDetail(apiRequest: APIServiceRequest) -> Single<HomeDetail> {
 		return Single<HomeDetail>.create { [weak self] observer in
 			guard let self = self else { return Disposables.create() }
-			apiService.sendRequest(apiRequest: apiRequest,
-								   responseModel: HomeDetail.self,
-								   errorModel: ErrorResponseModel.self) { response in
+			apiService.sendRequest(request: apiRequest,
+								   response: HomeDetail.self,
+								   error: ErrorResponseModel.self) { response in
 				switch response {
 					case .success(let model):
 						observer(.success(model))
