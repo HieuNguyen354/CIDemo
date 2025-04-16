@@ -43,8 +43,8 @@ class APIService {
 	}
 	
 	private func getParameters(apiRequest: inout APIServiceRequest) {
-		if let apiServicePagingRequest = apiRequest as? APIServicePagingRequest {
-			apiRequest.parameters?[RequestKey.Paging.page] = apiServicePagingRequest.paging.page
+		if let pagingRequest = apiRequest as? APIServicePagingRequest {
+			apiRequest.parameters?[RequestKey.Paging.page] = pagingRequest.paging.page
 		}
 	}
 	
