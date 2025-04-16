@@ -56,11 +56,7 @@ class APIService {
 					URLQueryItem(name: String($0),
 								 value: String(describing: $1))
 				}
-			case .DELETE:
-				endPoint.body = parameters
-			case .POST:
-				endPoint.body = parameters
-			case .PUT:
+			default:
 				endPoint.body = parameters
 		}
 	}

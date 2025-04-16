@@ -20,8 +20,8 @@ class DefaultHomeRepository: HomeRepository {
 	
 	func getHome() -> Single<HomeDetail> {
 		guard isOnline() else {
-			if let cached = localDataSource.getData(), !cached.isEmpty {
-				return Single.just(localDataSource.getData() ?? [])
+			if let cached = localDataSource.retrieve(), !cached.isEmpty {
+				return Single.just(localDataSource.retrieve() ?? [])
 			} else {
 				return .error(ErrorServer(internalError: ErrorResponseModel(error: "No cache data"), statusCode: 0))
 			}
@@ -31,7 +31,7 @@ class DefaultHomeRepository: HomeRepository {
 		result = result
 			.flatMap { [weak self] model in
 				guard let self else { return .just([]) }
-				return localDataSource.saveLocal(model).andThen(Single.just(model))
+				return localDataSource.save(model).andThen(Single.just(model))
 			}.catch { error in
 				return .error(error)
 			}

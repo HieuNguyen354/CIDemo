@@ -122,3 +122,17 @@ enum PrimaryAttr: String, Codable {
 }
 
 typealias HomeDetail = [HomeDetailElement]
+
+struct HomeDetailElementCache: Cacheable {
+	typealias Key = String
+	typealias Value = HomeDetail
+	
+	// Not needed because we use the default extension
+	func save(value: HomeDetail, for key: String) {
+		saveToUserDefaults(value: value, for: key)
+	}
+	
+	func retrieve(for key: String) -> HomeDetail? {
+		retrieveFromUserDefaults(for: key)
+	}
+}
