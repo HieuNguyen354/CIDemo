@@ -1,11 +1,11 @@
 //
-//  ApiErrorDefine.swift
+//  APIErrorDefine.swift
 //  MultipleModule
 //
 //  Created by HieuNguyen on 15/4/25.
 //
 
-enum ApiErrorCode: Int {
+enum APIErrorCode: Int {
 	case parse = 1000
 	case unknown = 2000
 	case refreshToken = 401

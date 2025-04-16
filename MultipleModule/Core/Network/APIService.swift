@@ -1,5 +1,5 @@
 //
-//  ApiService.swift
+//  APIService.swift
 //  MultipleModule
 //
 //  Created by HieuNguyen on 12/11/24.
@@ -8,54 +8,33 @@
 import UIKit
 
 class APIService {
-
+	
 	typealias Completion<T: Codable, U: Codable> = ((Result<T, ErrorServer<U>>) -> Void)
-
+	
 	let baseURL: String
 	var httpClientService: HTTPClientService
 	let httpSerivceQueue: DispatchQueue
-
-	init(baseUrl: String,
-		 urlSession: URLSession = URLSession.shared,
-		 backgroundQueue: DispatchQueue = DispatchQueue.global(qos: .background)) {
+	
+	init(baseUrl: String, urlSession: URLSession = URLSession.shared, backgroundQueue: DispatchQueue = DispatchQueue.global(qos: .background)) {
 		self.baseURL = baseUrl
 		self.httpClientService = HTTPClientService(urlSession, encodedType: .json)
 		self.httpSerivceQueue = backgroundQueue
 	}
-
-	func sendRequest<T: Codable,
-					 U: Codable>(apiRequest: APIServiceRequest,
-								 responseModel: T.Type,
-								 errorModel: U.Type,
-								 completion: @escaping Completion<T, U>) {
-		sendRequestToHttpService(apiRequest: apiRequest,
-								 response: responseModel,
-								 error: errorModel) { httpServiceCompletion in
+	
+	func sendRequest<T: Codable, U: Codable>(apiRequest: APIServiceRequest, responseModel: T.Type, errorModel: U.Type, completion: @escaping Completion<T, U>) {
+		sendRequestToHttpService(apiRequest: apiRequest, response: responseModel, error: errorModel) { httpServiceCompletion in
 			completion(httpServiceCompletion)
 		}
 	}
-
-	func sendRequestToHttpService<T: Codable,
-								  U: Codable>(apiRequest: APIServiceRequest,
-											  response: T.Type,
-											  error: U.Type,
-											  completion: @escaping Completion<T, U>) {
+	
+	private func sendRequestToHttpService<T: Codable, U: Codable>(apiRequest: APIServiceRequest, response: T.Type, error: U.Type, completion: @escaping Completion<T, U>) {
 		httpSerivceQueue.async { [weak self] in
 			guard let self else { return }
 			var apiRequest = apiRequest
-			var endPoint = APIServiceEndpoint(host: baseURL,
-											  path: apiRequest.path,
-											  method: HTTPMethod(rawValue: apiRequest.method.rawValue),
-											  header: getHeader())
-
+			var endPoint = APIServiceEndpoint(host: baseURL, path: apiRequest.path, method: HTTPMethod(rawValue: apiRequest.method.rawValue), header: getHeader())
 			getParameters(apiRequest: &apiRequest)
-			getEndPoint(apiRequest: apiRequest,
-						parameters: apiRequest.parameters,
-						endPoint: &endPoint)
-
-			httpClientService.sendRequest(endpoint: endPoint,
-										  response: response,
-										  error: error) { httpServiceCompletion in
+			getBody(apiRequest: apiRequest, parameters: apiRequest.parameters, endPoint: &endPoint)
+			httpClientService.sendRequest(endpoint: endPoint, response: response, error: error) { httpServiceCompletion in
 				DispatchQueue.main.async {
 					completion(httpServiceCompletion)
 				}
@@ -63,15 +42,13 @@ class APIService {
 		}
 	}
 	
-	func getParameters(apiRequest: inout APIServiceRequest) {
+	private func getParameters(apiRequest: inout APIServiceRequest) {
 		if let apiServicePagingRequest = apiRequest as? APIServicePagingRequest {
 			apiRequest.parameters?[RequestKey.Paging.page] = apiServicePagingRequest.paging.page
 		}
 	}
 	
-	func getEndPoint(apiRequest: APIServiceRequest,
-					 parameters: [String: Any]?,
-					 endPoint: inout APIServiceEndpoint) {
+	private func getBody(apiRequest: APIServiceRequest, parameters: [String: Any]?, endPoint: inout APIServiceEndpoint) {
 		guard let parameters else { return }
 		switch apiRequest.method {
 			case .GET:
@@ -87,8 +64,8 @@ class APIService {
 				endPoint.body = parameters
 		}
 	}
-
-	func getHeader() -> [String: String] {
+	
+	private func getHeader() -> [String: String] {
 		var header = [String: String]()
 		header[RequestKey.contentType] = RequestKey.Encoded.normalEncoded
 		var userAgent = "\(AppManager.shared.deviceModelName); \(AppManager.shared.deviceOS)"
@@ -98,5 +75,5 @@ class APIService {
 		header[RequestKey.Header.userAgent] = userAgent
 		return header
 	}
-
+	
 }
